@@ -130,6 +130,7 @@
         <div class="course-grid">
             <!-- Recomendador de Cursos / Quiz ANAC 2026 -->
             <div class="course-card tilt-card glass" id="course-quiz-card" style="border: 2px dashed var(--accent-yellow); background: rgba(251, 215, 4, 0.04);">
+                <div class="course-card-img"><img src="card_quiz.png" alt="Asistente de reglas operativas ANAC" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="help-circle"></i>
                 </div>
@@ -144,6 +145,7 @@
             </div>
             
             <div class="course-card tilt-card glass" data-course="recreativa">
+                <div class="course-card-img"><img src="card_microdrones.png" alt="Curso de microdrones y vuelo inicial" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="smile"></i>
                 </div>
@@ -158,6 +160,7 @@
             </div>
             
             <div class="course-card tilt-card glass" data-course="fotografia">
+                <div class="course-card-img"><img src="card_fotografia.png" alt="Curso de fotografía y filmación aérea con drones" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="camera"></i>
                 </div>
@@ -172,6 +175,7 @@
             </div>
             
             <div class="course-card tilt-card glass" data-course="agricola">
+                <div class="course-card-img"><img src="card_agricola.png" alt="Curso de operación agrícola con drones" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="sprout"></i>
                 </div>
@@ -189,16 +193,17 @@
 
     <!-- Sección de Servicios Eliminada por Enfoque Académico Exclusivo -->
 
-    <section id="stats" class="stats glass">
-        <div class="stat-item">
+    <section id="stats" class="stats glass" style="position: relative; overflow: hidden;">
+        <img src="section_stats.png" alt="" class="stats-bg-img" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none; z-index: 0;">
+        <div class="stat-item" style="position: relative; z-index: 1;">
             <span class="stat-number" data-target="500" data-suffix="+">0+</span>
             <span class="stat-label">Pilotos Egresados</span>
         </div>
-        <div class="stat-item">
+        <div class="stat-item" style="position: relative; z-index: 1;">
             <span class="stat-number" data-target="1500" data-suffix="+">0+</span>
             <span class="stat-label">Horas de Práctica</span>
         </div>
-        <div class="stat-item">
+        <div class="stat-item" style="position: relative; z-index: 1;">
             <span class="stat-number" data-target="100" data-suffix="%">0%</span>
             <span class="stat-label">Drones Provistos por Escuela</span>
         </div>
@@ -211,6 +216,9 @@
         </div>
         <div class="nosotros-grid">
             <div class="nosotros-text reveal">
+                <div class="nosotros-img-container" style="border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(251,215,4,0.15);">
+                    <img src="section_nosotros.png" alt="Equipo de instructores de Horus Dron" loading="lazy" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: brightness(0.9);">
+                </div>
                 <h2>Formamos pilotos capacitados para volar con <span class="gradient-text">seguridad.</span></h2>
                 <p>Horus Dron es una escuela especializada en la capacitación de pilotos de drones. Nos enfocamos exclusivamente en brindar una sólida enseñanza teórica y práctica basada en el marco regulatorio y los estándares de seguridad de la Categoría Abierta de la ANAC en Argentina.</p>
                 <p>Nuestra propuesta académica elimina barreras de acceso: no requerimos que poseas conocimientos previos aeronáuticos ni que tengas un dron propio. Te proveemos todos los equipos necesarios para el aprendizaje.</p>
@@ -248,6 +256,9 @@
         <div class="section-header">
             <h2 class="gradient-text">Campus Digital del Alumno</h2>
             <p>Herramientas interactivas y simuladores teóricos para el aprendizaje y práctica de vuelo.</p>
+            <div style="border-radius: 16px; overflow: hidden; margin-top: 25px; max-width: 800px; margin-left: auto; margin-right: auto; border: 1px solid rgba(251,215,4,0.12);">
+                <img src="section_campus.png" alt="Alumno usando el campus digital de vuelo" loading="lazy" style="width: 100%; height: 260px; object-fit: cover; display: block; filter: brightness(0.85);">
+            </div>
         </div>
 
         <div class="platform-grid">
@@ -344,6 +355,9 @@
     <section id="enroll" class="enrollment">
         <div class="enroll-container glass">
             <div class="enroll-info">
+                <div style="border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(251,215,4,0.12);">
+                    <img src="section_enrollment.png" alt="Alumno recibiendo su certificado de piloto" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; display: block; filter: brightness(0.85);">
+                </div>
                 <h2 class="gradient-text">Iniciá tu Carrera</h2>
                 <p>Completá el formulario para que la coordinación pedagógica analice tu perfil y te asigne un cupo de formación práctica presencial.</p>
                 <ul class="enroll-perks">
@@ -512,8 +526,8 @@
 
     <!-- Panel de Control Principal de Administración -->
     <div id="admin-dashboard-modal" class="modal-overlay admin-modal" role="dialog" aria-modal="true" aria-label="Panel de Control Administrador" style="display: none;">
-        <div class="modal-content glass" style="max-width: 900px; width: 90%; max-height: 85vh; padding: 35px; border-radius: 28px; border: 1px solid rgba(251, 215, 4, 0.3); display: flex; flex-direction: column; overflow: hidden;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; flex-shrink: 0;">
+        <div class="modal-content glass" style="max-width: 900px; width: 90%; max-height: 85vh; padding: 35px; border-radius: 28px; border: 1px solid rgba(251, 215, 4, 0.3); display: flex; flex-direction: column; overflow: hidden; background: rgba(8, 9, 13, 0.95);">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(251,215,4,0.2); padding-bottom: 20px; margin-bottom: 20px; flex-shrink: 0;">
                 <div>
                     <h2 class="gradient-text" style="font-size: 1.8rem; font-weight: 800;">Panel de Administración</h2>
                     <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">Edite los contenidos de la escuela en tiempo real</p>
@@ -526,10 +540,10 @@
             </div>
 
             <!-- Navegación de Pestañas del Admin -->
-            <div style="display: flex; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; margin-bottom: 20px; flex-shrink: 0;">
-                <button class="admin-tab-btn active" data-tab="admin-tab-courses" style="background: none; border: none; color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: background 0.3s;">📁 Cursos y Módulos</button>
-                <button class="admin-tab-btn" data-tab="admin-tab-simulator" style="background: none; border: none; color: var(--text-secondary); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: background 0.3s;">❓ Preguntas Examen</button>
-                <button class="admin-tab-btn" data-tab="admin-tab-contact" style="background: none; border: none; color: var(--text-secondary); padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: background 0.3s;">📞 Contacto Escuela</button>
+            <div style="display: flex; gap: 8px; border-bottom: 2px solid rgba(255,255,255,0.06); padding-bottom: 15px; margin-bottom: 20px; flex-shrink: 0;">
+                <button class="admin-tab-btn active" data-tab="admin-tab-courses" style="background: none; border: none; color: white; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.88rem; transition: background 0.3s;">📁 Cursos y Módulos</button>
+                <button class="admin-tab-btn" data-tab="admin-tab-simulator" style="background: none; border: none; color: var(--text-secondary); padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.88rem; transition: background 0.3s;">❓ Preguntas Examen</button>
+                <button class="admin-tab-btn" data-tab="admin-tab-contact" style="background: none; border: none; color: var(--text-secondary); padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 0.88rem; transition: background 0.3s;">📞 Contacto Escuela</button>
             </div>
 
             <!-- Contenedores de Contenido de Pestañas -->
