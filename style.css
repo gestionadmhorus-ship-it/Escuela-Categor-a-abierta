@@ -1827,6 +1827,21 @@ footer {
         width: 100%;
         text-align: center;
     }
+    
+    /* Center trust row and make badge wrap */
+    .hero-trust-row {
+        justify-content: center !important;
+    }
+    
+    .hero-institution-pill {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        border-radius: 20px !important;
+        text-align: center !important;
+        font-size: 0.75rem !important;
+        max-width: 100% !important;
+        line-height: 1.4 !important;
+    }
 
     /* Force grids to single column on mobile */
     .course-grid,
@@ -1845,11 +1860,53 @@ footer {
         padding: 30px 20px !important;
     }
 
+    /* Stack stats vertically on mobile */
+    .stats {
+        flex-direction: column !important;
+        gap: 30px !important;
+        margin: 30px 20px !important;
+        padding: 30px 20px !important;
+    }
+    
+    /* Footer layout stacked on mobile */
+    .footer-content {
+        flex-direction: column !important;
+        gap: 40px !important;
+        text-align: center !important;
+    }
+    
+    .footer-social {
+        justify-content: center !important;
+    }
+    
+    .footer-links p {
+        justify-content: center !important;
+    }
+    
+    .footer-bottom {
+        flex-direction: column !important;
+        gap: 15px !important;
+        padding-bottom: 20px !important;
+    }
+
+    /* Floating WhatsApp button offset to prevent overlap with footer elements */
+    .whatsapp-float {
+        bottom: 90px !important;
+        right: 20px !important;
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .whatsapp-float svg {
+        width: 25px !important;
+        height: 25px !important;
+    }
+
     /* Modal dialogs responsiveness */
     .modal-content {
         padding: 25px 20px !important;
         border-radius: 20px !important;
-        width: 90% !important;
+        width: 95% !important;
     }
     
     /* Admin dashboard responsive overrides */
