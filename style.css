@@ -1787,138 +1787,309 @@ footer {
 
 /* ── Mobile Layout Adjustments (max-width: 768px) ──────── */
 @media (max-width: 768px) {
-    /* Reduce global section padding to prevent side overflow and squeeze */
+
+    /* ── Global section padding ──────────────────────────── */
     header.hero,
-    section.courses,
-    section.nosotros,
-    section.testimonios,
-    section.servicios-industriales,
+    .courses,
+    .nosotros,
+    .testimonios,
+    .servicios-industriales,
+    .mission-control,
+    .enrollment,
     footer {
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
-    
-    section.courses,
-    section.nosotros,
-    section.testimonios,
-    section.servicios-industriales {
+
+    .courses,
+    .nosotros,
+    .testimonios,
+    .servicios-industriales,
+    .mission-control,
+    .enrollment {
         padding-top: 60px !important;
         padding-bottom: 60px !important;
     }
 
-    /* Hero Text adjustments to fit mobile viewports */
+    /* ── Hero section ───────────────────────────────────── */
     .hero-content h1 {
-        font-size: 2.2rem !important;
-        line-height: 1.2 !important;
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
     }
-    
+
     .hero-content p {
-        font-size: 0.95rem !important;
-        margin-bottom: 30px !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 20px !important;
     }
-    
+
+    .hero-institution-pill {
+        font-size: 0.65rem;
+        padding: 6px 14px;
+    }
+
+    .hero-trust-row {
+        gap: 8px;
+    }
+
+    .trust-badge {
+        padding: 8px 12px;
+        flex: 1 1 calc(50% - 8px);
+        min-width: 0;
+    }
+
+    .trust-label {
+        font-size: 0.72rem;
+    }
+
+    .trust-sub {
+        font-size: 0.6rem;
+    }
+
+    .hero-tech-row {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .tech-item {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+    }
+
     .hero-btns {
         flex-direction: column;
         gap: 10px;
         width: 100%;
     }
-    
+
     .hero-btns .btn {
         width: 100%;
         text-align: center;
-    }
-    
-    /* Center trust row and make badge wrap */
-    .hero-trust-row {
-        justify-content: center !important;
-    }
-    
-    .hero-institution-pill {
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        border-radius: 20px !important;
-        text-align: center !important;
-        font-size: 0.75rem !important;
-        max-width: 100% !important;
-        line-height: 1.4 !important;
+        padding: 14px 20px;
     }
 
-    /* Force grids to single column on mobile */
+    /* ── Section headings (prevent large text overflow) ── */
+    .section-header h2 {
+        font-size: 1.8rem !important;
+    }
+
+    .section-header p {
+        font-size: 0.9rem !important;
+    }
+
+    .nosotros-text h2 {
+        font-size: 1.8rem !important;
+    }
+
+    .enroll-info h2 {
+        font-size: 1.8rem !important;
+    }
+
+    /* ── All grids to single column ─────────────────────── */
     .course-grid,
     .servicios-grid,
     .testimonios-grid,
-    .team-grid {
+    .team-grid,
+    .platform-grid,
+    .nosotros-grid {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
     }
 
-    /* Optimize card padding for mobile screens */
+    /* ── Card padding reduction ─────────────────────────── */
     .course-card,
     .servicio-card,
     .testimonial-card,
-    .team-card {
-        padding: 30px 20px !important;
-    }
-
-    /* Stack stats vertically on mobile */
-    .stats {
-        flex-direction: column !important;
-        gap: 30px !important;
-        margin: 30px 20px !important;
-        padding: 30px 20px !important;
-    }
-    
-    /* Footer layout stacked on mobile */
-    .footer-content {
-        flex-direction: column !important;
-        gap: 40px !important;
-        text-align: center !important;
-    }
-    
-    .footer-social {
-        justify-content: center !important;
-    }
-    
-    .footer-links p {
-        justify-content: center !important;
-    }
-    
-    .footer-bottom {
-        flex-direction: column !important;
-        gap: 15px !important;
-        padding-bottom: 20px !important;
-    }
-
-    /* Floating WhatsApp button offset to prevent overlap with footer elements */
-    .whatsapp-float {
-        bottom: 90px !important;
-        right: 20px !important;
-        width: 50px !important;
-        height: 50px !important;
-    }
-    
-    .whatsapp-float svg {
-        width: 25px !important;
-        height: 25px !important;
-    }
-
-    /* Modal dialogs responsiveness */
-    .modal-content {
+    .team-card,
+    .platform-card {
         padding: 25px 20px !important;
-        border-radius: 20px !important;
+    }
+
+    /* ── Stats bar: stack vertically ─────────────────────  */
+    .stats {
+        flex-direction: column;
+        gap: 25px;
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+        padding: 30px 20px !important;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    /* ── Enrollment form ─────────────────────────────────  */
+    .enroll-container {
+        padding: 25px 20px !important;
+    }
+
+    /* ── Footer columns: stack vertically ────────────────  */
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    /* ── Course detail modal: single column ──────────────  */
+    .modal-content {
         width: 95% !important;
+        height: 95vh !important;
+        padding: 0 !important;
+        border-radius: 16px !important;
     }
-    
-    /* Admin dashboard responsive overrides */
+
+    .modal-grid {
+        grid-template-columns: 1fr !important;
+        overflow-y: auto;
+    }
+
+    .modal-sidebar {
+        padding: 20px !important;
+        border-right: none;
+        border-bottom: 1px solid rgba(251, 215, 4, 0.1);
+    }
+
+    .modal-main {
+        padding: 20px !important;
+    }
+
+    .modal-header {
+        padding: 15px 20px !important;
+    }
+
+    .modal-body h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+
+    .spec-tag {
+        font-size: 0.72rem;
+        padding: 8px 4px;
+    }
+
+    .bonus-section ul {
+        grid-template-columns: 1fr !important;
+    }
+
+    .module-item h4 {
+        font-size: 1.1rem;
+    }
+
+    .module-item ul {
+        font-size: 0.95rem;
+    }
+
+    /* ── Console / Simulator ─────────────────────────────  */
+    .platform-console {
+        height: 250px;
+    }
+
+    .console-body {
+        font-size: 0.78rem;
+    }
+
+    .console-title {
+        font-size: 0.6rem;
+    }
+
+    /* ── Custom coords container fix ─────────────────────  */
+    #custom-coords-container {
+        flex-direction: column !important;
+    }
+
+    #custom-coords-container input {
+        width: 100% !important;
+    }
+
+    /* ── WhatsApp float: smaller on mobile ────────────────  */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .whatsapp-float svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* ── Admin login modal ──────────────────────────────── */
+    #admin-login-modal .modal-content {
+        width: 90% !important;
+        height: auto !important;
+        padding: 30px 20px !important;
+        border-radius: 20px !important;
+    }
+
+    /* ── Admin dashboard responsive overrides ────────────  */
     #admin-dashboard-modal .modal-content {
-        padding: 20px 15px !important;
+        width: 95% !important;
+        padding: 15px 12px !important;
         max-height: 95vh !important;
+        border-radius: 16px !important;
     }
-    
-    #admin-dashboard-modal button {
+
+    /* Admin tabs: horizontal scroll on narrow screens */
+    #admin-dashboard-modal [style*="display: flex"][style*="gap: 15px"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        padding-bottom: 10px;
+    }
+
+    .admin-tab-btn {
+        white-space: nowrap;
+        font-size: 0.78rem !important;
         padding: 6px 12px !important;
-        font-size: 0.8rem !important;
+    }
+
+    #admin-dashboard-modal .gradient-text {
+        font-size: 1.3rem !important;
+    }
+
+    #admin-dashboard-modal [style*="display: flex"][style*="gap: 10px"] button {
+        padding: 5px 10px !important;
+        font-size: 0.75rem !important;
     }
 }
 
+/* ── Extra small devices (max-width: 380px) ─────────────── */
+@media (max-width: 380px) {
+    .hero-content h1 {
+        font-size: 1.7rem !important;
+    }
 
+    .trust-badge {
+        flex: 1 1 100%;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem !important;
+    }
+
+    .navbar {
+        padding: 10px 15px !important;
+    }
+
+    .logo-name {
+        font-size: 1.2rem;
+    }
+
+    .logo-sub {
+        font-size: 0.45rem;
+    }
+}
