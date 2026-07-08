@@ -374,6 +374,11 @@ h1, h2, h3, h4, h5, h6, .logo {
     transform: translateX(-50%) translateY(-20px) scale(1.15);
 }
 
+.single-hero-card {
+    width: 480px;
+    height: 380px;
+}
+
 .single-hero-card:hover .single-hero-img {
     transform: scale(1.06);
 }
@@ -1779,4 +1784,84 @@ footer {
 .admin-tabs-content::-webkit-scrollbar-thumb:hover {
     background: rgba(251,215,4,0.3);
 }
+
+/* ── Mobile Layout Adjustments (max-width: 768px) ──────── */
+@media (max-width: 768px) {
+    /* Reduce global section padding to prevent side overflow and squeeze */
+    header.hero,
+    section.courses,
+    section.nosotros,
+    section.testimonios,
+    section.servicios-industriales,
+    footer {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    section.courses,
+    section.nosotros,
+    section.testimonios,
+    section.servicios-industriales {
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+
+    /* Hero Text adjustments to fit mobile viewports */
+    .hero-content h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-content p {
+        font-size: 0.95rem !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .hero-btns {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .hero-btns .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Force grids to single column on mobile */
+    .course-grid,
+    .servicios-grid,
+    .testimonios-grid,
+    .team-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* Optimize card padding for mobile screens */
+    .course-card,
+    .servicio-card,
+    .testimonial-card,
+    .team-card {
+        padding: 30px 20px !important;
+    }
+
+    /* Modal dialogs responsiveness */
+    .modal-content {
+        padding: 25px 20px !important;
+        border-radius: 20px !important;
+        width: 90% !important;
+    }
+    
+    /* Admin dashboard responsive overrides */
+    #admin-dashboard-modal .modal-content {
+        padding: 20px 15px !important;
+        max-height: 95vh !important;
+    }
+    
+    #admin-dashboard-modal button {
+        padding: 6px 12px !important;
+        font-size: 0.8rem !important;
+    }
+}
+
 
