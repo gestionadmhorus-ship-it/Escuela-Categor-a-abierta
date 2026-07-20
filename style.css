@@ -28,9 +28,9 @@
 .mini-drone {
     position: absolute;
     color: var(--accent-yellow);
-    opacity: 0.3;
-    filter: drop-shadow(0 0 5px var(--accent-yellow));
-    animation: random-float 15s linear infinite;
+    opacity: 0.08; /* Reducida la opacidad para evitar distracción */
+    filter: drop-shadow(0 0 3px var(--accent-yellow));
+    animation: random-float 25s linear infinite; /* Animación más lenta */
     will-change: transform;
 }
 
@@ -62,18 +62,7 @@ h1, h2, h3, h4, h5, h6, .logo {
     letter-spacing: -0.01em;
 }
 
-/* Cursor Glow Effect */
-.cursor-glow {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(251, 215, 4, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate3d(-50%, -50%, 0);
-    z-index: -1;
-    will-change: transform;
-}
+/* Cursor Glow Effect (Eliminado) */
 
 /* Custom error highlighting for form validation */
 .error-field {
@@ -201,14 +190,15 @@ h1, h2, h3, h4, h5, h6, .logo {
     align-items: center;
 }
 
-.nav-links a {
-    color: var(--text-secondary);
+.nav-links a:not(.btn) {
+    color: white; /* Mejor contraste sobre fondos claros/vidrio */
+    font-weight: 500;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     transition: var(--transition-smooth);
 }
 
-.nav-links a:hover {
+.nav-links a:not(.btn):hover {
     color: var(--accent-yellow);
 }
 
@@ -221,6 +211,36 @@ h1, h2, h3, h4, h5, h6, .logo {
     padding: 120px 10% 60px;  /* top clears fixed navbar (~90px) */
     position: relative;
     overflow: hidden;
+}
+
+/* Hero Background Overlay (Full Screen Dissolve) */
+.hero-bg-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%; /* Ocupa la mayor parte de la derecha y centro */
+    height: 100%;
+    object-fit: cover;
+    object-position: center right;
+}
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(to right, var(--bg-color) 45%, transparent 100%),
+        linear-gradient(to top, var(--bg-color) 0%, transparent 40%);
 }
 
 .tech-grid {
@@ -528,6 +548,9 @@ h1, h2, h3, h4, h5, h6, .logo {
     height: 180px;
     overflow: hidden;
     flex-shrink: 0;
+    /* Efecto de disolución (fade) en el borde inferior */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
 }
 
 .course-card-img img {
@@ -2186,3 +2209,160 @@ footer {
         font-size: 0.45rem;
     }
 }
+
+/* --- Quiz Split Layout & Stepper --- */
+.quiz-split-layout {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 500px;
+}
+
+.quiz-sidebar {
+    width: 280px;
+    background: rgba(0, 0, 0, 0.25);
+    border-right: 1px solid var(--glass-border);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.quiz-sidebar-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.quiz-main-area {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.stepper-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.stepper-node {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    padding-bottom: 25px;
+    transition: border-color 0.3s ease;
+}
+
+.stepper-node:last-child {
+    border-left-color: transparent;
+}
+
+.stepper-node.active, .stepper-node.completed {
+    border-left-color: var(--accent-yellow);
+}
+
+.stepper-node:last-child.active, .stepper-node:last-child.completed {
+    border-left-color: transparent; /* No line after the last one */
+}
+
+.stepper-dot {
+    position: absolute;
+    left: -7px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    border: 2px solid var(--bg-dark);
+}
+
+.stepper-node.active .stepper-dot {
+    background: var(--accent-yellow);
+    box-shadow: 0 0 10px var(--accent-yellow);
+}
+
+.stepper-node.completed .stepper-dot {
+    background: rgba(251, 215, 4, 0.8);
+}
+
+.stepper-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    margin-top: -3px; /* align with dot */
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.stepper-node.active .stepper-label {
+    color: var(--accent-yellow);
+}
+
+.stepper-value {
+    font-size: 0.85rem;
+    color: white;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .quiz-split-layout {
+        flex-direction: column;
+    }
+    .quiz-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--glass-border);
+        padding: 20px;
+    }
+    .quiz-main-area {
+        padding: 25px 15px;
+    }
+    .stepper-tree {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+    }
+    .stepper-node {
+        border-left: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        padding-left: 0;
+        padding-bottom: 15px;
+        min-width: 140px;
+        margin-right: 15px;
+        scroll-snap-align: start;
+    }
+    .stepper-node:last-child {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    .stepper-node.active, .stepper-node.completed {
+        border-bottom-color: var(--accent-yellow);
+    }
+    .stepper-node:last-child.active, .stepper-node:last-child.completed {
+        border-bottom-color: transparent;
+    }
+    .stepper-dot {
+        top: auto;
+        bottom: -7px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .stepper-label, .stepper-value {
+        text-align: center;
+    }
+}
+

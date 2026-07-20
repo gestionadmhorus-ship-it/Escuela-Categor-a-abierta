@@ -1,24 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ─── 1. Cursor Glow ───────────────────────────────────────────────────────
-    const cursorGlow = document.getElementById('cursor-glow');
-    let glowX = 0, glowY = 0;
-    let mouseX = 0, mouseY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    function updateCursorGlow() {
-        // Interpolación lineal (lerp) para suavizado premium del rastro
-        glowX += (mouseX - glowX) * 0.08;
-        glowY += (mouseY - glowY) * 0.08;
-        
-        cursorGlow.style.transform = `translate3d(calc(${glowX}px - 50%), calc(${glowY}px - 50%), 0)`;
-        requestAnimationFrame(updateCursorGlow);
-    }
-    requestAnimationFrame(updateCursorGlow);
+    // ─── 1. Cursor Glow (Eliminado a petición del usuario) ───────────────
 
     // ─── 2. Mobile Menu Toggle ────────────────────────────────────────────────
     const menuToggle = document.querySelector('.menu-toggle');
@@ -48,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.tilt-card, [data-tilt]').forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            const rotateX = ((e.clientY - rect.top)  / rect.height - 0.5) *  12;
-            const rotateY = ((e.clientX - rect.left) / rect.width  - 0.5) * -12;
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02,1.02,1.02)`;
+            const rotateX = ((e.clientY - rect.top)  / rect.height - 0.5) *  6; // Suavizado
+            const rotateY = ((e.clientX - rect.left) / rect.width  - 0.5) * -6; // Suavizado
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04,1.04,1.04)`; // Zoom incrementado
         });
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
@@ -151,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recreativa: {
             title: "Microdrones y Vuelo Inicial (< 250g)",
             desc: "Ideal para principiantes y hobbyistas. Aprende técnicas básicas de vuelo, reglamentación y configuración de microdrones de menos de 250 gramos.",
-            viz: "course_microdrones.png",
+            viz: "course_microdrones.webp",
             specs: ["ANAC Res. 550/2025", "Categoría Abierta", "15 Días", "Vuelo Recreativo / Inicial"],
             modules: [
                 { name: "Módulo 1: Introducción y Aerodinámica Básica", topics: ["Cómo vuela un dron multirrotor", "Componentes esenciales de un microdron", "Tipos de hélices y motores"] },
@@ -164,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fotografia: {
             title: "Fotografía y Filmación Aérea (< 25kg)",
             desc: "Capacitación profesional para producciones audiovisuales bajo el marco de la Categoría Abierta. Planificación, seguridad VLOS y captura de alta calidad.",
-            viz: "course_fotografia.png",
+            viz: "course_fotografia.webp",
             specs: ["ANAC Res. 550/2025", "Categoría Abierta VLOS", "30 Días", "Salida Profesional"],
             modules: [
                 { name: "Módulo 1: Operativa Estándar y Planificación", topics: ["Planificación de misiones de fotografía y video", "Chequeo pre-vuelo exhaustivo (lista de verificación)", "Análisis de condiciones climáticas and de viento"] },
@@ -177,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         agricola: {
             title: "Operación Agrícola y de Campo (Excepción Rural)",
             desc: "Curso teórico-práctico orientado a la flexibilización de la ANAC para drones rotativos en zonas rurales. Planificación de rutas, mapeo de campo y fumigación.",
-            viz: "course_agricola.png",
+            viz: "course_agricola.webp",
             specs: ["ANAC Res. 550/2025", "Categoría Abierta Rural", "45 Días", "Entorno Agropecuario"],
             modules: [
                 { name: "Módulo 1: Drones Agrícolas de Gran Porte", topics: ["Clasificación de drones agrícolas de ala rotativa", "Sistemas de pulverización y boquillas electroestáticas", "Mantenimiento y calibración de tanques y bombas"] },
@@ -229,6 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${data.bonus.map(b => `<li><i data-lucide="plus-circle"></i> ${b}</li>`).join('')}
                     </ul>
                 </div>` : ''}
+                <div style="margin-top: 30px; text-align:right; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;">
+                    <button class="btn btn-outline close-modal" aria-label="Volver atrás">
+                        <i data-lucide="arrow-left"></i> Volver a los Cursos
+                    </button>
+                </div>
             </main>
         </div>`;
     }
@@ -294,9 +281,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Asistente Interactivo Quiz
-    const openQuizBtn = document.getElementById('open-quiz-btn');
-    if (openQuizBtn) {
-        openQuizBtn.addEventListener('click', () => {
+    const openQuizCard = document.getElementById('course-quiz-card');
+    if (openQuizCard) {
+        openQuizCard.addEventListener('click', () => {
             renderQuiz();
         });
     }
@@ -307,9 +294,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2 class="gradient-text"><i data-lucide="help-circle"></i> Asistente de Operaciones ANAC 2026</h2>
             <button class="close-modal" aria-label="Cerrar modal"><i data-lucide="x"></i></button>
         </div>
-        <div class="modal-main" style="padding: 40px; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height: 400px; color: white;">
-            <div id="quiz-step-container" style="max-width: 600px; width:100%;">
-                <!-- Pasos del Cuestionario -->
+        <div class="quiz-split-layout">
+            <div class="quiz-sidebar">
+                <div class="quiz-sidebar-title">Tu progreso</div>
+                <div class="stepper-tree" id="quiz-stepper-tree">
+                    <!-- Stepper nodes -->
+                </div>
+            </div>
+            <div class="quiz-main-area">
+                <div id="quiz-step-container" style="max-width: 600px; width:100%; margin: 0 auto;">
+                    <!-- Pasos del Cuestionario -->
+                </div>
             </div>
         </div>`;
         lucide.createIcons();
@@ -320,29 +315,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const steps = {
             1: {
-                question: "1. ¿Cuál es el peso de tu aeronave (Masa Máxima al Despegue)?",
+                question: "1. ¿Cuál es el propósito principal de tus vuelos?",
+                options: [
+                    { value: "recreativo", label: "Recreativo y Deportes", desc: "Hobby, viajes, carreras de drones o volar por diversión" },
+                    { value: "audiovisual", label: "Fotografía y Eventos Sociales", desc: "Bodas, cine, publicidad, creación de contenido" },
+                    { value: "industrial", label: "Inspección y Mapeo Industrial", desc: "Agro, construcción, topografía, bienes raíces" },
+                    { value: "seguridad", label: "Seguridad y Rescate", desc: "Vigilancia, monitoreo, búsqueda y salvamento" }
+                ]
+            },
+            2: {
+                question: "2. ¿Cuál es el peso de tu aeronave (Masa Máxima al Despegue)?",
                 options: [
                     { value: "mini", label: "Menos de 250 gramos (ej: DJI Mini Series)", desc: "Drones recreativos ultralivianos desregulados" },
                     { value: "medium", label: "Entre 250 g y 25 kg (ej: DJI Mavic, Inspire, Air)", desc: "Drones estándar de fotografía o filmación aérea" },
                     { value: "large", label: "Más de 25 kg (ej: DJI Agras, drones de fumigación)", desc: "Equipos agrícolas o de gran porte" }
                 ]
             },
-            2: {
-                question: "2. ¿Mantendrás contacto visual directo (VLOS) con el dron durante el vuelo?",
+            3: {
+                question: "3. ¿Mantendrás contacto visual directo (VLOS) con el dron durante el vuelo?",
                 options: [
                     { value: "yes", label: "Sí, siempre a la vista directa", desc: "El piloto u observador vigila la aeronave a ojo desnudo" },
                     { value: "no", label: "No, volaré más allá de la vista (BVLOS)", desc: "Vuelo guiado únicamente por pantalla o FPV a larga distancia" }
                 ]
             },
-            3: {
-                question: "3. ¿En qué entorno geográfico se realizará la operación?",
+            4: {
+                question: "4. ¿En qué entorno geográfico se realizará la operación?",
                 options: [
                     { value: "rural", label: "Zona Rural o Despoblada", desc: "Campos abiertos, chacras, zonas sin aglomeraciones de personas" },
                     { value: "urban", label: "Zona Urbana, Poblada o con Personas Ajenas", desc: "Ciudades, barrios residenciales, eventos o filmaciones de obras" }
                 ]
             },
-            4: {
-                question: "4. ¿Cuál será la altura máxima del vuelo sobre el terreno?",
+            5: {
+                question: "5. ¿Cuál será la altura máxima del vuelo sobre el terreno?",
                 options: [
                     { value: "low", label: "Hasta 122 metros (400 pies)", desc: "El límite estándar de seguridad de la ANAC" },
                     { value: "high", label: "Más de 122 metros de altura", desc: "Requiere coordinación de espacio aéreo y segregación" }
@@ -350,121 +354,189 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        function updateStepper(currentStepNum) {
+            const treeContainer = document.getElementById('quiz-stepper-tree');
+            if (!treeContainer) return;
+            
+            let treeHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                let statusClass = '';
+                let clickable = false;
+                if (i < currentStepNum || (currentStepNum === 6 && i <= 5)) {
+                    statusClass = 'completed';
+                    clickable = true;
+                } else if (i === currentStepNum) {
+                    statusClass = 'active';
+                }
+                
+                let valHTML = '';
+                if (answers[i]) {
+                    const opt = steps[i].options.find(o => o.value === answers[i]);
+                    if (opt) {
+                        valHTML = `<div class="stepper-value">${opt.label.split(' (')[0]}</div>`;
+                    }
+                }
+                
+                treeHTML += `
+                    <div class="stepper-node ${statusClass} ${clickable ? 'clickable-node' : ''}" data-step="${i}" ${clickable ? 'style="cursor:pointer;" title="Volver al Paso '+i+'"' : ''}>
+                        <div class="stepper-dot"></div>
+                        <div class="stepper-label">Paso ${i}</div>
+                        ${valHTML}
+                    </div>
+                `;
+            }
+            treeContainer.innerHTML = treeHTML;
+
+            treeContainer.querySelectorAll('.clickable-node').forEach(node => {
+                node.addEventListener('click', () => {
+                    const stepToLoad = parseInt(node.getAttribute('data-step'));
+                    for (let j = stepToLoad; j <= 5; j++) delete answers[j];
+                    showStep(stepToLoad);
+                });
+            });
+        }
+
         function showStep(stepNum) {
+            updateStepper(stepNum);
             const step = steps[stepNum];
             const stepContainer = document.getElementById('quiz-step-container');
             if (!stepContainer) return;
             
             stepContainer.innerHTML = `
                 <div style="margin-bottom: 20px; text-align:center;">
-                    <span style="background:rgba(251,215,4,0.1); border: 1px solid var(--glass-border); padding: 4px 12px; border-radius:12px; font-size:0.75rem; color:var(--accent-yellow); font-weight:800; text-transform:uppercase;">Paso ${stepNum} de 4</span>
+                    <span style="background:rgba(251,215,4,0.1); border: 1px solid var(--glass-border); padding: 4px 12px; border-radius:12px; font-size:0.75rem; color:var(--accent-yellow); font-weight:800; text-transform:uppercase;">Paso ${stepNum} de 5</span>
                 </div>
                 <h3 style="font-size: 1.4rem; margin-bottom: 25px; text-align:center; line-height:1.3;">${step.question}</h3>
                 <div style="display:flex; flex-direction:column; gap:15px; margin-bottom: 30px;">
                     ${step.options.map(opt => `
                         <button class="quiz-opt-btn glass" data-val="${opt.value}" style="text-align:left; padding:20px; border-radius:12px; cursor:pointer; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.02); color:white; transition:all 0.3s ease; width:100%;">
-                            <strong style="display:block; font-size:1.05rem; color:white; margin-bottom:4px;">${opt.label}</strong>
-                            <span style="font-size:0.85rem; color:var(--text-secondary);">${opt.desc}</span>
+                            <strong style="display:block; font-size:1.15rem; color:white; margin-bottom:6px;">${opt.label}</strong>
+                            <span style="font-size:1rem; color:var(--text-secondary); line-height:1.4; display:block;">${opt.desc}</span>
                         </button>
                     `).join('')}
                 </div>
+                ${stepNum > 1 ? `
+                <div style="text-align:center; margin-top: 10px;">
+                    <button class="quiz-back-btn" style="background:transparent; border:none; color:var(--text-secondary); font-size:0.95rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:color 0.3s ease; padding: 10px;">
+                        <i data-lucide="arrow-left" style="width:16px; height:16px;"></i> Volver al paso anterior
+                    </button>
+                </div>
+                ` : ''}
             `;
             
             stepContainer.querySelectorAll('.quiz-opt-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     answers[stepNum] = btn.getAttribute('data-val');
-                    if (stepNum < 4) {
+                    if (stepNum < 5) {
                         showStep(stepNum + 1);
                     } else {
                         showResults();
                     }
                 });
             });
+
+            const backBtn = stepContainer.querySelector('.quiz-back-btn');
+            if (backBtn) {
+                backBtn.addEventListener('click', () => {
+                    showStep(stepNum - 1);
+                });
+            }
         }
 
         function showResults() {
             const stepContainer = document.getElementById('quiz-step-container');
             if (!stepContainer) return;
 
-            let isAbierta = true;
-            let reasons = [];
-            let recommendedCourse = "fotografia";
-            let recommendedCourseName = "Fotografía y Filmación Aérea";
+            const purpose = answers[1];
+            const w = answers[2]; // mini, medium, large
+            const vlos = answers[3]; // yes, no
+            const env = answers[4]; // rural, urban
+            const height = answers[5]; // low, high
 
-            const w = answers[1]; // mini, medium, large
-            const vlos = answers[2]; // yes, no
-            const env = answers[3]; // rural, urban
-            const height = answers[4]; // low, high
-
-            // Evaluar reglas de Categoría Abierta ANAC
-            if (vlos === 'no') {
-                isAbierta = false;
-                reasons.push("El vuelo BVLOS (más allá del alcance visual) excede la Categoría Abierta.");
-            }
-            if (height === 'high') {
-                isAbierta = false;
-                reasons.push("Volar a más de 122 metros de altura requiere segregación de espacio aéreo (Específica).");
-            }
-            if (w === 'large') {
-                // Excepción agrícola rural
-                if (env !== 'rural') {
-                    isAbierta = false;
-                    reasons.push("Los drones de más de 25 kg en zonas urbanas o pobladas no califican en Categoría Abierta.");
-                } else {
-                    recommendedCourse = "agricola";
-                    recommendedCourseName = "Operación Agrícola y de Campo";
-                }
-            } else if (w === 'mini') {
-                recommendedCourse = "recreativa";
-                recommendedCourseName = "Microdrones y Vuelo Inicial";
-            }
+            let purposeContext = "";
+            if (purpose === 'recreativo') purposeContext = "Volar por diversión es excelente, pero el espacio aéreo compartido no distingue entre hobbies y trabajos comerciales. ";
+            if (purpose === 'audiovisual') purposeContext = "La creación audiovisual es un mercado masivo, y la calidad de tus tomas depende de tu fluidez y seguridad. ";
+            if (purpose === 'industrial') purposeContext = "Las inspecciones y el mapeo exigen una precisión técnica absoluta, donde un error cuesta miles de dólares. ";
+            if (purpose === 'seguridad') purposeContext = "En misiones de seguridad o búsqueda, no hay margen de error. Necesitas protocolos de vuelo infalibles. ";
 
             let resultTitle = "";
             let explanation = "";
+            let recommendedCourse = "";
+            let recommendedCourseName = "";
             let requirements = [];
 
-            if (isAbierta) {
-                resultTitle = "Apto para Categoría Abierta (Res. 550/2025)";
-                explanation = "¡Excelente! Tu operación propuesta cumple con todos los requisitos y límites de seguridad para volar bajo las reglas simplificadas de la Categoría Abierta de la ANAC.";
+            // Ruta 4: Fuera de Categoría Abierta (Prohibido/Específica)
+            if (vlos === 'no' || height === 'high' || (w === 'large' && env !== 'rural')) {
+                resultTitle = "Operación Compleja: Requiere Adaptación Estratégica";
+                explanation = purposeContext + "Tus parámetros actuales (como volar fuera de vista o drones pesados en ciudad) exigen certificaciones 'Específicas' extremadamente costosas, trámites lentos ante la ANAC y seguros millonarios.<br><br><strong>La Oportunidad Profesional:</strong> El mercado exige agilidad. En nuestra escuela, te enseñaremos cómo <strong>reformular tus misiones operativas</strong> para encajar de manera inteligente y legal dentro de la Categoría Abierta. Aprenderás a ofrecer servicios a tus clientes esquivando la burocracia sin perder rentabilidad.";
                 requirements = [
-                    "Registro digital básico de la aeronave en el portal VANT de la ANAC.",
-                    "No superar la altura máxima de 122 metros sobre el suelo.",
-                    "Mantener siempre línea de vista directa (VLOS) con el dron.",
-                    "Respetar las distancias mínimas a aeródromos y aeropuertos.",
-                    "No volar sobre aglomeraciones de personas ajenas a la operación."
+                    "Aprender a segmentar misiones para mantener el vuelo VLOS.",
+                    "Planificar altitudes por debajo de los 122m sin perder perspectiva fotográfica.",
+                    "Aprovechar la Categoría Abierta para facturar rápido y legal."
                 ];
-            } else {
-                resultTitle = "Excede Categoría Abierta (Requiere Categoría Específica)";
-                explanation = "Atención: Tu propuesta excede los límites legales de la Categoría Abierta por los siguientes motivos:<br><br>" + reasons.map(r => `• ${r}`).join('<br>') + "<br><br>En Argentina, estas operaciones requieren piloto certificado bajo la RAAC 102, seguro aeronáutico y autorización de la ANAC.";
-                requirements = [
-                    "Certificado de Competencia Práctica de Piloto RPAS.",
-                    "Registro del VANT con obtención de matrícula LV-R oficial.",
-                    "Evaluación y aprobación de un análisis de riesgos operativos (SORA).",
-                    "Seguro de responsabilidad civil obligatorio para fines comerciales/industriales."
-                ];
+                recommendedCourse = w === 'large' ? 'agricola' : 'fotografia';
+                recommendedCourseName = w === 'large' ? 'Operación Agrícola (Excepción Rural)' : 'Fotografía y Filmación Aérea';
             }
+            // Ruta 3: Agrícola y Pesado en Zona Rural
+            else if (w === 'large' && env === 'rural') {
+                resultTitle = "Operación Agrícola: Máxima Rentabilidad Rural";
+                explanation = purposeContext + "Estás operando la excepción normativa más delicada e importante. Pilotar drones de más de 25kg en el campo no requiere licencias engorrosas, pero la seguridad estructural y logística es crítica.<br><br><strong>La Oportunidad Profesional:</strong> El sector agroindustrial es el mercado más lucrativo para los VANT. Dominar la planificación autónoma, la fotogrametría y la fumigación te posiciona como un proveedor de servicios indispensable para el agro, garantizando un retorno de inversión altísimo para tus equipos pesados.";
+                requirements = [
+                    "Gestión de riesgos y mantenimiento preventivo de equipos pesados.",
+                    "Software de mapeo, índices verdes y planificación de fumigación.",
+                    "Protocolos de exclusión de zonas operativas rurales."
+                ];
+                recommendedCourse = 'agricola';
+                recommendedCourseName = 'Operación Agrícola y de Campo';
+            }
+            // Ruta 2: Fotografía / Mediano estándar
+            else if (w === 'medium') {
+                resultTitle = "Vuelo Estándar: De Aficionado a Profesional";
+                explanation = purposeContext + "Tus operaciones cumplen las reglas de la Categoría Abierta, lo que te ahorra años de trámites. Sin embargo, al superar los 250 gramos, <strong>estás bajo el radar estricto de la ANAC</strong>; el desconocimiento del espacio aéreo conlleva multas severas.<br><br><strong>La Oportunidad Profesional:</strong> El mercado de eventos, inmobiliarias e inspecciones busca pilotos certificados. Con nuestra capacitación, dejarás de ser un aficionado para dominar técnicas cinemáticas, blindándote legalmente y abriéndote las puertas para facturar servicios audiovisuales de primer nivel.";
+                requirements = [
+                    "Registro del drone en el portal oficial y comprensión de espacios aéreos.",
+                    "Dominio de maniobras cinemáticas fluidas y seguras.",
+                    "Protocolos de emergencia ante pérdida de señal en rodajes."
+                ];
+                recommendedCourse = 'fotografia';
+                recommendedCourseName = 'Fotografía y Filmación Aérea';
+            }
+            // Ruta 1: Microdrones
+            else {
+                resultTitle = "Microdrones: El Inicio Rentable";
+                explanation = purposeContext + "Al usar un equipo de menos de 250 gramos, te beneficias de la normativa más relajada. Sin embargo, en zonas urbanas eres legalmente responsable por cualquier daño. No dependas solo de los sensores anti-colisión.<br><br><strong>La Oportunidad Profesional:</strong> Un microdron es tu puerta de entrada al mercado de creadores de contenido, redes sociales y bienes raíces. Al capacitarte formalmente, aprenderás a exprimir la cámara de tu equipo ligero, creando tomas espectaculares que te permitirán monetizar tu dron rápidamente.";
+                requirements = [
+                    "Configuración de cámara y movimientos fluidos de precisión.",
+                    "Análisis de interferencia de señal en entornos urbanos densos.",
+                    "Responsabilidad civil y conciencia situacional básica."
+                ];
+                recommendedCourse = 'recreativa';
+                recommendedCourseName = 'Microdrones y Vuelo Inicial';
+            }
+
+            updateStepper(6);
 
             stepContainer.innerHTML = `
                 <div style="text-align:center; margin-bottom:25px;">
-                    <i data-lucide="award" style="width:48px; height:48px; color:var(--accent-yellow); margin-bottom:10px;"></i>
-                    <h3 style="font-size: 1.5rem; color:var(--accent-yellow); margin-bottom:10px;">Diagnóstico Normativo</h3>
-                    <p style="font-size: 1.1rem; font-weight:800; color:white; background:rgba(255,255,255,0.05); padding:10px; border-radius:8px; border:1px solid var(--glass-border);">${resultTitle}</p>
+                    <i data-lucide="trending-up" style="width:48px; height:48px; color:var(--accent-yellow); margin-bottom:10px;"></i>
+                    <h3 style="font-size: 1.7rem; color:var(--accent-yellow); margin-bottom:12px;">Diagnóstico de Oportunidad</h3>
+                    <p style="font-size: 1.25rem; font-weight:800; color:white; background:rgba(255,255,255,0.05); padding:16px; border-radius:8px; border:1px solid var(--glass-border); line-height: 1.4;">${resultTitle}</p>
                 </div>
-                <p style="font-size: 0.95rem; color:var(--text-secondary); margin-bottom:20px; line-height:1.5; text-align:center;">${explanation}</p>
+                <p style="font-size: 1.1rem; color:var(--text-secondary); margin-bottom:25px; line-height:1.7; text-align:left;">${explanation}</p>
                 
-                <div class="glass" style="padding:20px; border-radius:12px; margin-bottom:25px; background:rgba(0,0,0,0.2); border:1px solid var(--glass-border);">
-                    <h4 style="font-size: 0.85rem; text-transform:uppercase; color:var(--accent-yellow); margin-bottom:12px; letter-spacing:1px; font-weight:800;">Requisitos y Recomendaciones:</h4>
-                    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:10px;">
-                        ${requirements.map(req => `<li style="font-size:0.85rem; color:var(--text-secondary); display:flex; align-items:flex-start; gap:8px;"><i data-lucide="check-circle" style="width:14px; height:14px; color:var(--accent-yellow); flex-shrink:0; margin-top:2px;"></i> ${req}</li>`).join('')}
+                <div class="glass" style="padding:25px; border-radius:12px; margin-bottom:25px; background:rgba(0,0,0,0.2); border:1px solid var(--glass-border);">
+                    <h4 style="font-size: 1rem; text-transform:uppercase; color:var(--accent-yellow); margin-bottom:15px; letter-spacing:1px; font-weight:800;">Ventajas Competitivas a Desarrollar:</h4>
+                    <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap:12px;">
+                        ${requirements.map(req => `<li style="font-size:1.05rem; color:var(--text-secondary); display:flex; align-items:flex-start; gap:10px; line-height:1.5;"><i data-lucide="check-circle" style="width:18px; height:18px; color:var(--accent-yellow); flex-shrink:0; margin-top:3px;"></i> ${req}</li>`).join('')}
                     </ul>
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:12px;">
-                    <button id="quiz-go-course" class="btn btn-primary w-full">
-                        <i data-lucide="graduation-cap"></i> Ver Curso Recomendado: ${recommendedCourseName}
+                    <button id="quiz-go-course" class="btn btn-primary w-full" style="padding:15px; font-size:1.15rem; font-weight:700;">
+                        <i data-lucide="briefcase" style="width:20px; height:20px;"></i> Inicia tu Carrera Profesional: ${recommendedCourseName}
                     </button>
-                    <button id="quiz-restart" class="btn btn-outline w-full">
-                        <i data-lucide="refresh-cw"></i> Volver a evaluar
+                    <button id="quiz-restart" class="btn btn-outline w-full" style="padding:12px; font-size:1.05rem; font-weight:600;">
+                        <i data-lucide="refresh-cw" style="width:18px; height:18px;"></i> Volver a evaluar
                     </button>
                 </div>
             `;
@@ -481,7 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             document.getElementById('quiz-restart').addEventListener('click', () => {
-                currentStep = 1;
+                for (let j = 1; j <= 5; j++) delete answers[j];
                 showStep(1);
             });
         }

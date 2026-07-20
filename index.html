@@ -10,7 +10,7 @@
     <meta property="og:description" content="Capacitación oficial teórica y práctica en Argentina. Aprendé desde cero con nuestras aeronaves escuela.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.horusdron.com/">
-    <meta property="og:image" content="https://www.horusdron.com/drone_multirrotor.png">
+    <meta property="og:image" content="https://www.horusdron.com/drone_multirrotor.webp">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
     <link rel="stylesheet" href="style.css">
@@ -22,7 +22,7 @@
 </head>
 <body>
     <a href="#main" class="skip-link">Saltar al contenido principal</a>
-    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
 
     <nav class="navbar glass">
         <div class="nav-container">
@@ -47,6 +47,10 @@
     </nav>
 
     <header id="home" class="hero">
+        <div class="hero-bg-wrapper">
+            <img src="drone_school_hero.webp" alt="" class="hero-bg-img">
+            <div class="hero-bg-overlay"></div>
+        </div>
         <div class="tech-grid"></div>
         <div class="floating-drones-container" id="drones-bg"></div>
         <div class="hero-content" id="main">
@@ -94,17 +98,6 @@
             </div>
         </div>
         <div class="hero-visual">
-            <div class="popout-container" style="transform: none;">
-                <div class="popout-card glass single-hero-card" data-tilt style="padding: 0; overflow: hidden; display: flex; flex-direction: column; border-radius: 24px; border: 1px solid rgba(251, 215, 4, 0.25);">
-                    <div class="card-bg-glow" style="width: 300px; height: 300px; opacity: 0.15;"></div>
-                    <img src="drone_school_hero.png" alt="Instrucción de vuelo real" class="single-hero-img" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
-                    <div class="hero-card-label-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(5,5,5,0.95), rgba(5,5,5,0.4) 50%, transparent); padding: 25px; display: flex; flex-direction: column; gap: 6px; z-index: 5;">
-                        <span style="font-size: 0.65rem; font-weight: 800; letter-spacing: 2.5px; color: var(--accent-yellow); text-transform: uppercase;">PRÁCTICA REAL EN CAMPO</span>
-                        <span style="font-size: 1.15rem; font-weight: 700; color: white; font-family: var(--font-display);">Formación Práctica de Pilotos</span>
-                    </div>
-                </div>
-            </div>
-            
             <div class="floating-badge badge-top-left glass">
                 <i data-lucide="shield-check"></i>
                 <div>
@@ -129,8 +122,8 @@
         </div>
         <div class="course-grid">
             <!-- Recomendador de Cursos / Quiz ANAC 2026 -->
-            <div class="course-card tilt-card glass" id="course-quiz-card" style="border: 2px dashed var(--accent-yellow); background: rgba(251, 215, 4, 0.04);">
-                <div class="course-card-img"><img src="card_quiz.png" alt="Asistente de reglas operativas ANAC" loading="lazy"></div>
+            <div class="course-card tilt-card glass" id="course-quiz-card" style="border: 1px solid rgba(251, 215, 4, 0.4); box-shadow: inset 0 0 20px rgba(251, 215, 4, 0.05); cursor: pointer;">
+                <div class="course-card-img"><img src="card_quiz.webp" alt="Asistente de reglas operativas ANAC" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="help-circle"></i>
                 </div>
@@ -141,11 +134,10 @@
                     <li><i data-lucide="shield-alert"></i> Reglas Res. 550/2025</li>
                     <li><i data-lucide="file-text"></i> Recomendación formativa</li>
                 </ul>
-                <button class="btn btn-primary" id="open-quiz-btn" style="width:100%"><i data-lucide="play-circle"></i> Iniciar Asistente</button>
             </div>
             
-            <div class="course-card tilt-card glass" data-course="recreativa">
-                <div class="course-card-img"><img src="card_microdrones.png" alt="Curso de microdrones y vuelo inicial" loading="lazy"></div>
+            <div class="course-card tilt-card glass open-modal" data-course="recreativa" style="cursor: pointer;">
+                <div class="course-card-img"><img src="card_microdrones.webp" alt="Curso de microdrones y vuelo inicial" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="smile"></i>
                 </div>
@@ -156,11 +148,10 @@
                     <li><i data-lucide="package"></i> VANTs: &lt; 250 gramos</li>
                     <li><i data-lucide="award"></i> Certificado de Iniciación</li>
                 </ul>
-                <button class="btn btn-primary open-modal" data-course="recreativa">Explorar Programa</button>
             </div>
             
-            <div class="course-card tilt-card glass" data-course="fotografia">
-                <div class="course-card-img"><img src="card_fotografia.png" alt="Curso de fotografía y filmación aérea con drones" loading="lazy"></div>
+            <div class="course-card tilt-card glass open-modal" data-course="fotografia" style="cursor: pointer;">
+                <div class="course-card-img"><img src="card_fotografia.webp" alt="Curso de fotografía y filmación aérea con drones" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="camera"></i>
                 </div>
@@ -171,11 +162,10 @@
                     <li><i data-lucide="shield-check"></i> VANTs: Hasta 25 kg (VLOS)</li>
                     <li><i data-lucide="film"></i> Foco: Técnicas de Cámara y Sensores</li>
                 </ul>
-                <button class="btn btn-primary open-modal" data-course="fotografia">Ver Programa</button>
             </div>
             
-            <div class="course-card tilt-card glass" data-course="agricola">
-                <div class="course-card-img"><img src="card_agricola.png" alt="Curso de operación agrícola con drones" loading="lazy"></div>
+            <div class="course-card tilt-card glass open-modal" data-course="agricola" style="cursor: pointer;">
+                <div class="course-card-img"><img src="card_agricola.webp" alt="Curso de operación agrícola con drones" loading="lazy"></div>
                 <div class="card-icon">
                     <i data-lucide="sprout"></i>
                 </div>
@@ -186,7 +176,6 @@
                     <li><i data-lucide="wind"></i> Foco: Mapeo y Fumigación Rural</li>
                     <li><i data-lucide="unlock"></i> Sin límite de peso (Zonas Rurales)</li>
                 </ul>
-                <button class="btn btn-primary open-modal" data-course="agricola">Explorar Programa</button>
             </div>
         </div>
     </section>
@@ -194,7 +183,7 @@
     <!-- Sección de Servicios Eliminada por Enfoque Académico Exclusivo -->
 
     <section id="stats" class="stats glass" style="position: relative; overflow: hidden;">
-        <img src="section_stats.png" alt="" class="stats-bg-img" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none; z-index: 0;">
+        <img src="section_stats.webp" alt="" class="stats-bg-img" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none; z-index: 0;">
         <div class="stat-item" style="position: relative; z-index: 1;">
             <span class="stat-number" data-target="500" data-suffix="+">0+</span>
             <span class="stat-label">Pilotos Egresados</span>
@@ -217,7 +206,7 @@
         <div class="nosotros-grid">
             <div class="nosotros-text reveal">
                 <div class="nosotros-img-container" style="border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(251,215,4,0.15);">
-                    <img src="section_nosotros.png" alt="Equipo de instructores de Horus Dron" loading="lazy" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: brightness(0.9);">
+                    <img src="section_nosotros.webp" alt="Equipo de instructores de Horus Dron" loading="lazy" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: brightness(0.9);">
                 </div>
                 <h2>Formamos pilotos capacitados para volar con <span class="gradient-text">seguridad.</span></h2>
                 <p>Horus Dron es una escuela especializada en la capacitación de pilotos de drones. Nos enfocamos exclusivamente en brindar una sólida enseñanza teórica y práctica basada en el marco regulatorio y los estándares de seguridad de la Categoría Abierta de la ANAC en Argentina.</p>
@@ -257,7 +246,7 @@
             <h2 class="gradient-text">Campus Digital del Alumno</h2>
             <p>Herramientas interactivas y simuladores teóricos para el aprendizaje y práctica de vuelo.</p>
             <div style="border-radius: 16px; overflow: hidden; margin-top: 25px; max-width: 800px; margin-left: auto; margin-right: auto; border: 1px solid rgba(251,215,4,0.12);">
-                <img src="section_campus.png" alt="Alumno usando el campus digital de vuelo" loading="lazy" style="width: 100%; height: 260px; object-fit: cover; display: block; filter: brightness(0.85);">
+                <img src="section_campus.webp" alt="Alumno usando el campus digital de vuelo" loading="lazy" style="width: 100%; height: 260px; object-fit: cover; display: block; filter: brightness(0.85);">
             </div>
         </div>
 
@@ -356,7 +345,7 @@
         <div class="enroll-container glass">
             <div class="enroll-info">
                 <div style="border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(251,215,4,0.12);">
-                    <img src="section_enrollment.png" alt="Alumno recibiendo su certificado de piloto" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; display: block; filter: brightness(0.85);">
+                    <img src="section_enrollment.webp" alt="Alumno recibiendo su certificado de piloto" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; display: block; filter: brightness(0.85);">
                 </div>
                 <h2 class="gradient-text">Iniciá tu Carrera</h2>
                 <p>Completá el formulario para que la coordinación pedagógica analice tu perfil y te asigne un cupo de formación práctica presencial.</p>
