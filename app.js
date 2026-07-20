@@ -130,48 +130,79 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalContainer = document.getElementById('modal-container');
 
     const defaultCourses = {
-        recreativa: {
-            title: "Microdrones y Vuelo Inicial (< 250g)",
-            desc: "Ideal para principiantes y hobbyistas. Aprende técnicas básicas de vuelo, reglamentación y configuración de microdrones de menos de 250 gramos.",
+        microdrones: {
+            title: "Microdrones y Operación Urbana (Sub-250g)",
+            desc: "Domina el vuelo legal en ciudades, bienes raíces y creación de contenido avanzado. Extrae el máximo potencial comercial a equipos ultraligeros como la serie DJI Mini.",
             viz: "course_microdrones.webp",
-            specs: ["ANAC Res. 550/2025", "Categoría Abierta", "15 Días", "Vuelo Recreativo / Inicial"],
+            specs: ["ANAC Res. 550/2025", "Vuelo Urbano VLOS", "15 Días", "Real Estate y RRSS"],
             modules: [
-                { name: "Módulo 1: Introducción y Aerodinámica Básica", topics: ["Cómo vuela un dron multirrotor", "Componentes esenciales de un microdron", "Tipos de hélices y motores"] },
-                { name: "Módulo 2: Configuración de Equipos y Controladora", topics: ["Software de configuración básico", "Enlace de radiocontrol (RC) y telemetría", "Configuración de modos de vuelo seguros"] },
-                { name: "Módulo 3: Normativa Básica de la ANAC Argentina", topics: ["El concepto de Categoría Abierta (Resolución 550/2025)", "Zonas de exclusión de aeropuertos y aeródromos", "Derechos y deberes del piloto recreativo"] },
-                { name: "Módulo 4: Práctica de Vuelo y Simulación", topics: ["Simulador de vuelo en PC para destreza básica", "Prácticas de despegue, aterrizaje y vuelo estacionario", "Control de orientación y maniobras en ocho"] }
+                { name: "Módulo 1: Portabilidad y Operación Urbana", topics: ["Ventajas operativas de la categoría sub-250g", "Análisis de interferencias y obstáculos urbanos", "Normativa de vuelos en proximidad de personas"] },
+                { name: "Módulo 2: Cámara y Tomas Cinemáticas", topics: ["Técnicas de encuadre en espacios reducidos (Interiores)", "Grabación 4K HDR y formatos verticales (Redes Sociales)", "Órbitas automatizadas y seguimiento suave"] },
+                { name: "Módulo 3: Fotogrametría Básica e Inmobiliaria", topics: ["Planificación de vuelos sobre fachadas y propiedades", "Generación de modelos 3D rápidos y planos 2D", "Entregables de alto impacto visual para clientes"] },
+                { name: "Módulo 4: Seguridad y Práctica Intensiva", topics: ["Práctica de despegue/aterrizaje en mano o áreas críticas", "Simulación de pérdida de enlace y configuración RTH", "Ejecución de un portfolio audiovisual urbano"] }
             ],
-            bonus: ["Aeronave de práctica incluida (no necesitas dron propio)", "Acceso ilimitado al simulador teórico", "Soporte pedagógico virtual"]
+            bonus: ["Flota de microdrones de última generación incluida", "Asesoría comercial para venta de servicios inmobiliarios", "Plantillas de cotización y contratos"]
         },
-        fotografia: {
-            title: "Fotografía y Filmación Aérea (< 25kg)",
-            desc: "Capacitación profesional para producciones audiovisuales bajo el marco de la Categoría Abierta. Planificación, seguridad VLOS y captura de alta calidad.",
+        audiovisual: {
+            title: "Cine y Producción Audiovisual",
+            desc: "Capacitación de élite para set de rodaje. Domina cámaras de formato completo, perfiles D-Log, drones FPV y vuelo con doble operador para publicidad y cine.",
             viz: "course_fotografia.webp",
-            specs: ["ANAC Res. 550/2025", "Categoría Abierta VLOS", "30 Días", "Salida Profesional"],
+            specs: ["ANAC Res. 550/2025", "Producción Alta Gama", "30 Días", "Operación Doble Piloto/Cámara"],
             modules: [
-                { name: "Módulo 1: Operativa Estándar y Planificación", topics: ["Planificación de misiones de fotografía y video", "Chequeo pre-vuelo exhaustivo (lista de verificación)", "Análisis de condiciones climáticas and de viento"] },
-                { name: "Módulo 2: Configuración de Cámara y Sensores", topics: ["Exposición manual: ISO, velocidad de obturación y apertura", "Formatos de video y perfiles de color", "Uso de gimbals y encuadres cinematográficos"] },
-                { name: "Módulo 3: Reglas de Tránsito Aéreo y Normas ANAC", topics: ["Categoría Abierta y altura máxima de 122 metros (400 pies)", "Vuelo VLOS (Línea de vista directa) y distancia máxima", "Gestión de registro del VANT en el portal de la ANAC", "Requisitos de seguros de responsabilidad civil"] },
-                { name: "Módulo 4: Práctica de Vuelo y Captura Avanzada", topics: ["Prácticas intensivas de vuelo en exteriores con drones escuela", "Maniobras de seguimiento y órbitas automatizadas", "Procedimientos de emergencia y retorno seguro a casa (RTH)"] }
+                { name: "Módulo 1: Drones de Cine y Cámaras Avanzadas", topics: ["Operación de equipos pesados (Serie Mavic 3 Pro, Inspire)", "Lentes intercambiables y comprensión de profundidad de campo", "Formatos RAW, Apple ProRes y perfiles de color (D-Log)"] },
+                { name: "Módulo 2: Técnicas de Rodaje Profesional", topics: ["Operación en equipo (Piloto + Operador de Cámara)", "Maniobras cinemáticas complejas (Reveals, Tracking, FPV)", "Sincronización con directores de fotografía (DoP)"] },
+                { name: "Módulo 3: Gestión del Espacio Aéreo y Normativa", topics: ["Autorizaciones para vuelos en zonas pobladas y eventos", "Protocolos de seguridad en set de filmación y con actores", "Responsabilidad civil y seguros para equipos de alto valor"] },
+                { name: "Módulo 4: Workflow y Post-producción Aérea", topics: ["Flujo de trabajo de datos y copias de seguridad en locación", "Corrección de color (Color Grading) básico", "Armado de un Reel/Portfolio profesional de alto impacto"] }
             ],
-            bonus: ["Equipos profesionales DJI provistos para las prácticas", "Clases presenciales con instructores y evaluadores", "Guía paso a paso para registro ante ANAC"]
+            bonus: ["Prácticas con equipos DJI Inspire y Mavic 3 Pro", "Certificación orientada a productoras y agencias", "Guía avanzada de post-producción"]
+        },
+        inspeccion: {
+            title: "Inspección Industrial y Termografía",
+            desc: "Servicios de alto valor añadido. Inspección de líneas eléctricas, torres y parques solares utilizando fotogrametría 3D, sensores térmicos y escáneres LiDAR.",
+            viz: "multirrotor_viz.webp",
+            specs: ["Vuelo Autónomo", "Sensores Avanzados", "40 Días", "Industria 4.0 / Energía"],
+            modules: [
+                { name: "Módulo 1: Plataformas Enterprise y Cargas Útiles", topics: ["Drones industriales (Matrice 350 RTK, Mavic 3 Enterprise)", "Sistemas RTK para posicionamiento centimétrico", "Integración de cámaras térmicas, zoom y LiDAR"] },
+                { name: "Módulo 2: Termografía Aérea Aplicada", topics: ["Principios de radiometría y emisividad", "Inspección de paneles solares (Hotspots) y líneas de tensión", "Generación de reportes técnicos termográficos"] },
+                { name: "Módulo 3: Modelado 3D y Fotogrametría Industrial", topics: ["Planificación de vuelos autónomos de cuadrícula y fachada", "Procesamiento de nubes de puntos LiDAR vs Fotogrametría", "Cálculo de volúmenes (Acopios) y topografía de precisión"] },
+                { name: "Módulo 4: Análisis de Datos y Seguridad", topics: ["Análisis de defectos con software especializado (DJI Terra)", "Seguridad en vuelo cerca de interferencias electromagnéticas", "Elaboración de entregables y gemelos digitales (Digital Twins)"] }
+            ],
+            bonus: ["Prácticas con cámara Térmica (Zenmuse/Enterprise)", "Licencia de software de fotogrametría temporal", "Modelo de negocio y tarifario industrial"]
+        },
+        seguridad: {
+            title: "Seguridad, Búsqueda y Rescate (SAR)",
+            desc: "Operaciones tácticas de emergencia. Monitoreo perimetral, vuelo nocturno, detección de firmas de calor y coordinación con centros de mando policiales/bomberos.",
+            viz: "horus_hero.webp",
+            specs: ["Operación Nocturna", "Urgencias / SAR", "35 Días", "Fuerzas y Seguridad Privada"],
+            modules: [
+                { name: "Módulo 1: VANTs en Operaciones Tácticas", topics: ["Características de drones para vigilancia (Altavoces, Focos)", "Sistemas de vuelo cautivo (Tethered) para monitoreo 24/7", "Integración de video en tiempo real a centros de mando"] },
+                { name: "Módulo 2: Vuelo Nocturno y Cámaras Térmicas", topics: ["Fisiología de la visión nocturna y desorientación espacial", "Lectura de paletas térmicas para detección humana", "Operación segura sin línea de vista diurna (VLOS nocturno)"] },
+                { name: "Módulo 3: Búsqueda y Rescate (SAR)", topics: ["Patrones de búsqueda en cuadrícula y espiral", "Comunicaciones de emergencia y coordinación con rescatistas", "Protocolos de entrega de cargas salvavidas (Payload drop)"] },
+                { name: "Módulo 4: Marco Legal y Manejo de Crisis", topics: ["Normativa ANAC para vuelos de emergencia estatal/privada", "Evaluación de riesgos dinámicos en zonas de desastre", "Simulacro de búsqueda con firma térmica en campo abierto"] }
+            ],
+            bonus: ["Instructores ex-fuerzas de seguridad y bomberos", "Simulacros nocturnos con cámaras térmicas reales", "Certificado de especialización táctica"]
         },
         agricola: {
-            title: "Operación Agrícola y de Campo (Excepción Rural)",
-            desc: "Curso teórico-práctico orientado a la flexibilización de la ANAC para drones rotativos en zonas rurales. Planificación de rutas, mapeo de campo y fumigación.",
+            title: "Operación Agrícola y Forestal",
+            desc: "Máxima rentabilidad rural. Fumigación de precisión, aplicación de sólidos y análisis de salud de cultivos (NDVI) con drones de gran porte.",
             viz: "course_agricola.webp",
-            specs: ["ANAC Res. 550/2025", "Categoría Abierta Rural", "45 Días", "Entorno Agropecuario"],
+            specs: ["Carga Pesada (>25kg)", "Excepción Rural", "45 Días", "Agroindustria"],
             modules: [
-                { name: "Módulo 1: Drones Agrícolas de Gran Porte", topics: ["Clasificación de drones agrícolas de ala rotativa", "Sistemas de pulverización y boquillas electroestáticas", "Mantenimiento y calibración de tanques y bombas"] },
-                { name: "Módulo 2: Planificación de Rutas y Mapeo", topics: ["Generación de ortomosaicos básicos para agricultura", "Planificación de pasadas automáticas y georreferenciación", "Uso de software GIS para análisis de salud de cultivos"] },
-                { name: "Módulo 3: Exención Rural y Normas de Seguridad ANAC", topics: ["Entendimiento de la Categoría Abierta en zonas despobladas rurales", "Seguridad en el manejo de agroquímicos y cargas líquidas", "Prevención de riesgos operacionales en el campo"] },
-                { name: "Módulo 4: Práctica de Vuelo de Pulverización", topics: ["Vuelos simulados y prácticas presenciales con drones escuela", "Operación manual de emergencia y recuperación del control", "Carga, descarga y simulación de aplicación aérea real"] }
+                { name: "Módulo 1: Drones Agrícolas de Gran Porte", topics: ["Operación de serie DJI Agras y equivalentes", "Sistemas de pulverización, bombas y boquillas centrífugas", "Mantenimiento pesado y limpieza de circuitos químicos"] },
+                { name: "Módulo 2: Agricultura de Precisión y Sensores", topics: ["Uso de cámaras multiespectrales para salud vegetal", "Cálculo de Índices de Vegetación (NDVI) y mapas de prescripción", "Planificación de vuelos para topografía rural"] },
+                { name: "Módulo 3: Aplicación de Líquidos y Sólidos", topics: ["Calibración de caudal y ancho de gota (Deriva)", "Distribución de semillas y fertilizantes sólidos", "Generación de rutas automáticas esquivando obstáculos (Árboles/Postes)"] },
+                { name: "Módulo 4: Seguridad y Normativa Rural", topics: ["Categoría Excepción Rural y segregación del espacio aéreo", "Manejo seguro de agroquímicos (EPP) y baterías gigantes", "Práctica real de fumigación con líquido inerte en campo"] }
             ],
-            bonus: ["Drones de gran porte provistos para las prácticas", "Instructores con experiencia real en el agro", "Material didáctico de calibración de caudales"]
+            bonus: ["Drones agrícolas reales para prácticas de fumigación", "Módulo de análisis de imágenes con software agrícola", "Contactos con aplicadores y cooperativas rurales"]
         }
     };
 
-    let courseData = JSON.parse(localStorage.getItem('horus_courses')) || defaultCourses;
+    let courseData = JSON.parse(localStorage.getItem('horus_courses'));
+    // Forzar actualización si los cursos viejos están cacheados
+    if (!courseData || !courseData.inspeccion) {
+        courseData = JSON.parse(JSON.stringify(defaultCourses));
+        localStorage.setItem('horus_courses', JSON.stringify(courseData));
+    }
 
     function buildModal(data) {
         return `
@@ -465,19 +496,22 @@ document.addEventListener('DOMContentLoaded', () => {
             let recommendedCourseName = "";
             let requirements = [];
 
-            // Ruta 4: Fuera de Categoría Abierta (Prohibido/Específica)
+            // Ruta: Fuera de Categoría Abierta (Prohibido/Específica)
             if (vlos === 'no' || height === 'high' || (w === 'large' && env !== 'rural')) {
                 resultTitle = "Operación Compleja: Requiere Adaptación Estratégica";
                 explanation = purposeContext + "Tus parámetros actuales (como volar fuera de vista o drones pesados en ciudad) exigen certificaciones 'Específicas' extremadamente costosas, trámites lentos ante la ANAC y seguros millonarios.<br><br><strong>La Oportunidad Profesional:</strong> El mercado exige agilidad. En nuestra escuela, te enseñaremos cómo <strong>reformular tus misiones operativas</strong> para encajar de manera inteligente y legal dentro de la Categoría Abierta. Aprenderás a ofrecer servicios a tus clientes esquivando la burocracia sin perder rentabilidad.";
                 requirements = [
                     "Aprender a segmentar misiones para mantener el vuelo VLOS.",
-                    "Planificar altitudes por debajo de los 122m sin perder perspectiva fotográfica.",
+                    "Planificar altitudes por debajo de los 122m sin perder perspectiva fotográfica o de datos.",
                     "Aprovechar la Categoría Abierta para facturar rápido y legal."
                 ];
-                recommendedCourse = w === 'large' ? 'agricola' : 'fotografia';
-                recommendedCourseName = w === 'large' ? 'Operación Agrícola (Excepción Rural)' : 'Fotografía y Filmación Aérea';
+                
+                if (purpose === 'seguridad') { recommendedCourse = 'seguridad'; recommendedCourseName = 'Seguridad, Búsqueda y Rescate (SAR)'; }
+                else if (purpose === 'industrial') { recommendedCourse = 'inspeccion'; recommendedCourseName = 'Inspección Industrial y Termografía'; }
+                else if (w === 'large') { recommendedCourse = 'agricola'; recommendedCourseName = 'Operación Agrícola y Forestal'; }
+                else { recommendedCourse = 'audiovisual'; recommendedCourseName = 'Cine y Producción Audiovisual'; }
             }
-            // Ruta 3: Agrícola y Pesado en Zona Rural
+            // Ruta: Agrícola y Pesado en Zona Rural
             else if (w === 'large' && env === 'rural') {
                 resultTitle = "Operación Agrícola: Máxima Rentabilidad Rural";
                 explanation = purposeContext + "Estás operando la excepción normativa más delicada e importante. Pilotar drones de más de 25kg en el campo no requiere licencias engorrosas, pero la seguridad estructural y logística es crítica.<br><br><strong>La Oportunidad Profesional:</strong> El sector agroindustrial es el mercado más lucrativo para los VANT. Dominar la planificación autónoma, la fotogrametría y la fumigación te posiciona como un proveedor de servicios indispensable para el agro, garantizando un retorno de inversión altísimo para tus equipos pesados.";
@@ -487,31 +521,52 @@ document.addEventListener('DOMContentLoaded', () => {
                     "Protocolos de exclusión de zonas operativas rurales."
                 ];
                 recommendedCourse = 'agricola';
-                recommendedCourseName = 'Operación Agrícola y de Campo';
+                recommendedCourseName = 'Operación Agrícola y Forestal';
             }
-            // Ruta 2: Fotografía / Mediano estándar
-            else if (w === 'medium') {
-                resultTitle = "Vuelo Estándar: De Aficionado a Profesional";
-                explanation = purposeContext + "Tus operaciones cumplen las reglas de la Categoría Abierta, lo que te ahorra años de trámites. Sin embargo, al superar los 250 gramos, <strong>estás bajo el radar estricto de la ANAC</strong>; el desconocimiento del espacio aéreo conlleva multas severas.<br><br><strong>La Oportunidad Profesional:</strong> El mercado de eventos, inmobiliarias e inspecciones busca pilotos certificados. Con nuestra capacitación, dejarás de ser un aficionado para dominar técnicas cinemáticas, blindándote legalmente y abriéndote las puertas para facturar servicios audiovisuales de primer nivel.";
-                requirements = [
-                    "Registro del drone en el portal oficial y comprensión de espacios aéreos.",
-                    "Dominio de maniobras cinemáticas fluidas y seguras.",
-                    "Protocolos de emergencia ante pérdida de señal en rodajes."
-                ];
-                recommendedCourse = 'fotografia';
-                recommendedCourseName = 'Fotografía y Filmación Aérea';
-            }
-            // Ruta 1: Microdrones
+            // Rutas para Drones Medianos / Microdrones
             else {
-                resultTitle = "Microdrones: El Inicio Rentable";
-                explanation = purposeContext + "Al usar un equipo de menos de 250 gramos, te beneficias de la normativa más relajada. Sin embargo, en zonas urbanas eres legalmente responsable por cualquier daño. No dependas solo de los sensores anti-colisión.<br><br><strong>La Oportunidad Profesional:</strong> Un microdron es tu puerta de entrada al mercado de creadores de contenido, redes sociales y bienes raíces. Al capacitarte formalmente, aprenderás a exprimir la cámara de tu equipo ligero, creando tomas espectaculares que te permitirán monetizar tu dron rápidamente.";
-                requirements = [
-                    "Configuración de cámara y movimientos fluidos de precisión.",
-                    "Análisis de interferencia de señal en entornos urbanos densos.",
-                    "Responsabilidad civil y conciencia situacional básica."
-                ];
-                recommendedCourse = 'recreativa';
-                recommendedCourseName = 'Microdrones y Vuelo Inicial';
+                if (purpose === 'seguridad') {
+                    resultTitle = "Operación Táctica: Vuelo de Emergencia y SAR";
+                    explanation = purposeContext + "Al operar en tareas de vigilancia o búsqueda, las reglas de la Categoría Abierta te aplican igual, pero la urgencia de la misión te obliga a tener una destreza técnica superior.<br><br><strong>La Oportunidad Profesional:</strong> Las fuerzas de seguridad, bomberos y empresas de vigilancia privada están integrando VANTs aceleradamente. Capacitarte en cámaras térmicas, vuelos nocturnos y coordinación de equipos te convertirá en un especialista altamente demandado para salvar vidas y proteger activos.";
+                    requirements = [
+                        "Dominio de cámaras térmicas e identificación de firmas de calor.",
+                        "Coordinación de protocolos de emergencia y comunicación (SAR).",
+                        "Técnicas de vuelo nocturno y mitigación de riesgos operativos."
+                    ];
+                    recommendedCourse = 'seguridad';
+                    recommendedCourseName = 'Seguridad, Búsqueda y Rescate (SAR)';
+                } else if (purpose === 'industrial') {
+                    resultTitle = "Inspección Industrial: Alta Precisión y Datos Técnicos";
+                    explanation = purposeContext + "Estás apuntando al nicho más técnico. El vuelo es solo el 20% del trabajo; el 80% es la captura y procesamiento preciso de datos. Al mantenerte en la Categoría Abierta, tus costos bajan dramáticamente.<br><br><strong>La Oportunidad Profesional:</strong> La Industria 4.0 necesita modelados 3D, inspección de paneles solares y torres de telecomunicaciones. Aprender a dominar sensores LiDAR, fotogrametría y termografía te permite cobrar tarifas corporativas, posicionándote lejos del mercado de consumo.";
+                    requirements = [
+                        "Planificación de vuelos autónomos para levantamiento de datos.",
+                        "Análisis térmico y fotogramétrico con software especializado.",
+                        "Generación de reportes técnicos entregables para el cliente."
+                    ];
+                    recommendedCourse = 'inspeccion';
+                    recommendedCourseName = 'Inspección Industrial y Termografía';
+                } else if (purpose === 'audiovisual' && w !== 'mini') {
+                    resultTitle = "Producción Audiovisual: Cine y Publicidad";
+                    explanation = purposeContext + "Tus operaciones cumplen las reglas de la Categoría Abierta, lo que te ahorra años de trámites. Sin embargo, al superar los 250 gramos, estás bajo el radar estricto de la ANAC; el desconocimiento del espacio aéreo conlleva multas severas.<br><br><strong>La Oportunidad Profesional:</strong> Productoras de cine, TV y agencias de publicidad buscan pilotos certificados. Con nuestra capacitación, dominarás técnicas cinemáticas complejas, perfiles de color (D-Log) y vuelo con doble operador, abriéndote las puertas para facturar en producciones de primer nivel.";
+                    requirements = [
+                        "Registro del drone y comprensión avanzada de espacios aéreos.",
+                        "Dominio de maniobras cinemáticas fluidas en set de rodaje.",
+                        "Flujo de trabajo de datos y perfiles de color profesionales."
+                    ];
+                    recommendedCourse = 'audiovisual';
+                    recommendedCourseName = 'Cine y Producción Audiovisual';
+                } else {
+                    // Default to Microdrones
+                    resultTitle = "Microdrones: El Negocio Ágil Urbano";
+                    explanation = purposeContext + "Al usar un equipo de menos de 250 gramos, te beneficias de la normativa más relajada. Sin embargo, en zonas urbanas densas eres legalmente responsable por cualquier daño. No dependas solo de los sensores anti-colisión.<br><br><strong>La Oportunidad Profesional:</strong> Un microdron es tu puerta de entrada al lucrativo mercado del Real Estate (Bienes Raíces), redes sociales y marketing digital. Al capacitarte formalmente, aprenderás a exprimir la cámara de tu equipo ligero, creando tomas espectaculares y cobrando por servicios ágiles en plena ciudad.";
+                    requirements = [
+                        "Configuración de cámara y encuadres en espacios urbanos reducidos.",
+                        "Análisis de interferencia de señal en ciudades densas.",
+                        "Responsabilidad civil y fotogrametría rápida inmobiliaria."
+                    ];
+                    recommendedCourse = 'microdrones';
+                    recommendedCourseName = 'Microdrones y Operación Urbana (Sub-250g)';
+                }
             }
 
             updateStepper(6);
