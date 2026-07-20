@@ -57,14 +57,14 @@
 
             <div class="hero-institution-pill fade-in">
                 <i data-lucide="shield-check"></i>
-                <span>Escuela Profesional de Drones &bull; Categoría Abierta ANAC &bull; Práctica Presencial</span>
+                <span id="hero-pill-text"></span>
             </div>
 
-            <h1 class="fade-in">Aprendé a Volar Drones de Forma <span class="gradient-text">Profesional</span>.</h1>
+            <h1 class="fade-in" id="hero-title-text"></h1>
 
-            <p class="hero-tagline fade-in">Formación integral para operar bajo la reglamentación ANAC 550/2025. Sin necesidad de experiencia previa ni equipos propios.</p>
+            <p class="hero-tagline fade-in" id="hero-tagline-text"></p>
 
-            <p class="fade-in">Te capacitamos teórica y prácticamente bajo los lineamientos y exigencias de seguridad de la normativa ANAC para dominar drones de hasta 25 kg en la Categoría Abierta de bajo riesgo. Te proveemos todas las aeronaves escuela y simuladores terrestres para que aprendas desde cero y con seguridad.</p>
+            <p class="fade-in" id="hero-desc-text"></p>
 
             <div class="hero-trust-row fade-in">
                 <div class="trust-badge">
@@ -115,68 +115,32 @@
         </div>
     </header>
 
-    <section id="courses" class="courses">
+    <section id="consultor-banner" style="padding: 0 10%; margin-top: -20px; margin-bottom: 40px;">
+        <div class="glass" id="course-quiz-card" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 20px 30px; border-radius: 16px; border: 1px solid rgba(251, 215, 4, 0.4); box-shadow: 0 5px 20px rgba(251, 215, 4, 0.1); cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='rgba(251, 215, 4, 0.8)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(251, 215, 4, 0.4)'">
+            <div style="display: flex; align-items: center; gap: 20px; flex: 1; min-width: 250px;">
+                <div style="display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: rgba(251, 215, 4, 0.15); border-radius: 10px; color: var(--accent-yellow); flex-shrink: 0;">
+                    <i data-lucide="radar" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.2rem; margin: 0 0 5px 0; color: white;">Consultor Inteligente de Vuelo</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Diagnóstico en 1 min: Descubre tus riesgos legales (ANAC) y tu perfil de rentabilidad.</p>
+                </div>
+            </div>
+            <div style="margin-left: auto; padding-top: 10px; padding-bottom: 10px;">
+                <button class="btn btn-primary" style="padding: 10px 24px; font-size: 0.95rem; white-space: nowrap;">
+                    Iniciar Diagnóstico <i data-lucide="chevron-right" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses" class="courses" style="padding-top: 50px;">
         <div class="section-header">
             <h2 class="gradient-text">Programas de Formación</h2>
             <p>Cursos estructurados para operar de forma segura y profesional en la Categoría Abierta.</p>
         </div>
-        <div class="course-grid">
-            <!-- Recomendador de Cursos / Quiz ANAC 2026 -->
-            <div class="course-card tilt-card glass" id="course-quiz-card" style="border: 1px solid rgba(251, 215, 4, 0.4); box-shadow: inset 0 0 20px rgba(251, 215, 4, 0.05); cursor: pointer;">
-                <div class="course-card-img"><img src="card_quiz.webp" alt="Asistente de reglas operativas ANAC" loading="lazy"></div>
-                <div class="card-icon">
-                    <i data-lucide="help-circle"></i>
-                </div>
-                <h3>¿Qué Reglas Operativas Te Aplican?</h3>
-                <p class="course-desc">Asistente interactivo inteligente para descubrir si tu vuelo cumple las condiciones de la Categoría Abierta ANAC.</p>
-                <ul class="course-details">
-                    <li><i data-lucide="check-square"></i> Evaluación rápida</li>
-                    <li><i data-lucide="shield-alert"></i> Reglas Res. 550/2025</li>
-                    <li><i data-lucide="file-text"></i> Recomendación formativa</li>
-                </ul>
-            </div>
-            
-            <div class="course-card tilt-card glass open-modal" data-course="recreativa" style="cursor: pointer;">
-                <div class="course-card-img"><img src="card_microdrones.webp" alt="Curso de microdrones y vuelo inicial" loading="lazy"></div>
-                <div class="card-icon">
-                    <i data-lucide="smile"></i>
-                </div>
-                <h3>Microdrones y Vuelo Inicial</h3>
-                <p class="course-desc">Ideal para principiantes y hobbyistas. Aprende técnicas básicas de vuelo, reglamentación y configuración de microdrones de menos de 250 gramos.</p>
-                <ul class="course-details">
-                    <li><i data-lucide="calendar"></i> Duración: 15 Días</li>
-                    <li><i data-lucide="package"></i> VANTs: &lt; 250 gramos</li>
-                    <li><i data-lucide="award"></i> Certificado de Iniciación</li>
-                </ul>
-            </div>
-            
-            <div class="course-card tilt-card glass open-modal" data-course="fotografia" style="cursor: pointer;">
-                <div class="course-card-img"><img src="card_fotografia.webp" alt="Curso de fotografía y filmación aérea con drones" loading="lazy"></div>
-                <div class="card-icon">
-                    <i data-lucide="camera"></i>
-                </div>
-                <h3>Fotografía y Filmación Aérea</h3>
-                <p class="course-desc">Capacitación profesional para producciones audiovisuales bajo el marco de la Categoría Abierta. Planificación, seguridad VLOS y captura de alta calidad.</p>
-                <ul class="course-details">
-                    <li><i data-lucide="timer"></i> Duración: 30 Días</li>
-                    <li><i data-lucide="shield-check"></i> VANTs: Hasta 25 kg (VLOS)</li>
-                    <li><i data-lucide="film"></i> Foco: Técnicas de Cámara y Sensores</li>
-                </ul>
-            </div>
-            
-            <div class="course-card tilt-card glass open-modal" data-course="agricola" style="cursor: pointer;">
-                <div class="course-card-img"><img src="card_agricola.webp" alt="Curso de operación agrícola con drones" loading="lazy"></div>
-                <div class="card-icon">
-                    <i data-lucide="sprout"></i>
-                </div>
-                <h3>Operación Agrícola y de Campo</h3>
-                <p class="course-desc">Curso teórico-práctico orientado a la flexibilización de la ANAC para drones rotativos en zonas rurales. Planificación de rutas, mapeo de campo y fumigación.</p>
-                <ul class="course-details">
-                    <li><i data-lucide="calendar"></i> Duración: 45 Días</li>
-                    <li><i data-lucide="wind"></i> Foco: Mapeo y Fumigación Rural</li>
-                    <li><i data-lucide="unlock"></i> Sin límite de peso (Zonas Rurales)</li>
-                </ul>
-            </div>
+        <div class="course-grid" id="dynamic-courses-container">
+            <!-- Los cursos se inyectan dinámicamente desde app.js -->
         </div>
     </section>
 
@@ -184,17 +148,8 @@
 
     <section id="stats" class="stats glass" style="position: relative; overflow: hidden;">
         <img src="section_stats.webp" alt="" class="stats-bg-img" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none; z-index: 0;">
-        <div class="stat-item" style="position: relative; z-index: 1;">
-            <span class="stat-number" data-target="500" data-suffix="+">0+</span>
-            <span class="stat-label">Pilotos Egresados</span>
-        </div>
-        <div class="stat-item" style="position: relative; z-index: 1;">
-            <span class="stat-number" data-target="1500" data-suffix="+">0+</span>
-            <span class="stat-label">Horas de Práctica</span>
-        </div>
-        <div class="stat-item" style="position: relative; z-index: 1;">
-            <span class="stat-number" data-target="100" data-suffix="%">0%</span>
-            <span class="stat-label">Drones Provistos por Escuela</span>
+        <div id="dynamic-stats-container" style="display: contents;">
+            <!-- Las stats se inyectan dinámicamente desde app.js -->
         </div>
     </section>
 

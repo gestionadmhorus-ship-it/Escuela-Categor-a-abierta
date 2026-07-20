@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         inspeccion: {
             title: "Inspección Industrial y Termografía",
             desc: "Servicios de alto valor añadido. Inspección de líneas eléctricas, torres y parques solares utilizando fotogrametría 3D, sensores térmicos y escáneres LiDAR.",
-            viz: "multirrotor_viz.webp",
+            viz: "card_inspeccion.png",
             specs: ["Vuelo Autónomo", "Sensores Avanzados", "40 Días", "Industria 4.0 / Energía"],
             modules: [
                 { name: "Módulo 1: Plataformas Enterprise y Cargas Útiles", topics: ["Drones industriales (Matrice 350 RTK, Mavic 3 Enterprise)", "Sistemas RTK para posicionamiento centimétrico", "Integración de cámaras térmicas, zoom y LiDAR"] },
@@ -194,15 +194,147 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "Módulo 4: Seguridad y Normativa Rural", topics: ["Categoría Excepción Rural y segregación del espacio aéreo", "Manejo seguro de agroquímicos (EPP) y baterías gigantes", "Práctica real de fumigación con líquido inerte en campo"] }
             ],
             bonus: ["Drones agrícolas reales para prácticas de fumigación", "Módulo de análisis de imágenes con software agrícola", "Contactos con aplicadores y cooperativas rurales"]
+        },
+        alafija: {
+            title: "Mapeo de Grandes Extensiones (Ala Fija)",
+            desc: "Topografía masiva con VANTs de Ala Volante y VTOL. Aprende a mapear miles de hectáreas operando legalmente dentro de los límites visuales (VLOS) o preparando solicitudes BVLOS.",
+            viz: "card_alafija.png",
+            specs: ["Fotogrametría Masiva", "Vuelo VLOS Extend.", "45 Días", "Topografía y Minería"],
+            modules: [
+                { name: "Módulo 1: Plataformas de Ala Fija y VTOL", topics: ["Aerodinámica de alas volantes vs multirrotores", "Transición de vuelo vertical a horizontal (VTOL)", "Gestión de baterías de alta capacidad y telemetría de largo alcance"] },
+                { name: "Módulo 2: Planificación Fotogramétrica Masiva", topics: ["Solapes frontales y laterales para miles de hectáreas", "Puntos de control terrestre (GCP) y RTK/PPK", "Segmentación de planes de vuelo para mantenerse en VLOS"] },
+                { name: "Módulo 3: Marco Regulatorio (VLOS a BVLOS)", topics: ["Operación VLOS estricta y uso de Observadores Visuales (EVOS)", "Límites de la Categoría Abierta para operaciones de largo alcance", "Estructura del Manual de Operaciones para solicitar Categoría Específica (BVLOS)"] },
+                { name: "Módulo 4: Operación Práctica y Emergencias", topics: ["Despegue por catapulta o lanzamiento manual (Hand-launch)", "Protocolos de aterrizaje autónomo y recuperación por paracaídas", "Gestión de pérdida de enlace a gran distancia y programación de RTH inteligente"] }
+            ],
+            bonus: ["Práctica de planificación con software especializado", "Plantillas de Solicitud BVLOS para ANAC", "Simulador de Ala Fija avanzado"]
         }
     };
 
+    const defaultSiteConfig = {
+        hero: {
+            pill: "Escuela Profesional de Drones &bull; Categoría Abierta ANAC &bull; Práctica Presencial",
+            title: "Aprendé a Volar Drones de Forma <span class=\"gradient-text\">Profesional</span>.",
+            tagline: "Formación integral para operar bajo la reglamentación ANAC 550/2025. Sin necesidad de experiencia previa ni equipos propios.",
+            description: "Te capacitamos teórica y prácticamente bajo los lineamientos y exigencias de seguridad de la normativa ANAC para dominar drones de hasta 25 kg en la Categoría Abierta de bajo riesgo. Te proveemos todas las aeronaves escuela y simuladores terrestres para que aprendas desde cero y con seguridad."
+        },
+        stats: {
+            graduates: "500",
+            hours: "1500",
+            drones: "15",
+            instructors: "10"
+        },
+        toggles: {
+            showConsultant: true,
+            showCourses: true,
+            showPlatform: true,
+            showStats: true
+        }
+    };
+
+    let siteData = JSON.parse(localStorage.getItem('horus_site_config'));
+    if (!siteData) {
+        siteData = JSON.parse(JSON.stringify(defaultSiteConfig));
+        localStorage.setItem('horus_site_config', JSON.stringify(siteData));
+    }
+
     let courseData = JSON.parse(localStorage.getItem('horus_courses'));
     // Forzar actualización si los cursos viejos están cacheados
-    if (!courseData || !courseData.inspeccion) {
+    if (!courseData || !courseData.alafija) {
         courseData = JSON.parse(JSON.stringify(defaultCourses));
         localStorage.setItem('horus_courses', JSON.stringify(courseData));
     }
+
+    // --- RENDERIZADO DEL CMS ---
+    function renderSite() {
+        const titleEl = document.getElementById('hero-title-text');
+        const pillEl = document.getElementById('hero-pill-text');
+        const taglineEl = document.getElementById('hero-tagline-text');
+        const descEl = document.getElementById('hero-desc-text');
+        
+        if (titleEl) titleEl.innerHTML = siteData.hero.title;
+        if (pillEl) pillEl.innerHTML = siteData.hero.pill;
+        if (taglineEl) taglineEl.innerHTML = siteData.hero.tagline;
+        if (descEl) descEl.innerHTML = siteData.hero.description;
+
+        const coursesContainer = document.getElementById('dynamic-courses-container');
+        if (coursesContainer) {
+            coursesContainer.innerHTML = '';
+            const iconMap = {
+                microdrones: 'smartphone',
+                audiovisual: 'film',
+                inspeccion: 'factory',
+                alafija: 'map',
+                seguridad: 'shield',
+                agricola: 'tractor'
+            };
+            
+            Object.keys(courseData).forEach(key => {
+                const c = courseData[key];
+                const icon = iconMap[key] || 'book';
+                
+                const card = document.createElement('div');
+                card.className = 'course-card tilt-card glass open-modal';
+                card.setAttribute('data-course', key);
+                card.style.cursor = 'pointer';
+                
+                card.innerHTML = `
+                    <div class="course-card-img"><img src="${c.viz}" alt="${c.title}" loading="lazy"></div>
+                    <div class="card-icon">
+                        <i data-lucide="${icon}"></i>
+                    </div>
+                    <h3>${c.title}</h3>
+                    <p class="course-desc">${c.desc}</p>
+                    <ul class="course-details">
+                        ${c.specs.map(spec => `<li><i data-lucide="check-circle" style="color:var(--accent-yellow)"></i> ${spec}</li>`).join('')}
+                    </ul>
+                `;
+                coursesContainer.appendChild(card);
+            });
+            
+            // Re-vincular eventos
+            document.querySelectorAll('.open-modal').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const courseKey = e.currentTarget.getAttribute('data-course');
+                    const modalBody = document.getElementById('modal-body');
+                    if (courseData[courseKey] && modalBody) {
+                        modalBody.innerHTML = buildModal(courseData[courseKey]);
+                        lucide.createIcons();
+                        document.getElementById('course-modal').classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+        }
+        
+        const statsContainer = document.getElementById('dynamic-stats-container');
+        if (statsContainer) {
+            statsContainer.innerHTML = `
+                <div class="stat-item" style="position: relative; z-index: 1;">
+                    <span class="stat-number" data-target="${siteData.stats.graduates}" data-suffix="+">0+</span>
+                    <span class="stat-label">Pilotos Egresados</span>
+                </div>
+                <div class="stat-item" style="position: relative; z-index: 1;">
+                    <span class="stat-number" data-target="${siteData.stats.hours}" data-suffix="+">0+</span>
+                    <span class="stat-label">Horas de Práctica</span>
+                </div>
+                <div class="stat-item" style="position: relative; z-index: 1;">
+                    <span class="stat-number" data-target="100" data-suffix="%">0%</span>
+                    <span class="stat-label">Drones Provistos por Escuela</span>
+                </div>
+                <div class="stat-item" style="position: relative; z-index: 1;">
+                    <span class="stat-number" data-target="${siteData.stats.instructors}" data-suffix="+">0+</span>
+                    <span class="stat-label">Instructores Certificados</span>
+                </div>
+            `;
+        }
+        
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+    
+    // Llamar inicial
+    renderSite();
 
     function buildModal(data) {
         return `
@@ -536,15 +668,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     recommendedCourse = 'seguridad';
                     recommendedCourseName = 'Seguridad, Búsqueda y Rescate (SAR)';
                 } else if (purpose === 'industrial') {
-                    resultTitle = "Inspección Industrial: Alta Precisión y Datos Técnicos";
-                    explanation = purposeContext + "Estás apuntando al nicho más técnico. El vuelo es solo el 20% del trabajo; el 80% es la captura y procesamiento preciso de datos. Al mantenerte en la Categoría Abierta, tus costos bajan dramáticamente.<br><br><strong>La Oportunidad Profesional:</strong> La Industria 4.0 necesita modelados 3D, inspección de paneles solares y torres de telecomunicaciones. Aprender a dominar sensores LiDAR, fotogrametría y termografía te permite cobrar tarifas corporativas, posicionándote lejos del mercado de consumo.";
-                    requirements = [
-                        "Planificación de vuelos autónomos para levantamiento de datos.",
-                        "Análisis térmico y fotogramétrico con software especializado.",
-                        "Generación de reportes técnicos entregables para el cliente."
-                    ];
-                    recommendedCourse = 'inspeccion';
-                    recommendedCourseName = 'Inspección Industrial y Termografía';
+                    if (env === 'rural') {
+                        resultTitle = "Mapeo Masivo: Fotogrametría de Grandes Extensiones";
+                        explanation = purposeContext + "Al operar en zonas despobladas, la normativa te favorece, pero la extensión del terreno requiere optimizar la autonomía. Operar multirrotores para miles de hectáreas es sumamente ineficiente.<br><br><strong>La Oportunidad Profesional:</strong> El mercado de la topografía, minería y corredores viales exige VANTs de Ala Fija o VTOL. Capacitarte en estos equipos te permitirá mapear extensiones masivas por día, multiplicando tu rentabilidad operativa, mientras te preparas documentalmente para el salto a operaciones BVLOS.";
+                        requirements = [
+                            "Planificación de solapes y telemetría de largo alcance.",
+                            "Gestión documental para justificar vuelo VLOS extendido.",
+                            "Técnicas de despegue y aterrizaje autónomo avanzado."
+                        ];
+                        recommendedCourse = 'alafija';
+                        recommendedCourseName = 'Mapeo de Grandes Extensiones (Ala Fija)';
+                    } else {
+                        resultTitle = "Inspección Industrial: Alta Precisión y Datos Técnicos";
+                        explanation = purposeContext + "Estás apuntando al nicho más técnico. El vuelo es solo el 20% del trabajo; el 80% es la captura y procesamiento preciso de datos. Al mantenerte en la Categoría Abierta, tus costos bajan dramáticamente.<br><br><strong>La Oportunidad Profesional:</strong> La Industria 4.0 necesita modelados 3D, inspección de paneles solares y torres de telecomunicaciones. Aprender a dominar sensores LiDAR, termografía y Docks autónomos te permite cobrar tarifas corporativas, alejándote del mercado saturado de consumo.";
+                        requirements = [
+                            "Planificación de vuelos autónomos para levantamiento de datos.",
+                            "Análisis térmico y fotogramétrico con software especializado.",
+                            "Generación de reportes técnicos entregables para el cliente."
+                        ];
+                        recommendedCourse = 'inspeccion';
+                        recommendedCourseName = 'Inspección Industrial y Termografía';
+                    }
                 } else if (purpose === 'audiovisual' && w !== 'mini') {
                     resultTitle = "Producción Audiovisual: Cine y Publicidad";
                     explanation = purposeContext + "Tus operaciones cumplen las reglas de la Categoría Abierta, lo que te ahorra años de trámites. Sin embargo, al superar los 250 gramos, estás bajo el radar estricto de la ANAC; el desconocimiento del espacio aéreo conlleva multas severas.<br><br><strong>La Oportunidad Profesional:</strong> Productoras de cine, TV y agencias de publicidad buscan pilotos certificados. Con nuestra capacitación, dominarás técnicas cinemáticas complejas, perfiles de color (D-Log) y vuelo con doble operador, abriéndote las puertas para facturar en producciones de primer nivel.";
@@ -558,7 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     // Default to Microdrones
                     resultTitle = "Microdrones: El Negocio Ágil Urbano";
-                    explanation = purposeContext + "Al usar un equipo de menos de 250 gramos, te beneficias de la normativa más relajada. Sin embargo, en zonas urbanas densas eres legalmente responsable por cualquier daño. No dependas solo de los sensores anti-colisión.<br><br><strong>La Oportunidad Profesional:</strong> Un microdron es tu puerta de entrada al lucrativo mercado del Real Estate (Bienes Raíces), redes sociales y marketing digital. Al capacitarte formalmente, aprenderás a exprimir la cámara de tu equipo ligero, creando tomas espectaculares y cobrando por servicios ágiles en plena ciudad.";
+                    explanation = purposeContext + "Al usar un equipo ultraligero, tu principal escenario de vuelo serán las zonas urbanas densas, donde eres responsable civil y penalmente por cualquier daño a terceros. Operar en la ciudad sin formación profesional es un riesgo altísimo; los sensores anti-colisión no evitan interferencias electromagnéticas ni ráfagas de viento entre edificios.<br><br><strong>La Oportunidad Profesional:</strong> Un microdron es tu puerta de entrada al lucrativo mercado del Real Estate (Bienes Raíces), redes sociales y marketing digital. Al capacitarte formalmente, blindarás tus operaciones legalmente y aprenderás a exprimir la cámara de tu equipo, cobrando por servicios ágiles en plena ciudad.";
                     requirements = [
                         "Configuración de cámara y encuadres en espacios urbanos reducidos.",
                         "Análisis de interferencia de señal en ciudades densas.",
