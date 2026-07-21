@@ -1786,13 +1786,32 @@ footer {
     border: 1px solid transparent !important;
 }
 .admin-tab-btn:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
     color: white !important;
 }
 .admin-tab-btn.active {
     background: rgba(251, 215, 4, 0.15) !important;
     color: var(--accent-yellow) !important;
     border: 1px solid rgba(251, 215, 4, 0.3) !important;
+    box-shadow: inset 4px 0 0 var(--accent-yellow);
+}
+
+.btn-success {
+    background: #00b84c;
+    color: white;
+}
+.btn-success:hover {
+    background: #00d95a;
+    box-shadow: 0 4px 15px rgba(0, 184, 76, 0.4);
+}
+.btn-danger {
+    background: rgba(255, 74, 74, 0.1);
+    color: #ff4a4a;
+    border: 1px solid rgba(255, 74, 74, 0.3);
+}
+.btn-danger:hover {
+    background: rgba(255, 74, 74, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 74, 74, 0.2);
 }
 .admin-tab-pane {
     animation: fadeIn 0.4s ease;
@@ -1831,7 +1850,7 @@ footer {
     background: rgba(30, 33, 48, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #f0f0f0;
-    font-size: 0.88rem;
+    font-size: 1.2rem;
     font-family: var(--font-main);
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
@@ -1847,7 +1866,7 @@ footer {
 
 .admin-label {
     display: block;
-    font-size: 0.78rem;
+    font-size: 1.05rem;
     font-weight: 800;
     color: var(--accent-yellow);
     margin-bottom: 8px;
@@ -1886,6 +1905,50 @@ footer {
 }
 .admin-tabs-content::-webkit-scrollbar-thumb:hover {
     background: rgba(251,215,4,0.3);
+}
+
+/* ── Testimonios (Página Pública) ───────────────────── */
+.testimonial-card {
+    background: rgba(18, 20, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(251, 215, 4, 0.08);
+    border-color: rgba(251, 215, 4, 0.3);
+}
+.testimonial-quote {
+    font-style: italic;
+    color: #e0e5f5;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(251, 215, 4, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-yellow);
+    border: 2px solid rgba(251, 215, 4, 0.3);
 }
 
 /* ── Mobile Layout Adjustments (max-width: 768px) ──────── */
@@ -2360,6 +2423,29 @@ footer {
     .stepper-value {
         font-size: 0.75rem;
         line-height: 1.2;
+    }
+
+    #admin-dashboard-modal .modal-content {
+        flex-direction: column !important;
+        height: 95vh !important;
+    }
+    .admin-sidebar {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+        padding: 20px 15px !important;
+        flex: none !important;
+    }
+    .admin-sidebar .admin-nav {
+        flex-direction: row !important;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+    .admin-sidebar .admin-nav .admin-tab-btn {
+        white-space: nowrap;
+    }
+    .admin-main-area {
+        padding: 20px 15px !important;
     }
 }
 

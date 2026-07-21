@@ -244,6 +244,33 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('horus_courses', JSON.stringify(courseData));
     }
 
+    const defaultContact = {
+        email: "info@horusdron.com",
+        phone: "+54 9 11 3659-2233",
+        address: "Buenos Aires & Neuquén, Argentina",
+        whatsapp: "5491136592233"
+    };
+    let contactData = JSON.parse(localStorage.getItem('horus_contact')) || defaultContact;
+
+    const defaultTestimonials = [
+        {
+            name: "Juan Pérez",
+            role: "Piloto Inspecciones",
+            quote: "Excelente curso, muy enfocado en la seguridad y en la práctica real. Los instructores tienen mucha paciencia y el contenido es de primera."
+        },
+        {
+            name: "María Gómez",
+            role: "Productora Audiovisual",
+            quote: "Me sirvió muchísimo para empezar a ofrecer servicios con drones en eventos. Todo el marco legal quedó muy claro y pude tramitar mi licencia."
+        }
+    ];
+
+    let testimonialsData = JSON.parse(localStorage.getItem('horus_testimonials'));
+    if (!testimonialsData || testimonialsData.length === 0) {
+        testimonialsData = JSON.parse(JSON.stringify(defaultTestimonials));
+        localStorage.setItem('horus_testimonials', JSON.stringify(testimonialsData));
+    }
+
     // --- RENDERIZADO DEL CMS ---
     function renderSite() {
         const titleEl = document.getElementById('hero-title-text');
@@ -270,6 +297,8 @@ document.addEventListener('DOMContentLoaded', () => {
             
             Object.keys(courseData).forEach(key => {
                 const c = courseData[key];
+                if (c.visible === false) return; // FASE 3: No renderizar cursos ocultos
+                
                 const icon = iconMap[key] || 'book';
                 
                 const card = document.createElement('div');
@@ -285,7 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${c.title}</h3>
                     <p class="course-desc">${c.desc}</p>
                     <ul class="course-details">
-                        ${c.specs.map(spec => `<li><i data-lucide="check-circle" style="color:var(--accent-yellow)"></i> ${spec}</li>`).join('')}
+                        ${c.specs.slice(0, 3).map(spec => {
+                            let specIcon = 'check-circle';
+                            const lSpec = spec.toLowerCase();
+                            if (lSpec.includes('día')) specIcon = 'calendar';
+                            else if (lSpec.includes('vant') || lSpec.includes('peso') || lSpec.includes('<') || lSpec.includes('kg')) specIcon = 'package';
+                            else if (lSpec.includes('certif') || lSpec.includes('foco')) specIcon = 'award';
+                            else if (lSpec.includes('anac') || lSpec.includes('res.')) specIcon = 'shield-check';
+                            return '<li><i data-lucide="' + specIcon + '" style="color:var(--accent-yellow)"></i> ' + spec + '</li>';
+                        }).join('')}
                     </ul>
                 `;
                 coursesContainer.appendChild(card);
@@ -328,6 +365,38 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
         
+        // Renderizar Contacto
+        const emailEl = document.getElementById('contact-email');
+        if (emailEl) emailEl.innerHTML = `<i data-lucide="mail"></i> ${contactData.email}`;
+        const phoneEl = document.getElementById('contact-phone');
+        if (phoneEl) phoneEl.innerHTML = `<i data-lucide="phone"></i> ${contactData.phone}`;
+        const addrEl = document.getElementById('contact-address');
+        if (addrEl) addrEl.innerHTML = `<i data-lucide="map-pin"></i> ${contactData.address}`;
+
+        // Renderizar Testimonios Públicos
+        const pubTestimonials = document.getElementById('public-testimonials-list');
+        if (pubTestimonials) {
+            pubTestimonials.innerHTML = testimonialsData.map(t => `
+                <div class="testimonial-card">
+                    <i data-lucide="quote" style="width:30px;height:30px;color:rgba(251,215,4,0.2);position:absolute;top:20px;right:20px;"></i>
+                    <p class="testimonial-quote">"${t.quote}"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar"><i data-lucide="user"></i></div>
+                        <div>
+                            <h4 style="color:white;font-weight:700;font-size:1rem;margin:0;">${t.name}</h4>
+                            <span style="color:var(--accent-yellow);font-size:0.85rem;">${t.role}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // WhatsApp Floater and Links
+        const waMessage = encodeURIComponent('Hola Horus Dron, me interesa obtener información sobre sus cursos de piloto de drones en Categoría Abierta.');
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.href = `https://wa.me/${contactData.whatsapp}?text=${waMessage}`;
+        });
+
         if (window.lucide) {
             lucide.createIcons();
         }
@@ -1212,62 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ─── 13. Dynamic WhatsApp configuration ──────────────────────────────────
-    const defaultContact = {
-        email: "info@horusdron.com",
-        phone: "+54 9 11 3659-2233",
-        address: "Buenos Aires & Neuquén, Argentina",
-        whatsapp: "5491136592233"
-    };
-    let contactData = JSON.parse(localStorage.getItem('horus_contact')) || defaultContact;
-
-    function renderLandingPage() {
-        // Renderizar Cursos en la página principal
-        Object.keys(courseData).forEach(key => {
-            const data = courseData[key];
-            const card = document.querySelector(`.course-card[data-course="${key}"]`);
-            if (card) {
-                const titleEl = card.querySelector('h3');
-                if (titleEl) titleEl.textContent = data.title;
-                const descEl = card.querySelector('.course-desc');
-                if (descEl) descEl.textContent = data.desc;
-                
-                const listEl = card.querySelector('.course-details');
-                if (listEl && data.specs) {
-                    listEl.innerHTML = '';
-                    data.specs.slice(0, 3).forEach(spec => {
-                        const li = document.createElement('li');
-                        let icon = 'check-circle';
-                        const lSpec = spec.toLowerCase();
-                        if (lSpec.includes('día')) icon = 'calendar';
-                        else if (lSpec.includes('vant') || lSpec.includes('peso') || lSpec.includes('<') || lSpec.includes('kg')) icon = 'package';
-                        else if (lSpec.includes('certif') || lSpec.includes('foco')) icon = 'award';
-                        else if (lSpec.includes('anac') || lSpec.includes('res.')) icon = 'shield-check';
-                        li.innerHTML = `<i data-lucide="${icon}"></i> ${spec}`;
-                        listEl.appendChild(li);
-                    });
-                }
-            }
-        });
-
-        // Renderizar Contacto
-        const emailEl = document.getElementById('contact-email');
-        if (emailEl) emailEl.innerHTML = `<i data-lucide="mail"></i> ${contactData.email}`;
-        const phoneEl = document.getElementById('contact-phone');
-        if (phoneEl) phoneEl.innerHTML = `<i data-lucide="phone"></i> ${contactData.phone}`;
-        const addrEl = document.getElementById('contact-address');
-        if (addrEl) addrEl.innerHTML = `<i data-lucide="map-pin"></i> ${contactData.address}`;
-
-        // WhatsApp Floater and Links
-        const waMessage = encodeURIComponent('Hola Horus Dron, me interesa obtener información sobre sus cursos de piloto de drones en Categoría Abierta.');
-        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-            link.href = `https://wa.me/${contactData.whatsapp}?text=${waMessage}`;
-        });
-
-        lucide.createIcons();
-    }
-
-    renderLandingPage();
+    // ─── 13. Dynamic WhatsApp configuration (Movido arriba y unificado) ──────
 
     // ─── 14. Admin Panel System ──────────────────────────────────────────────
     async function sha256(message) {
@@ -1352,232 +1366,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openDashboard() {
         if (dashboardModal) dashboardModal.style.display = 'flex';
+        renderAdminSettings();
         renderAdminCourses();
         renderAdminQuestions();
+        renderAdminTestimonials();
         renderAdminContact();
     }
 
-    function renderAdminCourses() {
-        const container = document.getElementById('admin-courses-list');
-        if (!container) return;
-        container.innerHTML = '';
-
-        Object.keys(courseData).forEach(key => {
-            const course = courseData[key];
-            const card = document.createElement('div');
-            card.className = 'admin-card';
-            card.innerHTML = `
-                <h3 style="color:var(--accent-yellow);font-size:1.1rem;margin-bottom:15px;text-transform:capitalize;font-weight:700;">Programa: ${key}</h3>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:15px;">
-                    <div>
-                        <label class="admin-label">Título del Curso</label>
-                        <input type="text" class="admin-input course-title" data-key="${key}" value="${course.title}">
-                    </div>
-                    <div>
-                        <label class="admin-label">Visualización (Filename)</label>
-                        <input type="text" class="admin-input course-viz" data-key="${key}" value="${course.viz}">
-                    </div>
-                </div>
-                <div style="margin-bottom:15px;">
-                    <label class="admin-label">Descripción Corta (Landing Page)</label>
-                    <textarea class="admin-textarea course-desc" data-key="${key}" rows="2">${course.desc || ''}</textarea>
-                </div>
-                <div style="margin-bottom:15px;">
-                    <label class="admin-label">Especificaciones de Cabecera (Separadas por comas)</label>
-                    <input type="text" class="admin-input course-specs" data-key="${key}" value="${course.specs.join(', ')}">
-                </div>
-                <div style="margin-bottom:15px;">
-                    <label class="admin-label" style="display:flex;justify-content:space-between;align-items:center;">
-                        Módulos y Temas
-                    </label>
-                    <div class="course-modules-inputs" data-key="${key}" style="display:flex;flex-direction:column;gap:10px;">
-                        ${course.modules.map((mod, modIdx) => `
-                            <div style="background:rgba(0,0,0,0.2);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);">
-                                <input type="text" class="admin-input module-name" data-mod-idx="${modIdx}" value="${mod.name}" style="margin-bottom:8px;font-weight:700;">
-                                <textarea class="admin-textarea module-topics" data-mod-idx="${modIdx}" rows="2" placeholder="Temas separados por comas">${mod.topics.join(', ')}</textarea>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                <div>
-                    <label class="admin-label">Beneficios Extra (Separados por comas)</label>
-                    <textarea class="admin-textarea course-bonus" data-key="${key}" rows="2">${course.bonus.join(', ')}</textarea>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function renderAdminQuestions() {
-        const container = document.getElementById('admin-questions-list');
-        if (!container) return;
-        container.innerHTML = '';
-
-        EXAM_QUESTIONS.forEach((q, qIdx) => {
-            const card = document.createElement('div');
-            card.className = 'admin-card';
-            card.innerHTML = `
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-                    <h5 style="color:white;font-weight:600;font-size:0.95rem;">Pregunta ${qIdx + 1}</h5>
-                    <button class="admin-delete-q-btn btn-outline" data-q-idx="${qIdx}" style="padding:4px 8px;font-size:0.75rem;border-color:rgba(255,74,74,0.2);color:#ff4a4a;background:none;border-radius:6px;cursor:pointer;"><i data-lucide="trash" style="width:12px;height:12px;vertical-align:middle;margin-right:4px;"></i>Eliminar</button>
-                </div>
-                <div style="margin-bottom:12px;">
-                    <label class="admin-label">Pregunta</label>
-                    <input type="text" class="admin-input question-text" data-q-idx="${qIdx}" value="${q.q}">
-                </div>
-                <div style="display:flex;flex-direction:column;gap:8px;">
-                    <label class="admin-label">Opciones (Marque el radio de la respuesta correcta)</label>
-                    ${q.opts.map((opt, optIdx) => `
-                        <div style="display:flex;align-items:center;gap:10px;">
-                            <input type="radio" name="correct-opt-${qIdx}" class="question-correct-radio" data-q-idx="${qIdx}" data-opt-idx="${optIdx}" ${opt.correct ? 'checked' : ''} style="cursor:pointer;width:16px;height:16px;accent-color:var(--accent-yellow);">
-                            <input type="text" class="admin-input question-opt-text" data-q-idx="${qIdx}" data-opt-idx="${optIdx}" value="${opt.text}" style="flex:1;">
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-            container.appendChild(card);
-        });
-        
-        container.querySelectorAll('.admin-delete-q-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const qIdx = parseInt(btn.getAttribute('data-q-idx'));
-                EXAM_QUESTIONS.splice(qIdx, 1);
-                renderAdminQuestions();
-            });
-        });
-        lucide.createIcons();
-    }
-
-    function renderAdminContact() {
-        const container = document.getElementById('admin-contact-form');
-        if (!container) return;
-        container.innerHTML = `
-            <div>
-                <label class="admin-label">Correo Electrónico de Contacto</label>
-                <input type="email" id="admin-c-email" class="admin-input" value="${contactData.email}">
-            </div>
-            <div>
-                <label class="admin-label">Teléfono / Celular Fijo</label>
-                <input type="text" id="admin-c-phone" class="admin-input" value="${contactData.phone}">
-            </div>
-            <div>
-                <label class="admin-label">Dirección / Locación física</label>
-                <input type="text" id="admin-c-address" class="admin-input" value="${contactData.address}">
-            </div>
-            <div>
-                <label class="admin-label">Número de WhatsApp (Sin signos ni espacios, ej: 5491136592233)</label>
-                <input type="text" id="admin-c-whatsapp" class="admin-input" value="${contactData.whatsapp}">
-            </div>
-        `;
-    }
-
-    document.getElementById('admin-add-question-btn')?.addEventListener('click', () => {
-        EXAM_QUESTIONS.push({
-            q: "Nueva pregunta de examen teórica",
-            opts: [
-                { text: "Opción correcta", correct: true },
-                { text: "Opción incorrecta A", correct: false },
-                { text: "Opción incorrecta B", correct: false }
-            ]
-        });
-        renderAdminQuestions();
-    });
-
-    document.getElementById('admin-save-all-btn')?.addEventListener('click', () => {
-        Object.keys(courseData).forEach(key => {
-            const card = document.querySelector(`.admin-card:has(.course-title[data-key="${key}"])`);
-            if (card) {
-                courseData[key].title = card.querySelector(`.course-title`).value.trim();
-                courseData[key].viz = card.querySelector(`.course-viz`).value.trim();
-                courseData[key].desc = card.querySelector(`.course-desc`).value.trim();
-                courseData[key].specs = card.querySelector(`.course-specs`).value.trim().split(',').map(s => s.trim());
-                
-                const modInputs = card.querySelectorAll(`.course-modules-inputs[data-key="${key}"] > div`);
-                modInputs.forEach((modDiv, modIdx) => {
-                    if (courseData[key].modules[modIdx]) {
-                        courseData[key].modules[modIdx].name = modDiv.querySelector(`.module-name`).value.trim();
-                        courseData[key].modules[modIdx].topics = modDiv.querySelector(`.module-topics`).value.trim().split(',').map(t => t.trim()).filter(Boolean);
-                    }
-                });
-
-                courseData[key].bonus = card.querySelector(`.course-bonus`).value.trim().split(',').map(b => b.trim()).filter(Boolean);
-            }
-        });
-
-        const qCards = document.querySelectorAll('#admin-questions-list .admin-card');
-        EXAM_QUESTIONS = [];
-        qCards.forEach((qCard, qIdx) => {
-            const qText = qCard.querySelector('.question-text').value.trim();
-            const optsInputs = qCard.querySelectorAll('.question-opt-text');
-            const checkedRadio = qCard.querySelector('.question-correct-radio:checked');
-            const correctOptIdx = checkedRadio ? parseInt(checkedRadio.getAttribute('data-opt-idx')) : 0;
-
-            const opts = Array.from(optsInputs).map((optInput, optIdx) => {
-                return {
-                    text: optInput.value.trim(),
-                    correct: optIdx === correctOptIdx
-                };
-            });
-
-            EXAM_QUESTIONS.push({
-                q: qText,
-                opts: opts
-            });
-        });
-
-        const cEmail = document.getElementById('admin-c-email');
-        const cPhone = document.getElementById('admin-c-phone');
-        const cAddress = document.getElementById('admin-c-address');
-        const cWhatsapp = document.getElementById('admin-c-whatsapp');
-
-        if (cEmail) contactData.email = cEmail.value.trim();
-        if (cPhone) contactData.phone = cPhone.value.trim();
-        if (cAddress) contactData.address = cAddress.value.trim();
-        if (cWhatsapp) contactData.whatsapp = cWhatsapp.value.trim();
-
-        localStorage.setItem('horus_courses', JSON.stringify(courseData));
-        localStorage.setItem('horus_questions', JSON.stringify(EXAM_QUESTIONS));
-        localStorage.setItem('horus_contact', JSON.stringify(contactData));
-
-        renderLandingPage();
-
-        const status = document.getElementById('admin-save-status');
-        if (status) {
-            status.style.display = 'block';
-            setTimeout(() => {
-                status.style.display = 'none';
-            }, 3000);
+    
+    // --- RECEPCIÓN DE LIVE PREVIEW ---
+    window.addEventListener('message', (event) => {
+        const data = event.data;
+        if (!data || !data.type) return;
+        if (data.type === 'SYNC_DATA') {
+            if (data.siteData) siteData = data.siteData;
+            if (data.courseData) courseData = data.courseData;
+            if (data.contactData) contactData = data.contactData;
+            if (data.testimonialsData) testimonialsData = data.testimonialsData;
+            renderSite();
+        } else if (data.type === 'SCROLL_TO') {
+            const target = document.getElementById(data.target);
+            if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         }
     });
-
-    document.getElementById('admin-export-btn')?.addEventListener('click', () => {
-        const fullConfig = {
-            courses: courseData,
-            questions: EXAM_QUESTIONS,
-            contact: contactData
-        };
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(fullConfig, null, 4));
-        const downloadAnchor = document.createElement('a');
-        downloadAnchor.setAttribute("href",     dataStr);
-        downloadAnchor.setAttribute("download", "horus_config.json");
-        document.body.appendChild(downloadAnchor);
-        downloadAnchor.click();
-        downloadAnchor.remove();
-    });
-
-    document.getElementById('admin-reset-btn')?.addEventListener('click', () => {
-        if (confirm('¿Estás seguro de que quieres restablecer todos los contenidos de la escuela a los valores predeterminados?')) {
-            localStorage.removeItem('horus_courses');
-            localStorage.removeItem('horus_questions');
-            localStorage.removeItem('horus_contact');
-            
-            courseData = JSON.parse(JSON.stringify(defaultCourses));
-            EXAM_QUESTIONS = JSON.parse(JSON.stringify(defaultQuestions));
-            contactData = JSON.parse(JSON.stringify(defaultContact));
-            
-            renderLandingPage();
-            openDashboard();
-        }
-    });
-
 });
