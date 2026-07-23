@@ -782,6 +782,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const coursesContainer = document.getElementById('dynamic-courses-container');
         if (coursesContainer) {
             coursesContainer.innerHTML = '';
+            if (!courseData || typeof courseData !== 'object' || Object.keys(courseData).length === 0) {
+                courseData = JSON.parse(JSON.stringify(defaultCourses));
+                StorageService.saveData(STORAGE_KEYS.COURSES, courseData);
+            }
+            
             const iconMap = {
                 microdrones: 'smartphone',
                 audiovisual: 'film',
@@ -791,6 +796,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 agricola: 'tractor'
             };
             
+            let renderedCount = 0;
             Object.keys(courseData).forEach(key => {
                 const c = courseData[key];
                 let currentStatus = c.status;
@@ -798,6 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     currentStatus = c.visible === false ? 'draft' : 'published';
                 }
                 if (currentStatus !== 'published') return;
+                renderedCount++;
                 
                 const icon = iconMap[key] || 'book';
                 
@@ -814,7 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${c.title}</h3>
                     <p class="course-desc">${c.desc}</p>
                     <ul class="course-details">
-                        ${c.specs.slice(0, 3).map(spec => {
+                        ${(c.specs || []).slice(0, 3).map(spec => {
                             let specIcon = 'check-circle';
                             const lSpec = spec.toLowerCase();
                             if (lSpec.includes('día')) specIcon = 'calendar';
@@ -827,6 +834,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 coursesContainer.appendChild(card);
             });
+
+            if (renderedCount === 0) {
+                courseData = JSON.parse(JSON.stringify(defaultCourses));
+                StorageService.saveData(STORAGE_KEYS.COURSES, courseData);
+                renderSite();
+                return;
+            }
             
             // Re-vincular eventos
             document.querySelectorAll('.open-modal').forEach(btn => {
@@ -1130,13 +1144,13 @@ document.addEventListener('DOMContentLoaded', () => {
             siteData.pricing = JSON.parse(JSON.stringify(defaultPlans));
         }
 
-        const activePlans = siteData.pricing
+        let activePlans = siteData.pricing
             .filter(p => p.visible !== false && p.status === 'published')
             .sort((a, b) => (a.order || 0) - (b.order || 0));
 
         if (activePlans.length === 0) {
-            container.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--text-secondary); padding:40px 0;">No hay planes de inversión disponibles en este momento.</p>';
-            return;
+            siteData.pricing = JSON.parse(JSON.stringify(defaultPlans));
+            activePlans = siteData.pricing;
         }
 
         container.innerHTML = activePlans.map(plan => {
@@ -2108,97 +2122,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── 13. Dynamic WhatsApp configuration (Movido arriba y unificado) ──────
 
-    // ─── 14. Admin Panel System ──────────────────────────────────────────────
-    async function sha256(message) {
-        const msgBuffer = new TextEncoder().encode(message);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    const loginModal = document.getElementById('admin-login-modal');
-    const dashboardModal = document.getElementById('admin-dashboard-modal');
-    const loginForm = document.getElementById('admin-login-form');
-    const loginError = document.getElementById('admin-login-error');
-    const passwordInput = document.getElementById('admin-password');
-
-    window.addEventListener('hashchange', checkHashRoute);
-    function checkHashRoute() {
-        if (window.location.hash === '#admin') {
-            openLogin();
-        }
-    }
-    checkHashRoute();
-
-    document.getElementById('admin-trigger')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        openLogin();
-    });
-
-    function openLogin() {
-        if (loginModal) {
-            loginModal.style.display = 'flex';
-            if (passwordInput) {
-                passwordInput.value = '';
-                passwordInput.focus();
-            }
-            if (loginError) loginError.style.display = 'none';
-        }
-    }
-
-    document.querySelectorAll('.close-admin-modal').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (loginModal) loginModal.style.display = 'none';
-            if (dashboardModal) dashboardModal.style.display = 'none';
-            window.location.hash = '';
-        });
-    });
-
-    loginForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!passwordInput) return;
-        const pass = passwordInput.value;
-        const hash = await sha256(pass);
-        const expectedHash = 'e3db3312a6075ac05146b1a68727b84494b545b845fd76de1d94db7e3b908571';
-        
-        if (hash === expectedHash) {
-            if (loginModal) loginModal.style.display = 'none';
-            openDashboard();
-        } else {
-            if (loginError) loginError.style.display = 'block';
-            passwordInput.focus();
-        }
-    });
-
-    const tabBtns = document.querySelectorAll('.admin-tab-btn');
-    const tabPanes = document.querySelectorAll('.admin-tab-pane');
-
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            tabBtns.forEach(b => {
-                b.classList.remove('active');
-                b.style.color = 'var(--text-secondary)';
-            });
-            btn.classList.add('active');
-            btn.style.color = 'white';
-
-            const targetId = btn.getAttribute('data-tab');
-            tabPanes.forEach(pane => {
-                pane.style.display = pane.id === targetId ? 'block' : 'none';
-            });
-        });
-    });
-
-    function openDashboard() {
-        if (dashboardModal) dashboardModal.style.display = 'flex';
-        renderAdminSettings();
-        renderAdminCourses();
-        renderAdminQuestions();
-        renderAdminTestimonials();
-        renderAdminContact();
-    }
-
-    
     // --- RECEPCIÓN DE LIVE PREVIEW ---
     window.addEventListener('message', (event) => {
         const data = event.data;
