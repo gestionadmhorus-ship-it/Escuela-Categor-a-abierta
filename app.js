@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initMainApp() {
 
     // ─── 1. Cursor Glow (Eliminado a petición del usuario) ───────────────
 
@@ -2163,4 +2163,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
         }
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMainApp);
+} else {
+    initMainApp();
+}
