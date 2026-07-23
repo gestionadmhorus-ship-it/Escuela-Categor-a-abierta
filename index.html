@@ -26,19 +26,15 @@
 
     <nav class="navbar glass">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <i data-lucide="shield-check"></i>
+            <a href="#" class="logo" id="nav-logo-link">
+                <span id="nav-logo-icon"><i data-lucide="shield-check"></i></span>
                 <div class="logo-text">
-                    <span class="logo-name">HORUS DRON</span>
-                    <span class="logo-sub">Escuela de Vuelo &middot; Normativa ANAC</span>
+                    <span class="logo-name" id="nav-brand-name">HORUS DRON</span>
+                    <span class="logo-sub" id="nav-brand-sub">Escuela de Vuelo &middot; Normativa ANAC</span>
                 </div>
             </a>
-            <ul class="nav-links">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#courses">Cursos</a></li>
-                <li><a href="#platform">Campus Digital</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#enroll" class="btn btn-primary">Inscribirse</a></li>
+            <ul class="nav-links" id="nav-dynamic-links">
+                <!-- Links dinámicos desde app.js -->
             </ul>
             <div class="menu-toggle">
                 <i data-lucide="menu"></i>
@@ -66,68 +62,36 @@
 
             <p class="fade-in" id="hero-desc-text"></p>
 
-            <div class="hero-trust-row fade-in">
-                <div class="trust-badge">
-                    <i data-lucide="award"></i>
-                    <div><span class="trust-label">Instrucción de Calidad</span><span class="trust-sub">Según Normas ANAC</span></div>
-                </div>
-                <div class="trust-badge">
-                    <i data-lucide="shield-check"></i>
-                    <div><span class="trust-label">Drones Provistos</span><span class="trust-sub">Aeronaves escuela 100% incluidas</span></div>
-                </div>
-                <div class="trust-badge">
-                    <i data-lucide="book-open"></i>
-                    <div><span class="trust-label">Sin Saber Volar</span><span class="trust-sub">Iniciás de cero, sin experiencia</span></div>
-                </div>
-                <div class="trust-badge">
-                    <i data-lucide="user-check"></i>
-                    <div><span class="trust-label">Instructores Expertos</span><span class="trust-sub">Teoría y práctica de campo</span></div>
-                </div>
+            <div class="hero-trust-row fade-in" id="hero-trust-container">
+                <!-- Trust badges renderizados dinámicamente desde app.js -->
             </div>
 
-            <div class="hero-tech-row fade-in">
-                <div class="tech-item"><i data-lucide="book-open"></i> <span>Normativa ANAC</span></div>
-                <div class="tech-item"><i data-lucide="navigation"></i> <span>Vuelo VLOS</span></div>
-                <div class="tech-item"><i data-lucide="wind"></i> <span>Meteorología</span></div>
-                <div class="tech-item"><i data-lucide="settings"></i> <span>Mantenimiento VANT</span></div>
+            <div class="hero-tech-row fade-in" id="hero-tech-container">
+                <!-- Tech tags renderizados dinámicamente desde app.js -->
             </div>
 
-            <div class="hero-btns fade-in">
-                <a href="#courses" class="btn btn-primary">Ver Planes de Estudio</a>
-                <a href="#platform" class="btn btn-outline">Simular Examen Teórico</a>
+            <div class="hero-btns fade-in" id="hero-btns-container">
+                <!-- Botones CTA renderizados dinámicamente desde app.js -->
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="floating-badge badge-top-left glass">
-                <i data-lucide="shield-check"></i>
-                <div>
-                    <span style="font-size:0.75rem;font-weight:800;display:block">Instrucción Avanzada</span>
-                    <span style="font-size:0.65rem;opacity:0.7">Basada en Reglas ANAC</span>
-                </div>
-            </div>
-            <div class="floating-badge badge-bottom-right glass">
-                <i data-lucide="graduation-cap"></i>
-                <div>
-                    <span style="font-size:0.75rem;font-weight:800;display:block">Categoría Abierta</span>
-                    <span style="font-size:0.65rem;opacity:0.7">Resolución 550/2025</span>
-                </div>
-            </div>
+        <div class="hero-visual" id="hero-floating-badges-container">
+            <!-- Badges flotantes renderizados dinámicamente desde app.js -->
         </div>
     </header>
 
     <section id="consultor-banner" style="padding: 0 10%; margin-top: -20px; margin-bottom: 40px;">
         <div class="glass" id="course-quiz-card" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 20px 30px; border-radius: 16px; border: 1px solid rgba(251, 215, 4, 0.4); box-shadow: 0 5px 20px rgba(251, 215, 4, 0.1); cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='rgba(251, 215, 4, 0.8)'" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(251, 215, 4, 0.4)'">
             <div style="display: flex; align-items: center; gap: 20px; flex: 1; min-width: 250px;">
-                <div style="display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: rgba(251, 215, 4, 0.15); border-radius: 10px; color: var(--accent-yellow); flex-shrink: 0;">
-                    <i data-lucide="radar" style="width: 24px; height: 24px;"></i>
+                <div style="display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: rgba(251, 215, 4, 0.15); border-radius: 10px; color: var(--accent-yellow); flex-shrink: 0;" id="consultor-icon-wrapper">
+                    <i data-lucide="radar" id="consultor-icon" style="width: 24px; height: 24px;"></i>
                 </div>
                 <div>
-                    <h3 style="font-size: 1.2rem; margin: 0 0 5px 0; color: white;">Consultor Inteligente de Vuelo</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">Diagnóstico en 1 min: Descubre tus riesgos legales (ANAC) y tu perfil de rentabilidad.</p>
+                    <h3 style="font-size: 1.2rem; margin: 0 0 5px 0; color: white;" id="consultor-title">Consultor Inteligente de Vuelo</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;" id="consultor-subtitle">Diagnóstico en 1 min: Descubre tus riesgos legales (ANAC) y tu perfil de rentabilidad.</p>
                 </div>
             </div>
             <div style="margin-left: auto; padding-top: 10px; padding-bottom: 10px;">
-                <button class="btn btn-primary" style="padding: 10px 24px; font-size: 0.95rem; white-space: nowrap;">
+                <button class="btn btn-primary" style="padding: 10px 24px; font-size: 0.95rem; white-space: nowrap;" id="consultor-btn">
                     Iniciar Diagnóstico <i data-lucide="chevron-right" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"></i>
                 </button>
             </div>
@@ -136,8 +100,8 @@
 
     <section id="courses" class="courses" style="padding-top: 50px;">
         <div class="section-header">
-            <h2 class="gradient-text">Programas de Formación</h2>
-            <p>Cursos estructurados para operar de forma segura y profesional en la Categoría Abierta.</p>
+            <h2 class="gradient-text" id="courses-header-title">Programas de Formación</h2>
+            <p id="courses-header-subtitle">Cursos estructurados para operar de forma segura y profesional en la Categoría Abierta.</p>
         </div>
         <div class="course-grid" id="dynamic-courses-container">
             <!-- Los cursos se inyectan dinámicamente desde app.js -->
@@ -147,7 +111,7 @@
     <!-- Sección de Servicios Eliminada por Enfoque Académico Exclusivo -->
 
     <section id="stats" class="stats glass" style="position: relative; overflow: hidden;">
-        <img src="section_stats.webp" alt="" class="stats-bg-img" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none; z-index: 0;">
+        <img id="stats-bg-img" src="section_stats.webp" alt="" class="stats-bg-img" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; pointer-events: none; z-index: 0;">
         <div id="dynamic-stats-container" style="display: contents;">
             <!-- Las stats se inyectan dinámicamente desde app.js -->
         </div>
@@ -155,45 +119,29 @@
 
     <section id="nosotros" class="nosotros">
         <div class="section-header reveal">
-            <h2 class="gradient-text">¿Quiénes Somos?</h2>
-            <p>Especialistas en la formación de pilotos con base en la normativa y buenas prácticas aeronáuticas.</p>
+            <h2 class="gradient-text" id="about-header-title">¿Quiénes Somos?</h2>
+            <p id="about-header-subtitle">Especialistas en la formación de pilotos con base en la normativa y buenas prácticas aeronáuticas.</p>
         </div>
         <div class="nosotros-grid">
             <div class="nosotros-text reveal">
                 <div class="nosotros-img-container" style="border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(251,215,4,0.15);">
-                    <img src="section_nosotros.webp" alt="Equipo de instructores de Horus Dron" loading="lazy" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: brightness(0.9);">
+                    <img id="about-img" src="section_nosotros.webp" alt="Equipo de instructores de Horus Dron" loading="lazy" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: brightness(0.9);">
                 </div>
-                <h2>Formamos pilotos capacitados para volar con <span class="gradient-text">seguridad.</span></h2>
-                <p>Horus Dron es una escuela especializada en la capacitación de pilotos de drones. Nos enfocamos exclusivamente en brindar una sólida enseñanza teórica y práctica basada en el marco regulatorio y los estándares de seguridad de la Categoría Abierta de la ANAC en Argentina.</p>
-                <p>Nuestra propuesta académica elimina barreras de acceso: no requerimos que poseas conocimientos previos aeronáuticos ni que tengas un dron propio. Te proveemos todos los equipos necesarios para el aprendizaje.</p>
-                <div class="nosotros-badge"><i data-lucide="shield-check"></i> Formación Profesional basada en la Res. ANAC N° 550/2025</div>
+                <h2 id="about-main-title">Formamos pilotos capacitados para volar con <span class="gradient-text">seguridad.</span></h2>
+                <div id="about-paragraphs">
+                    <p>Horus Dron es una escuela especializada en la capacitación de pilotos de drones. Nos enfocamos exclusivamente en brindar una sólida enseñanza teórica y práctica basada en el marco regulatorio y los estándares de seguridad de la Categoría Abierta de la ANAC en Argentina.</p>
+                    <p>Nuestra propuesta académica elimina barreras de acceso: no requerimos que poseas conocimientos previos aeronáuticos ni que tengas un dron propio. Te proveemos todos los equipos necesarios para el aprendizaje.</p>
+                </div>
+                <div class="nosotros-badge" id="about-badge"><i data-lucide="shield-check"></i> Formación Profesional basada en la Res. ANAC N° 550/2025</div>
             </div>
-            <div class="nosotros-values reveal">
+            <div class="nosotros-values reveal" id="about-values">
                 <div class="value-item"><h4>Accesibilidad Total</h4><p>No necesitas poseer drones ni tener experiencia previa. Aprendes con nuestras aeronaves escuela.</p></div>
                 <div class="value-item"><h4>Metodología Pedagógica</h4><p>Clases teóricas interactivas combinadas con prácticas intensivas en zonas de vuelo seguras.</p></div>
                 <div class="value-item"><h4>Instructores Experimentados</h4><p>Plan curricular diseñado e impartido por personal idóneo y con amplia experiencia en vuelo real.</p></div>
             </div>
         </div>
-        <div class="team-grid">
-            <div class="team-card glass reveal">
-                <div class="team-avatar"><i data-lucide="user"></i></div>
-                <h4>Ing. Roberto Salinas</h4>
-                <span class="role">Director de Proyecto &amp; Operaciones</span>
-                <p>Coordinador general y piloto certificado por ANAC. 15 años de experiencia en gestión aeronáutica.</p>
-            </div>
-            <div class="team-card glass reveal">
-                <div class="team-avatar"><i data-lucide="user"></i></div>
-                <h4>Lic. Martina Vélez</h4>
-                <span class="role">Coordinadora Pedagógica</span>
-                <p>Especialista en metodologías de enseñanza virtual y diseño curricular aeronáutico.</p>
-            </div>
-            <div class="team-card glass reveal">
-                <div class="team-avatar"><i data-lucide="user"></i></div>
-                <h4>Tec. Diego Ramírez</h4>
-                <span class="role">Instructor de Vuelo &amp; Evaluador</span>
-                <p>Instructor práctico homologado y encargado de la evaluación de pericia técnica de los alumnos.</p>
-            </div>
-        </div>
+        <div class="team-grid" id="dynamic-team-container">
+            <!-- Instructores renderizados dinámicamente desde app.js -->
         </div>
     </section>
 
@@ -210,10 +158,10 @@
 
     <section id="platform" class="mission-control">
         <div class="section-header">
-            <h2 class="gradient-text">Campus Digital del Alumno</h2>
-            <p>Herramientas interactivas y simuladores teóricos para el aprendizaje y práctica de vuelo.</p>
-            <div style="border-radius: 16px; overflow: hidden; margin-top: 25px; max-width: 800px; margin-left: auto; margin-right: auto; border: 1px solid rgba(251,215,4,0.12);">
-                <img src="section_campus.webp" alt="Alumno usando el campus digital de vuelo" loading="lazy" style="width: 100%; height: 260px; object-fit: cover; display: block; filter: brightness(0.85);">
+            <h2 class="gradient-text" id="campus-header-title">Campus Digital del Alumno</h2>
+            <p id="campus-header-subtitle">Herramientas interactivas y simuladores teóricos para el aprendizaje y práctica de vuelo.</p>
+            <div style="border-radius: 16px; overflow: hidden; margin-top: 25px; max-width: 800px; margin-left: auto; margin-right: auto; border: 1px solid rgba(251,215,4,0.12);" id="campus-img-wrapper">
+                <img id="campus-header-img" src="section_campus.webp" alt="Alumno usando el campus digital de vuelo" loading="lazy" style="width: 100%; height: 260px; object-fit: cover; display: block; filter: brightness(0.85);">
             </div>
         </div>
 
@@ -222,19 +170,19 @@
             <div class="platform-card glass" id="tool-searcher">
                 <div class="card-glow"></div>
                 <div class="platform-card-header">
-                    <i data-lucide="scale"></i>
-                    <h3>Calculadora VANT</h3>
+                    <i data-lucide="scale" id="calc-icon"></i>
+                    <h3 id="calc-card-title">Calculadora VANT</h3>
                 </div>
-                <p>Ingresa el peso de tu dron (en gramos) para verificar su clasificación y los requisitos de la ANAC Argentina.</p>
+                <p id="calc-card-desc">Ingresa el peso de tu dron (en gramos) para verificar su clasificación y los requisitos de la ANAC Argentina.</p>
                 <div class="platform-actions" style="display:flex; flex-direction:column; gap:10px;">
                     <input type="number" id="calc-weight" placeholder="Ej: 249" min="1" max="100000" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:rgba(5,5,5,0.8); color:white; font-family:var(--font-main); outline:none;">
-                    <button class="btn btn-primary w-full run-tool" data-tool="searcher">
+                    <button class="btn btn-primary w-full run-tool" data-tool="searcher" id="calc-btn-text">
                         <i data-lucide="help-circle"></i> Clasificar Aeronave
                     </button>
                 </div>
                 <div class="tool-status">
                     <div class="status-indicator"></div>
-                    <span class="status-text">Ingresa el peso</span>
+                    <span class="status-text" id="calc-status-text">Ingresa el peso</span>
                 </div>
             </div>
 
@@ -242,10 +190,10 @@
             <div class="platform-card glass" id="tool-geo">
                 <div class="card-glow"></div>
                 <div class="platform-card-header">
-                    <i data-lucide="map-pin"></i>
-                    <h3>Verificador de Espacio Aéreo</h3>
+                    <i data-lucide="map-pin" id="geo-icon"></i>
+                    <h3 id="geo-card-title">Verificador de Espacio Aéreo</h3>
                 </div>
-                <p>Evalúa si tu zona de práctica está fuera de las exclusiones de aeropuertos de la ANAC.</p>
+                <p id="geo-card-desc">Evalúa si tu zona de práctica está fuera de las exclusiones de aeropuertos de la ANAC.</p>
                 <div class="platform-actions">
                     <div style="display:flex; flex-direction:column; gap:10px;">
                         <select id="geo-location-select" class="form-group select" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--glass-border); background:rgba(5,5,5,0.8); color:white; font-family:var(--font-main); outline:none;">
@@ -262,13 +210,13 @@
                             <input type="number" step="any" id="custom-lon" placeholder="Longitud (ej: -58.4)" style="width:50%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:rgba(0,0,0,0.3); color:white; font-size:0.85rem;">
                         </div>
                     </div>
-                    <button class="btn btn-primary w-full run-tool" data-tool="geo">
+                    <button class="btn btn-primary w-full run-tool" data-tool="geo" id="geo-btn-text">
                         <i data-lucide="globe"></i> Consultar Espacio Aéreo
                     </button>
                 </div>
                 <div class="tool-status">
                     <div class="status-indicator"></div>
-                    <span class="status-text">Listo para analizar</span>
+                    <span class="status-text" id="geo-status-text">Listo para analizar</span>
                 </div>
             </div>
 
@@ -276,10 +224,10 @@
             <div class="platform-card glass" id="tool-integrator">
                 <div class="card-glow"></div>
                 <div class="platform-card-header">
-                    <i data-lucide="award"></i>
-                    <h3>Examen de Competencia</h3>
+                    <i data-lucide="award" id="exam-icon"></i>
+                    <h3 id="exam-card-title">Examen de Competencia</h3>
                 </div>
-                <p>Pon a prueba tus conocimientos sobre normativa ANAC, seguridad y meteorología en Categoría Abierta.</p>
+                <p id="exam-card-desc">Pon a prueba tus conocimientos sobre normativa ANAC, seguridad y meteorología en Categoría Abierta.</p>
                 <div class="platform-actions">
                     <button class="btn btn-primary w-full run-tool" data-tool="integrator" id="btn-start-exam">
                         <i data-lucide="play-circle"></i> Iniciar Simulador Examen
@@ -287,7 +235,7 @@
                 </div>
                 <div class="tool-status">
                     <div class="status-indicator"></div>
-                    <span class="status-text">Listo</span>
+                    <span class="status-text" id="exam-status-text">Listo</span>
                 </div>
             </div>
         </div>
@@ -354,65 +302,13 @@
         </div>
     </section>
 
-    <section id="testimonios" class="testimonios">
-        <div class="section-header reveal"><h2 class="gradient-text">Lo que dicen nuestros alumnos</h2><p>Estudiantes que completaron su aprendizaje sin experiencia ni drones propios.</p></div>
-        <div class="testimonios-grid">
-            <div class="testimonial-card glass reveal">
-                <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-                <blockquote>“Empecé el curso de fotografía sin haber tocado un dron en mi vida. En la escuela me prestaron todos los equipos de práctica y los instructores me dieron muchísima confianza.”</blockquote>
-                <div class="testimonial-author"><div class="author-avatar" aria-hidden="true">CM</div><div class="author-info"><strong>Carlos M.</strong><span>Alumno Certificado · Fotógrafo Independiente</span></div></div>
-            </div>
-            <div class="testimonial-card glass reveal">
-                <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-                <blockquote>“El simulador de examen del campus virtual es fantástico. Me sirvió muchísimo para practicar las preguntas teóricas oficiales antes del test final.”</blockquote>
-                <div class="testimonial-author"><div class="author-avatar" aria-hidden="true">LR</div><div class="author-info"><strong>Laura R.</strong><span>Alumna Recreativa · Piloto de Hobby</span></div></div>
-            </div>
-            <div class="testimonial-card glass reveal">
-                <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
-                <blockquote>“Me anoté en el programa agrícola para operar drones pulverizadores en el campo de mi familia. Excelente instrucción práctica presencial y muy clara la normativa rural.”</blockquote>
-                <div class="testimonial-author"><div class="author-avatar" aria-hidden="true">FP</div><div class="author-info"><strong>Federico P.</strong><span>Piloto de Drones Agrícolas · Buenos Aires</span></div></div>
-            </div>
-        </div>
-    </section>
-
     <section id="precios" class="precios">
-        <div class="section-header reveal"><h2 class="gradient-text">Inversión en tu Formación</h2><p>Precios claros y planes de financiación sin interés.</p></div>
-        <div class="pricing-grid">
-            <div class="pricing-card glass reveal">
-                <h3>Microdrones Inicial</h3><p class="pricing-desc">Teoría &amp; Práctica básica · 15 días</p>
-                <div class="pricing-price">Consultar valor</div><div class="pricing-note">Financiación disponible</div>
-                <ul class="pricing-features">
-                    <li><i data-lucide="check"></i> Microdrones de escuela provistos</li>
-                    <li><i data-lucide="check"></i> 4 módulos teóricos en línea</li>
-                    <li><i data-lucide="check"></i> Práctica presencial inicial</li>
-                    <li><i data-lucide="check"></i> Certificado digital de la academia</li>
-                </ul>
-                <a href="#enroll" class="btn btn-outline" style="display:block;text-align:center">Consultar</a>
-            </div>
-            <div class="pricing-card glass featured reveal">
-                <div class="pricing-badge">⭐ Más elegido</div>
-                <h3>Fotografía &amp; Filmación</h3><p class="pricing-desc">Curso Profesional · 30 días</p>
-                <div class="pricing-price">Consultar valor</div><div class="pricing-note">Cuotas sin interés</div>
-                <ul class="pricing-features">
-                    <li><i data-lucide="check"></i> Drones profesionales de práctica</li>
-                    <li><i data-lucide="check"></i> 8 módulos teóricos y meteorología</li>
-                    <li><i data-lucide="check"></i> Práctica intensiva presencial</li>
-                    <li><i data-lucide="check"></i> Guía de registro VANT ante ANAC</li>
-                    <li><i data-lucide="check"></i> Simulador de examen ilimitado</li>
-                </ul>
-                <a href="#enroll" class="btn btn-primary" style="display:block;text-align:center">Inscribirme</a>
-            </div>
-            <div class="pricing-card glass reveal">
-                <h3>Operación Agrícola Rural</h3><p class="pricing-desc">Especialidad de Campo · 45 días</p>
-                <div class="pricing-price">Consultar valor</div><div class="pricing-note">Planes corporativos y familiares</div>
-                <ul class="pricing-features">
-                    <li><i data-lucide="check"></i> Drones de gran porte incluidos</li>
-                    <li><i data-lucide="check"></i> Mapeo y planificación agrícola</li>
-                    <li><i data-lucide="check"></i> Prácticas reales de campo</li>
-                    <li><i data-lucide="check"></i> Normas de seguridad y fumigación</li>
-                </ul>
-                <a href="#enroll" class="btn btn-outline" style="display:block;text-align:center">Consultar</a>
-            </div>
+        <div class="section-header reveal">
+            <h2 class="gradient-text" id="pricing-header-title">Inversión en tu Formación</h2>
+            <p id="pricing-header-subtitle">Precios claros y planes de financiación sin interés.</p>
+        </div>
+        <div class="pricing-grid" id="dynamic-pricing-container">
+            <!-- Renderizado dinámicamente desde siteData.pricing -->
         </div>
     </section>
 
@@ -431,12 +327,10 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-info">
-                <h3>HORUS DRON</h3>
-                <p>Escuela Profesional de Vuelo de Drones</p>
-                <div class="footer-social">
-                    <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                    <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+                <h3 id="footer-brand-name">HORUS DRON</h3>
+                <p id="footer-brand-sub">Escuela Profesional de Vuelo de Drones</p>
+                <div class="footer-social" id="footer-dynamic-social">
+                    <!-- Redes sociales dinámicas -->
                 </div>
             </div>
             <div class="footer-links">
@@ -447,19 +341,21 @@
             </div>
             <div class="footer-links">
                 <h4>Legal</h4>
-                <p><a href="#" style="color:var(--text-secondary);text-decoration:none">Política de Privacidad</a></p>
-                <p><a href="#" style="color:var(--text-secondary);text-decoration:none">Términos y Condiciones</a></p>
-                <p style="margin-top:10px;font-size:0.8rem">Instrucción en base a Normativa ANAC</p>
+                <div id="footer-dynamic-legal">
+                    <!-- Enlaces legales dinámicos -->
+                </div>
+                <p id="footer-legal-note" style="margin-top:10px;font-size:0.8rem">Instrucción en base a Normativa ANAC</p>
             </div>
         </div>
         <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-            <p>&copy; 2026 Horus Dron. Todos los derechos reservados.</p>
+            <p id="footer-copyright-text">&copy; 2026 Horus Dron. Todos los derechos reservados.</p>
             <a href="admin.html" style="color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.75rem; transition: color 0.3s; display: flex; align-items: center; gap: 4px;"><i data-lucide="lock" style="width: 12px; height: 12px;"></i>Administración</a>
         </div>
     </footer>
 
 
 
+    <script src="storage.js?v=5"></script>
     <script type="module" src="app.js"></script>
     <script>
         lucide.createIcons();

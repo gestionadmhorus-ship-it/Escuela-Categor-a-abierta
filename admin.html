@@ -93,6 +93,15 @@
                     <button class="admin-tab-btn" data-tab="admin-tab-testimonials" data-scroll="testimonios">
                         <i data-lucide="message-square" style="width: 18px; height: 18px;"></i> Testimonios
                     </button>
+                    <button class="admin-tab-btn" data-tab="admin-tab-pricing" data-scroll="precios">
+                        <i data-lucide="tag" style="width: 18px; height: 18px;"></i> Precios y Planes
+                    </button>
+                    <button class="admin-tab-btn" data-tab="admin-tab-about" data-scroll="nosotros">
+                        <i data-lucide="users" style="width: 18px; height: 18px;"></i> Nosotros y Equipo
+                    </button>
+                    <button class="admin-tab-btn" data-tab="admin-tab-headerfooter" data-scroll="contact">
+                        <i data-lucide="layout-template" style="width: 18px; height: 18px;"></i> Header & Footer
+                    </button>
                     <button class="admin-tab-btn" data-tab="admin-tab-contact" data-scroll="contact">
                         <i data-lucide="phone" style="width: 18px; height: 18px;"></i> Contacto Escuela
                     </button>
@@ -103,6 +112,7 @@
                     <button id="admin-import-btn" class="btn btn-outline" style="padding: 12px; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border-radius: 10px;"><i data-lucide="upload" style="width: 16px; height: 16px;"></i> Restaurar Copia</button>
                     <button id="admin-export-btn" class="btn btn-outline" style="padding: 12px; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border-radius: 10px;"><i data-lucide="download" style="width: 16px; height: 16px;"></i> Respaldar (JSON)</button>
                     <button id="admin-reset-btn" class="btn btn-outline" style="padding: 12px; font-size: 0.85rem; border-color: rgba(255,74,74,0.3); color: #ff4a4a; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border-radius: 10px;"><i data-lucide="rotate-ccw" style="width: 16px; height: 16px;"></i> Valores de Fábrica</button>
+                    <button id="admin-logout-btn" class="btn btn-outline" style="padding: 12px; font-size: 0.85rem; border-color: rgba(255,255,255,0.15); color: #8b95b0; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border-radius: 10px;"><i data-lucide="log-out" style="width: 16px; height: 16px;"></i> Cerrar Sesión</button>
                 </div>
             </aside>
 
@@ -148,6 +158,30 @@
                         </div>
                     </div>
 
+                    <div id="admin-tab-pricing" class="admin-tab-pane">
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                            <button id="admin-add-plan-btn" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; border-radius: 10px;"><i data-lucide="plus" style="width: 18px; height: 18px;"></i> Crear Nuevo Plan</button>
+                        </div>
+                        <div id="admin-pricing-list" style="display: flex; flex-direction: column; gap: 30px;">
+                            <!-- Dinámico -->
+                        </div>
+                    </div>
+
+                    <div id="admin-tab-about" class="admin-tab-pane">
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                            <button id="admin-add-instructor-btn" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; border-radius: 10px;"><i data-lucide="user-plus" style="width: 18px; height: 18px;"></i> Crear Nuevo Instructor</button>
+                        </div>
+                        <div id="admin-about-container" style="display: flex; flex-direction: column; gap: 30px;">
+                            <!-- Dinámico -->
+                        </div>
+                    </div>
+
+                    <div id="admin-tab-headerfooter" class="admin-tab-pane">
+                        <div id="admin-headerfooter-container" style="display: flex; flex-direction: column; gap: 30px;">
+                            <!-- Dinámico -->
+                        </div>
+                    </div>
+
                     <div id="admin-tab-contact" class="admin-tab-pane">
                         <div id="admin-contact-form" style="display: flex; flex-direction: column; gap: 20px; max-width: 600px;">
                             <!-- Dinámico -->
@@ -171,9 +205,27 @@
 
     </div>
 
-    <!-- Script de Administración Desacoplado -->
-    <script src="app.js?v=4"></script>
-    <script src="admin.js?v=4"></script>
+    <!-- Toast Notification Container -->
+    <div id="toast-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; pointer-events: none;"></div>
+
+    <!-- Modal de Confirmación Personalizado -->
+    <div id="admin-custom-confirm-modal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 99999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px);" role="dialog" aria-modal="true">
+        <div class="glass" style="max-width: 420px; width: 90%; padding: 30px; border-radius: 20px; border: 1px solid rgba(251, 215, 4, 0.3); background: rgba(15, 17, 26, 0.98); text-align: center;">
+            <div style="background: rgba(251,215,4,0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; border: 1px solid rgba(251,215,4,0.3);">
+                <i data-lucide="alert-triangle" style="color: var(--accent-yellow); width: 24px; height: 24px;"></i>
+            </div>
+            <h3 id="confirm-modal-title" style="font-size: 1.3rem; font-weight: 700; color: white; margin-bottom: 10px;">Confirmar Acción</h3>
+            <p id="confirm-modal-msg" style="font-size: 0.9rem; color: #8b95b0; margin-bottom: 25px; line-height: 1.5;">¿Estás seguro de que deseas realizar esta acción?</p>
+            <div style="display: flex; gap: 12px;">
+                <button id="confirm-modal-cancel" class="btn btn-outline" style="flex: 1; padding: 10px;">Cancelar</button>
+                <button id="confirm-modal-ok" class="btn btn-primary" style="flex: 1; padding: 10px; background: #ff4a4a; border-color: #ff4a4a; color: white;">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js?v=2"></script>
+    <script src="storage.js?v=5"></script>
+    <script src="admin.js?v=5"></script>
     <script>
         lucide.createIcons();
     </script>

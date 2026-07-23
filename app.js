@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Microdrones y Operación Urbana (Sub-250g)",
             desc: "Domina el vuelo legal en ciudades, bienes raíces y creación de contenido avanzado. Extrae el máximo potencial comercial a equipos ultraligeros como la serie DJI Mini.",
             viz: "course_microdrones.webp",
+            status: "published",
             specs: ["ANAC Res. 550/2025", "Vuelo Urbano VLOS", "15 Días", "Real Estate y RRSS"],
             modules: [
                 { name: "Módulo 1: Portabilidad y Operación Urbana", topics: ["Ventajas operativas de la categoría sub-250g", "Análisis de interferencias y obstáculos urbanos", "Normativa de vuelos en proximidad de personas"] },
@@ -147,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Cine y Producción Audiovisual",
             desc: "Capacitación de élite para set de rodaje. Domina cámaras de formato completo, perfiles D-Log, drones FPV y vuelo con doble operador para publicidad y cine.",
             viz: "course_fotografia.webp",
+            status: "published",
             specs: ["ANAC Res. 550/2025", "Producción Alta Gama", "30 Días", "Operación Doble Piloto/Cámara"],
             modules: [
                 { name: "Módulo 1: Drones de Cine y Cámaras Avanzadas", topics: ["Operación de equipos pesados (Serie Mavic 3 Pro, Inspire)", "Lentes intercambiables y comprensión de profundidad de campo", "Formatos RAW, Apple ProRes y perfiles de color (D-Log)"] },
@@ -160,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Inspección Industrial y Termografía",
             desc: "Servicios de alto valor añadido. Inspección de líneas eléctricas, torres y parques solares utilizando fotogrametría 3D, sensores térmicos y escáneres LiDAR.",
             viz: "card_inspeccion.png",
+            status: "published",
             specs: ["Vuelo Autónomo", "Sensores Avanzados", "40 Días", "Industria 4.0 / Energía"],
             modules: [
                 { name: "Módulo 1: Plataformas Enterprise y Cargas Útiles", topics: ["Drones industriales (Matrice 350 RTK, Mavic 3 Enterprise)", "Sistemas RTK para posicionamiento centimétrico", "Integración de cámaras térmicas, zoom y LiDAR"] },
@@ -173,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Seguridad, Búsqueda y Rescate (SAR)",
             desc: "Operaciones tácticas de emergencia. Monitoreo perimetral, vuelo nocturno, detección de firmas de calor y coordinación con centros de mando policiales/bomberos.",
             viz: "horus_hero.webp",
+            status: "published",
             specs: ["Operación Nocturna", "Urgencias / SAR", "35 Días", "Fuerzas y Seguridad Privada"],
             modules: [
                 { name: "Módulo 1: VANTs en Operaciones Tácticas", topics: ["Características de drones para vigilancia (Altavoces, Focos)", "Sistemas de vuelo cautivo (Tethered) para monitoreo 24/7", "Integración de video en tiempo real a centros de mando"] },
@@ -186,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Operación Agrícola y Forestal",
             desc: "Máxima rentabilidad rural. Fumigación de precisión, aplicación de sólidos y análisis de salud de cultivos (NDVI) con drones de gran porte.",
             viz: "course_agricola.webp",
+            status: "published",
             specs: ["Carga Pesada (>25kg)", "Excepción Rural", "45 Días", "Agroindustria"],
             modules: [
                 { name: "Módulo 1: Drones Agrícolas de Gran Porte", topics: ["Operación de serie DJI Agras y equivalentes", "Sistemas de pulverización, bombas y boquillas centrífugas", "Mantenimiento pesado y limpieza de circuitos químicos"] },
@@ -199,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Mapeo de Grandes Extensiones (Ala Fija)",
             desc: "Topografía masiva con VANTs de Ala Volante y VTOL. Aprende a mapear miles de hectáreas operando legalmente dentro de los límites visuales (VLOS) o preparando solicitudes BVLOS.",
             viz: "card_alafija.png",
+            status: "published",
             specs: ["Fotogrametría Masiva", "Vuelo VLOS Extend.", "45 Días", "Topografía y Minería"],
             modules: [
                 { name: "Módulo 1: Plataformas de Ala Fija y VTOL", topics: ["Aerodinámica de alas volantes vs multirrotores", "Transición de vuelo vertical a horizontal (VTOL)", "Gestión de baterías de alta capacidad y telemetría de largo alcance"] },
@@ -215,7 +221,27 @@ document.addEventListener('DOMContentLoaded', () => {
             pill: "Escuela Profesional de Drones &bull; Categoría Abierta ANAC &bull; Práctica Presencial",
             title: "Aprendé a Volar Drones de Forma <span class=\"gradient-text\">Profesional</span>.",
             tagline: "Formación integral para operar bajo la reglamentación ANAC 550/2025. Sin necesidad de experiencia previa ni equipos propios.",
-            description: "Te capacitamos teórica y prácticamente bajo los lineamientos y exigencias de seguridad de la normativa ANAC para dominar drones de hasta 25 kg en la Categoría Abierta de bajo riesgo. Te proveemos todas las aeronaves escuela y simuladores terrestres para que aprendas desde cero y con seguridad."
+            description: "Te capacitamos teórica y prácticamente bajo los lineamientos y exigencias de seguridad de la normativa ANAC para dominar drones de hasta 25 kg en la Categoría Abierta de bajo riesgo. Te proveemos todas las aeronaves escuela y simuladores terrestres para que aprendas desde cero y con seguridad.",
+            trustBadges: [
+                { id: "tb_1", icon: "award", title: "Instrucción de Calidad", sub: "Según Normas ANAC", visible: true, order: 1 },
+                { id: "tb_2", icon: "shield-check", title: "Drones Provistos", sub: "Aeronaves escuela 100% incluidas", visible: true, order: 2 },
+                { id: "tb_3", icon: "book-open", title: "Sin Saber Volar", sub: "Iniciás de cero, sin experiencia", visible: true, order: 3 },
+                { id: "tb_4", icon: "user-check", title: "Instructores Expertos", sub: "Teoría y práctica de campo", visible: true, order: 4 }
+            ],
+            techTags: [
+                { id: "tt_1", icon: "book-open", text: "Normativa ANAC", visible: true, order: 1 },
+                { id: "tt_2", icon: "navigation", text: "Vuelo VLOS", visible: true, order: 2 },
+                { id: "tt_3", icon: "wind", text: "Meteorología", visible: true, order: 3 },
+                { id: "tt_4", icon: "settings", text: "Mantenimiento VANT", visible: true, order: 4 }
+            ],
+            ctaButtons: [
+                { id: "cta_1", text: "Ver Planes de Estudio", href: "#courses", btnClass: "btn-primary", visible: true, order: 1 },
+                { id: "cta_2", text: "Simular Examen Teórico", href: "#platform", btnClass: "btn-outline", visible: true, order: 2 }
+            ],
+            floatingBadges: [
+                { id: "fb_1", icon: "shield-check", title: "Instrucción Avanzada", sub: "Basada en Reglas ANAC", positionClass: "badge-top-left", visible: true, order: 1 },
+                { id: "fb_2", icon: "graduation-cap", title: "Categoría Abierta", sub: "Resolución 550/2025", positionClass: "badge-bottom-right", visible: true, order: 2 }
+            ]
         },
         stats: {
             graduates: "500",
@@ -228,20 +254,271 @@ document.addEventListener('DOMContentLoaded', () => {
             showCourses: true,
             showPlatform: true,
             showStats: true
+        },
+        brand: {
+            logoUrl: "",
+            logoAlt: "Horus Dron — Escuela de Vuelo"
+        },
+        heroImages: {
+            enabled: true,
+            interval: 5,
+            images: [
+                "drone_school_hero.webp"
+            ]
         }
     };
 
-    let siteData = JSON.parse(localStorage.getItem('horus_site_config'));
+    const defaultPlans = [
+        {
+            id: "plan_inicial",
+            name: "Microdrones Inicial",
+            price: "Consultar valor",
+            period: "15 días",
+            note: "Financiación disponible",
+            description: "Teoría & Práctica básica · 15 días",
+            badge: "",
+            featured: false,
+            btnText: "Consultar",
+            btnClass: "btn-outline",
+            status: "published",
+            visible: true,
+            order: 1,
+            features: [
+                "Microdrones de escuela provistos",
+                "4 módulos teóricos en línea",
+                "Práctica presencial inicial",
+                "Certificado digital de la academia"
+            ]
+        },
+        {
+            id: "plan_foto",
+            name: "Fotografía & Filmación",
+            price: "Consultar valor",
+            period: "30 días",
+            note: "Cuotas sin interés",
+            description: "Curso Profesional · 30 días",
+            badge: "⭐ Más elegido",
+            featured: true,
+            btnText: "Inscribirme",
+            btnClass: "btn-primary",
+            status: "published",
+            visible: true,
+            order: 2,
+            features: [
+                "Drones profesionales de práctica",
+                "8 módulos teóricos y meteorología",
+                "Práctica intensiva presencial",
+                "Guía de registro VANT ante ANAC",
+                "Simulador de examen ilimitado"
+            ]
+        },
+        {
+            id: "plan_agricola",
+            name: "Operación Agrícola Rural",
+            price: "Consultar valor",
+            period: "45 días",
+            note: "Planes corporativos y familiares",
+            description: "Especialidad de Campo · 45 días",
+            badge: "",
+            featured: false,
+            btnText: "Consultar",
+            btnClass: "btn-outline",
+            status: "published",
+            visible: true,
+            order: 3,
+            features: [
+                "Drones de gran porte incluidos",
+                "Mapeo y planificación agrícola",
+                "Prácticas reales de campo",
+                "Normas de seguridad y fumigación"
+            ]
+        }
+    ];
+
+    let siteData = StorageService.getData(STORAGE_KEYS.SITE_CONFIG);
     if (!siteData) {
         siteData = JSON.parse(JSON.stringify(defaultSiteConfig));
-        localStorage.setItem('horus_site_config', JSON.stringify(siteData));
+        StorageService.saveData(STORAGE_KEYS.SITE_CONFIG, siteData);
+    }
+    if (!siteData.hero) siteData.hero = JSON.parse(JSON.stringify(defaultSiteConfig.hero));
+    if (!siteData.hero.trustBadges) siteData.hero.trustBadges = JSON.parse(JSON.stringify(defaultSiteConfig.hero.trustBadges));
+    if (!siteData.hero.techTags) siteData.hero.techTags = JSON.parse(JSON.stringify(defaultSiteConfig.hero.techTags));
+    if (!siteData.hero.ctaButtons) siteData.hero.ctaButtons = JSON.parse(JSON.stringify(defaultSiteConfig.hero.ctaButtons));
+    if (!siteData.hero.floatingBadges) siteData.hero.floatingBadges = JSON.parse(JSON.stringify(defaultSiteConfig.hero.floatingBadges));
+    if (!siteData.brand) {
+        siteData.brand = { logoUrl: "", logoAlt: "Horus Dron — Escuela de Vuelo" };
+    }
+    if (!siteData.heroImages || !Array.isArray(siteData.heroImages.images) || siteData.heroImages.images.length === 0) {
+        siteData.heroImages = {
+            enabled: true,
+            interval: 5,
+            images: ["drone_school_hero.webp"]
+        };
+    }
+    if (!siteData.pricing || !Array.isArray(siteData.pricing) || siteData.pricing.length === 0) {
+        siteData.pricing = JSON.parse(JSON.stringify(defaultPlans));
+    }
+    if (!siteData.enrollment) {
+        siteData.enrollment = {
+            title: "Iniciá tu Carrera",
+            subtitle: "Completá el formulario para que la coordinación pedagógica analice tu perfil y te asigne un cupo de formación práctica presencial.",
+            imageUrl: "section_enrollment.webp",
+            btnText: "Enviar Solicitud de Inscripción",
+            perks: [
+                "Clases teóricas y prácticas provistas",
+                "Drones de instrucción incluidos",
+                "Acceso 24/7 al Campus Digital"
+            ]
+        };
+    }
+    if (!siteData.about) {
+        siteData.about = {
+            headerTitle: "¿Quiénes Somos?",
+            headerSubtitle: "Especialistas en la formación de pilotos con base en la normativa y buenas prácticas aeronáuticas.",
+            imageUrl: "section_nosotros.webp",
+            mainTitle: "Formamos pilotos capacitados para volar con <span class=\"gradient-text\">seguridad.</span>",
+            badgeText: "Formación Profesional basada en la Res. ANAC N° 550/2025",
+            paragraphs: [
+                "Horus Dron es una escuela especializada en la capacitación de pilotos de drones. Nos enfocamos exclusivamente en brindar una sólida enseñanza teórica y práctica basada en el marco regulatorio y los estándares de seguridad de la Categoría Abierta de la ANAC en Argentina.",
+                "Nuestra propuesta académica elimina barreras de acceso: no requerimos que poseas conocimientos previos aeronáuticos ni que tengas un dron propio. Te proveemos todos los equipos necesarios para el aprendizaje."
+            ],
+            values: [
+                { title: "Accesibilidad Total", desc: "No necesitas poseer drones ni tener experiencia previa. Aprendes con nuestras aeronaves escuela." },
+                { title: "Metodología Pedagógica", desc: "Clases teóricas interactivas combinadas con prácticas intensivas en zonas de vuelo seguras." },
+                { title: "Instructores Experimentados", desc: "Plan curricular diseñado e impartido por personal idóneo y con amplia experiencia en vuelo real." }
+            ]
+        };
+    }
+    if (!siteData.instructors || !Array.isArray(siteData.instructors) || siteData.instructors.length === 0) {
+        siteData.instructors = [
+            {
+                id: "inst_1",
+                name: "Ing. Roberto Salinas",
+                role: "Director de Proyecto & Operaciones",
+                description: "Coordinador general y piloto certificado por ANAC. 15 años de experiencia en gestión aeronáutica.",
+                photo: "",
+                status: "published",
+                visible: true,
+                order: 1
+            },
+            {
+                id: "inst_2",
+                name: "Lic. Martina Vélez",
+                role: "Coordinadora Pedagógica",
+                description: "Especialista en metodologías de enseñanza virtual y diseño curricular aeronáutico.",
+                photo: "",
+                status: "published",
+                visible: true,
+                order: 2
+            },
+            {
+                id: "inst_3",
+                name: "Tec. Diego Ramírez",
+                role: "Instructor de Vuelo & Evaluador",
+                description: "Instructor práctico homologado y encargado de la evaluación de pericia técnica de los alumnos.",
+                photo: "",
+                status: "published",
+                visible: true,
+                order: 3
+            }
+        ];
     }
 
-    let courseData = JSON.parse(localStorage.getItem('horus_courses'));
+    const defaultHeaderFooter = {
+        brandName: "HORUS DRON",
+        brandSub: "Escuela de Vuelo · Normativa ANAC",
+        footerTitle: "HORUS DRON",
+        footerSub: "Escuela Profesional de Vuelo de Drones",
+        footerLegalNote: "Instrucción en base a Normativa ANAC",
+        copyright: "© 2026 Horus Dron. Todos los derechos reservados.",
+        navigation: [
+            { id: "nav_1", label: "Inicio", href: "#home", isBtn: false, btnClass: "", visible: true, order: 1 },
+            { id: "nav_2", label: "Cursos", href: "#courses", isBtn: false, btnClass: "", visible: true, order: 2 },
+            { id: "nav_3", label: "Campus Digital", href: "#platform", isBtn: false, btnClass: "", visible: true, order: 3 },
+            { id: "nav_4", label: "Nosotros", href: "#nosotros", isBtn: false, btnClass: "", visible: true, order: 4 },
+            { id: "nav_5", label: "Inscribirse", href: "#enroll", isBtn: true, btnClass: "btn-primary", visible: true, order: 5 }
+        ],
+        socials: [
+            { id: "soc_1", platform: "Instagram", icon: "instagram", url: "#", visible: true, order: 1 },
+            { id: "soc_2", platform: "LinkedIn", icon: "linkedin", url: "#", visible: true, order: 2 },
+            { id: "soc_3", platform: "YouTube", icon: "youtube", url: "#", visible: true, order: 3 }
+        ],
+        legalLinks: [
+            { id: "leg_1", label: "Política de Privacidad", href: "#", visible: true, order: 1 },
+            { id: "leg_2", label: "Términos y Condiciones", href: "#", visible: true, order: 2 }
+        ]
+    };
+
+    if (!siteData.headerFooter) {
+        siteData.headerFooter = JSON.parse(JSON.stringify(defaultHeaderFooter));
+    }
+
+    if (!siteData.coursesHeader) {
+        siteData.coursesHeader = {
+            title: "Programas de Formación",
+            subtitle: "Cursos estructurados para operar de forma segura y profesional en la Categoría Abierta."
+        };
+    }
+    if (!siteData.pricingHeader) {
+        siteData.pricingHeader = {
+            title: "Inversión en tu Formación",
+            subtitle: "Precios claros y planes de financiación sin interés."
+        };
+    }
+    if (!siteData.consultorBanner) {
+        siteData.consultorBanner = {
+            enabled: true,
+            icon: "radar",
+            title: "Consultor Inteligente de Vuelo",
+            subtitle: "Diagnóstico en 1 min: Descubre tus riesgos legales (ANAC) y tu perfil de rentabilidad.",
+            btnText: "Iniciar Diagnóstico"
+        };
+    }
+    if (!siteData.stats || typeof siteData.stats !== 'object') {
+        siteData.stats = {
+            bgImage: "section_stats.webp",
+            items: [
+                { number: 500, suffix: "+", label: "Pilotos Egresados" },
+                { number: 1200, suffix: "+", label: "Horas de Práctica" },
+                { number: 100, suffix: "%", label: "Drones Provistos por Escuela" },
+                { number: 15, suffix: "+", label: "Instructores Certificados" }
+            ]
+        };
+    } else {
+        if (!siteData.stats.bgImage) siteData.stats.bgImage = "section_stats.webp";
+        if (!Array.isArray(siteData.stats.items) || siteData.stats.items.length === 0) {
+            siteData.stats.items = [
+                { number: siteData.stats.graduates || 500, suffix: "+", label: "Pilotos Egresados" },
+                { number: siteData.stats.hours || 1200, suffix: "+", label: "Horas de Práctica" },
+                { number: 100, suffix: "%", label: "Drones Provistos por Escuela" },
+                { number: siteData.stats.instructors || 15, suffix: "+", label: "Instructores Certificados" }
+            ];
+        }
+    }
+    if (!siteData.campus) {
+        siteData.campus = {
+            enabled: true,
+            title: "Campus Digital del Alumno",
+            subtitle: "Herramientas interactivas y simuladores teóricos para el aprendizaje y práctica de vuelo.",
+            imageUrl: "section_campus.webp",
+            consoleTitle: "TERMINAL ACADÉMICA / SIMULADOR",
+            calcTitle: "Calculadora VANT",
+            calcDesc: "Ingresa el peso de tu dron (en gramos) para verificar su clasificación y los requisitos de la ANAC Argentina.",
+            calcBtnText: "Clasificar Aeronave",
+            geoTitle: "Verificador de Espacio Aéreo",
+            geoDesc: "Evalúa si tu zona de práctica está fuera de las exclusiones de aeropuertos de la ANAC.",
+            geoBtnText: "Consultar Espacio Aéreo",
+            examTitle: "Examen de Competencia",
+            examDesc: "Pon a prueba tus conocimientos sobre normativa ANAC, seguridad y meteorología en Categoría Abierta.",
+            examBtnText: "Iniciar Simulador Examen"
+        };
+    }
+
+    let courseData = StorageService.getData(STORAGE_KEYS.COURSES);
     // Forzar actualización si los cursos viejos están cacheados
     if (!courseData || !courseData.alafija) {
         courseData = JSON.parse(JSON.stringify(defaultCourses));
-        localStorage.setItem('horus_courses', JSON.stringify(courseData));
+        StorageService.saveData(STORAGE_KEYS.COURSES, courseData);
     }
 
     const defaultContact = {
@@ -250,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
         address: "Buenos Aires & Neuquén, Argentina",
         whatsapp: "5491136592233"
     };
-    let contactData = JSON.parse(localStorage.getItem('horus_contact')) || defaultContact;
+    let contactData = StorageService.getData(STORAGE_KEYS.CONTACT, defaultContact);
 
     const defaultTestimonials = [
         {
@@ -265,23 +542,242 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    let testimonialsData = JSON.parse(localStorage.getItem('horus_testimonials'));
+    let testimonialsData = StorageService.getData(STORAGE_KEYS.TESTIMONIALS);
     if (!testimonialsData || testimonialsData.length === 0) {
         testimonialsData = JSON.parse(JSON.stringify(defaultTestimonials));
-        localStorage.setItem('horus_testimonials', JSON.stringify(testimonialsData));
+        StorageService.saveData(STORAGE_KEYS.TESTIMONIALS, testimonialsData);
     }
 
     // --- RENDERIZADO DEL CMS ---
-    function renderSite() {
+    function renderHeroElements() {
+        if (!siteData.hero) return;
+        const hero = siteData.hero;
+
         const titleEl = document.getElementById('hero-title-text');
         const pillEl = document.getElementById('hero-pill-text');
         const taglineEl = document.getElementById('hero-tagline-text');
         const descEl = document.getElementById('hero-desc-text');
         
-        if (titleEl) titleEl.innerHTML = siteData.hero.title;
-        if (pillEl) pillEl.innerHTML = siteData.hero.pill;
-        if (taglineEl) taglineEl.innerHTML = siteData.hero.tagline;
-        if (descEl) descEl.innerHTML = siteData.hero.description;
+        if (titleEl && hero.title) titleEl.innerHTML = hero.title;
+        if (pillEl && hero.pill) pillEl.innerHTML = hero.pill;
+        if (taglineEl && hero.tagline) taglineEl.innerHTML = hero.tagline;
+        if (descEl && hero.description) descEl.innerHTML = hero.description;
+
+        const trustContainer = document.getElementById('hero-trust-container');
+        if (trustContainer && Array.isArray(hero.trustBadges)) {
+            const activeTrust = hero.trustBadges
+                .filter(b => b.visible !== false)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            trustContainer.innerHTML = activeTrust.map(b => `
+                <div class="trust-badge">
+                    <i data-lucide="${b.icon || 'shield-check'}"></i>
+                    <div>
+                        <span class="trust-label">${b.title || ''}</span>
+                        <span class="trust-sub">${b.sub || ''}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        const techContainer = document.getElementById('hero-tech-container');
+        if (techContainer && Array.isArray(hero.techTags)) {
+            const activeTech = hero.techTags
+                .filter(t => t.visible !== false)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            techContainer.innerHTML = activeTech.map(t => `
+                <div class="tech-item">
+                    <i data-lucide="${t.icon || 'check'}"></i>
+                    <span>${t.text || ''}</span>
+                </div>
+            `).join('');
+        }
+
+        const btnsContainer = document.getElementById('hero-btns-container');
+        if (btnsContainer && Array.isArray(hero.ctaButtons)) {
+            const activeBtns = hero.ctaButtons
+                .filter(b => b.visible !== false)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            btnsContainer.innerHTML = activeBtns.map(b => `
+                <a href="${b.href || '#'}" class="btn ${b.btnClass || 'btn-primary'}">${b.text || ''}</a>
+            `).join('');
+        }
+
+        const floatContainer = document.getElementById('hero-floating-badges-container');
+        if (floatContainer && Array.isArray(hero.floatingBadges)) {
+            const activeFloat = hero.floatingBadges
+                .filter(b => b.visible !== false)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            floatContainer.innerHTML = activeFloat.map(b => `
+                <div class="floating-badge ${b.positionClass || 'badge-top-left'} glass">
+                    <i data-lucide="${b.icon || 'shield-check'}"></i>
+                    <div>
+                        <span style="font-size:0.75rem;font-weight:800;display:block">${b.title || ''}</span>
+                        <span style="font-size:0.65rem;opacity:0.7">${b.sub || ''}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    let heroRotationTimer = null;
+    let currentHeroIdx = 0;
+
+    function renderHeroImages() {
+        if (heroRotationTimer) {
+            clearInterval(heroRotationTimer);
+            heroRotationTimer = null;
+        }
+
+        const bgWrapper = document.querySelector('.hero-bg-wrapper');
+        if (!bgWrapper) return;
+
+        if (!siteData.heroImages || !Array.isArray(siteData.heroImages.images) || siteData.heroImages.images.length === 0) {
+            siteData.heroImages = {
+                enabled: true,
+                interval: 5,
+                images: ["drone_school_hero.webp"]
+            };
+        }
+
+        const validImages = siteData.heroImages.images.filter(img => img && typeof img === 'string' && img.trim() !== "");
+        if (validImages.length === 0) {
+            validImages.push("drone_school_hero.webp");
+        }
+
+        const isEnabled = siteData.heroImages.enabled !== false;
+        const intervalSec = Math.max(1, parseInt(siteData.heroImages.interval) || 5);
+
+        let imgA = bgWrapper.querySelector('.hero-bg-img-a');
+        let imgB = bgWrapper.querySelector('.hero-bg-img-b');
+        let overlay = bgWrapper.querySelector('.hero-bg-overlay');
+
+        if (!imgA || !imgB || !overlay) {
+            bgWrapper.innerHTML = '';
+
+            imgA = document.createElement('img');
+            imgA.className = 'hero-bg-img hero-bg-img-a';
+            imgA.style.position = 'absolute';
+            imgA.style.top = '0';
+            imgA.style.right = '0';
+            imgA.style.width = '80%';
+            imgA.style.height = '100%';
+            imgA.style.objectFit = 'cover';
+            imgA.style.objectPosition = 'center right';
+            imgA.style.transition = 'opacity 1s ease-in-out';
+            imgA.style.opacity = '1';
+            imgA.style.zIndex = '1';
+
+            imgB = document.createElement('img');
+            imgB.className = 'hero-bg-img hero-bg-img-b';
+            imgB.style.position = 'absolute';
+            imgB.style.top = '0';
+            imgB.style.right = '0';
+            imgB.style.width = '80%';
+            imgB.style.height = '100%';
+            imgB.style.objectFit = 'cover';
+            imgB.style.objectPosition = 'center right';
+            imgB.style.transition = 'opacity 1s ease-in-out';
+            imgB.style.opacity = '0';
+            imgB.style.zIndex = '1';
+
+            overlay = document.createElement('div');
+            overlay.className = 'hero-bg-overlay';
+            overlay.style.zIndex = '2';
+
+            bgWrapper.appendChild(imgA);
+            bgWrapper.appendChild(imgB);
+            bgWrapper.appendChild(overlay);
+        }
+
+        currentHeroIdx = 0;
+        imgA.src = validImages[0];
+        imgA.style.opacity = '1';
+        imgB.style.opacity = '0';
+
+        if (!isEnabled || validImages.length <= 1) {
+            return;
+        }
+
+        let activeIsA = true;
+        heroRotationTimer = setInterval(() => {
+            currentHeroIdx = (currentHeroIdx + 1) % validImages.length;
+            const nextSrc = validImages[currentHeroIdx];
+            if (activeIsA) {
+                imgB.src = nextSrc;
+                imgB.style.opacity = '1';
+                imgA.style.opacity = '0';
+            } else {
+                imgA.src = nextSrc;
+                imgA.style.opacity = '1';
+                imgB.style.opacity = '0';
+            }
+            activeIsA = !activeIsA;
+        }, intervalSec * 1000);
+    }
+
+    function renderSite() {
+        renderHeroImages();
+        renderHeroElements();
+
+        // Renderizado Banner Consultor Inteligente
+        const bannerSection = document.getElementById('consultor-banner');
+        if (bannerSection && siteData.consultorBanner) {
+            const cb = siteData.consultorBanner;
+            bannerSection.style.display = (cb.enabled !== false) ? '' : 'none';
+            const titleEl = document.getElementById('consultor-title');
+            const subEl = document.getElementById('consultor-subtitle');
+            const btnEl = document.getElementById('consultor-btn');
+            const iconEl = document.getElementById('consultor-icon');
+
+            if (titleEl && cb.title) titleEl.textContent = cb.title;
+            if (subEl && cb.subtitle) subEl.textContent = cb.subtitle;
+            if (btnEl && cb.btnText) {
+                btnEl.innerHTML = `${cb.btnText} <i data-lucide="chevron-right" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"></i>`;
+            }
+            if (iconEl && cb.icon) {
+                iconEl.setAttribute('data-lucide', cb.icon);
+            }
+        }
+
+        // Renderizado Encabezado de Cursos
+        const cTitleEl = document.getElementById('courses-header-title');
+        const cSubEl = document.getElementById('courses-header-subtitle');
+        if (siteData.coursesHeader) {
+            if (cTitleEl && siteData.coursesHeader.title) cTitleEl.textContent = siteData.coursesHeader.title;
+            if (cSubEl && siteData.coursesHeader.subtitle) cSubEl.textContent = siteData.coursesHeader.subtitle;
+        }
+
+        // Renderizado del Logotipo Institucional
+        const logoAnchor = document.querySelector('.navbar .logo');
+        if (logoAnchor) {
+            let logoImg = logoAnchor.querySelector('.logo-brand-img');
+            const iconEl = logoAnchor.querySelector('[data-lucide="shield-check"], svg');
+            const logoUrl = siteData && siteData.brand && siteData.brand.logoUrl ? siteData.brand.logoUrl.trim() : '';
+            const logoAlt = siteData && siteData.brand && siteData.brand.logoAlt ? siteData.brand.logoAlt.trim() : 'Horus Dron';
+
+            if (logoUrl !== '') {
+                if (iconEl) iconEl.style.display = 'none';
+                if (!logoImg) {
+                    logoImg = document.createElement('img');
+                    logoImg.className = 'logo-brand-img';
+                    logoImg.style.maxHeight = '36px';
+                    logoImg.style.width = 'auto';
+                    logoImg.style.marginRight = '10px';
+                    logoImg.style.borderRadius = '6px';
+                    logoAnchor.insertBefore(logoImg, logoAnchor.firstChild);
+                }
+                logoImg.src = logoUrl;
+                logoImg.alt = logoAlt;
+                logoImg.style.display = 'inline-block';
+            } else {
+                if (iconEl) iconEl.style.display = '';
+                if (logoImg) logoImg.style.display = 'none';
+            }
+        }
 
         const coursesContainer = document.getElementById('dynamic-courses-container');
         if (coursesContainer) {
@@ -297,7 +793,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             Object.keys(courseData).forEach(key => {
                 const c = courseData[key];
-                if (c.visible === false) return; // FASE 3: No renderizar cursos ocultos
+                let currentStatus = c.status;
+                if (!currentStatus) {
+                    currentStatus = c.visible === false ? 'draft' : 'published';
+                }
+                if (currentStatus !== 'published') return;
                 
                 const icon = iconMap[key] || 'book';
                 
@@ -344,25 +844,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         const statsContainer = document.getElementById('dynamic-stats-container');
-        if (statsContainer) {
-            statsContainer.innerHTML = `
-                <div class="stat-item" style="position: relative; z-index: 1;">
-                    <span class="stat-number" data-target="${siteData.stats.graduates}" data-suffix="+">0+</span>
-                    <span class="stat-label">Pilotos Egresados</span>
-                </div>
-                <div class="stat-item" style="position: relative; z-index: 1;">
-                    <span class="stat-number" data-target="${siteData.stats.hours}" data-suffix="+">0+</span>
-                    <span class="stat-label">Horas de Práctica</span>
-                </div>
-                <div class="stat-item" style="position: relative; z-index: 1;">
-                    <span class="stat-number" data-target="100" data-suffix="%">0%</span>
-                    <span class="stat-label">Drones Provistos por Escuela</span>
-                </div>
-                <div class="stat-item" style="position: relative; z-index: 1;">
-                    <span class="stat-number" data-target="${siteData.stats.instructors}" data-suffix="+">0+</span>
-                    <span class="stat-label">Instructores Certificados</span>
-                </div>
-            `;
+        const statsBgImg = document.getElementById('stats-bg-img');
+        if (siteData.stats) {
+            if (statsBgImg && siteData.stats.bgImage) statsBgImg.src = siteData.stats.bgImage;
+            if (statsContainer && Array.isArray(siteData.stats.items)) {
+                statsContainer.innerHTML = siteData.stats.items.map(st => `
+                    <div class="stat-item" style="position: relative; z-index: 1;">
+                        <span class="stat-number" data-target="${st.number}" data-suffix="${st.suffix || ''}">0${st.suffix || ''}</span>
+                        <span class="stat-label">${st.label}</span>
+                    </div>
+                `).join('');
+
+                statsContainer.querySelectorAll('.stat-number[data-target]').forEach(el => observerCounter.observe(el));
+            }
         }
         
         // Renderizar Contacto
@@ -391,6 +885,21 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('');
         }
 
+        // Renderizar Precios y Planes Dinámicos
+        renderPricing();
+
+        // Renderizar Sección de Inscripción Dinámica
+        renderEnrollment();
+
+        // Renderizar Nosotros y Equipo Dinámico
+        renderAbout();
+
+        // Renderizar Header, Navbar y Footer Dinámico
+        renderHeaderFooter();
+
+        // Renderizar Campus Digital
+        renderCampus();
+
         // WhatsApp Floater and Links
         const waMessage = encodeURIComponent('Hola Horus Dron, me interesa obtener información sobre sus cursos de piloto de drones en Categoría Abierta.');
         document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
@@ -399,6 +908,322 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (window.lucide) {
             lucide.createIcons();
+        }
+    }
+
+    function renderHeaderFooter() {
+        if (!siteData.headerFooter) {
+            siteData.headerFooter = JSON.parse(JSON.stringify(defaultHeaderFooter));
+        }
+
+        const hf = siteData.headerFooter;
+
+        // Navbar Brand Name & Subtitle
+        const navNameEl = document.getElementById('nav-brand-name');
+        const navSubEl = document.getElementById('nav-brand-sub');
+        const navLogoIcon = document.getElementById('nav-logo-icon');
+
+        if (navNameEl && (hf.brandName || siteData.brand?.name)) {
+            navNameEl.textContent = hf.brandName || siteData.brand.name;
+        }
+        if (navSubEl && hf.brandSub) {
+            navSubEl.textContent = hf.brandSub;
+        }
+        if (navLogoIcon && siteData.brand?.logoUrl) {
+            navLogoIcon.innerHTML = `<img src="${siteData.brand.logoUrl}" alt="${siteData.brand.logoAlt || ''}" style="height:28px; object-fit:contain;">`;
+        }
+
+        // Navbar Links
+        const navLinksContainer = document.getElementById('nav-dynamic-links');
+        if (navLinksContainer && Array.isArray(hf.navigation)) {
+            const activeNavItems = hf.navigation
+                .filter(item => item.visible !== false)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            navLinksContainer.innerHTML = activeNavItems.map(item => {
+                const btnClassStr = item.isBtn ? `class="btn ${item.btnClass || 'btn-primary'}"` : '';
+                return `<li><a href="${item.href}" ${btnClassStr}>${item.label}</a></li>`;
+            }).join('');
+        }
+
+        // Footer Info
+        const footerNameEl = document.getElementById('footer-brand-name');
+        const footerSubEl = document.getElementById('footer-brand-sub');
+        const footerLegalNoteEl = document.getElementById('footer-legal-note');
+        const copyrightEl = document.getElementById('footer-copyright-text');
+
+        if (footerNameEl && hf.footerTitle) footerNameEl.textContent = hf.footerTitle;
+        if (footerSubEl && hf.footerSub) footerSubEl.textContent = hf.footerSub;
+        if (footerLegalNoteEl && hf.footerLegalNote) footerLegalNoteEl.textContent = hf.footerLegalNote;
+        if (copyrightEl && hf.copyright) copyrightEl.innerHTML = hf.copyright;
+
+        // Footer Social Links
+        const socialContainer = document.getElementById('footer-dynamic-social');
+        if (socialContainer && Array.isArray(hf.socials)) {
+            const activeSocials = hf.socials
+                .filter(item => item.visible !== false)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            socialContainer.innerHTML = activeSocials.map(item => `
+                <a href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="${item.platform}">
+                    <i data-lucide="${item.icon || 'link'}"></i>
+                </a>
+            `).join('');
+        }
+
+        // Footer Legal Links
+        const legalContainer = document.getElementById('footer-dynamic-legal');
+        if (legalContainer && Array.isArray(hf.legalLinks)) {
+            const activeLegal = hf.legalLinks
+                .filter(item => item.visible !== false)
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            legalContainer.innerHTML = activeLegal.map(item => `
+                <p><a href="${item.href}" style="color:var(--text-secondary);text-decoration:none">${item.label}</a></p>
+            `).join('');
+        }
+    }
+
+    function renderAbout() {
+        if (!siteData.about) {
+            siteData.about = {
+                headerTitle: "¿Quiénes Somos?",
+                headerSubtitle: "Especialistas en la formación de pilotos con base en la normativa y buenas prácticas aeronáuticas.",
+                imageUrl: "section_nosotros.webp",
+                mainTitle: "Formamos pilotos capacitados para volar con <span class=\"gradient-text\">seguridad.</span>",
+                badgeText: "Formación Profesional basada en la Res. ANAC N° 550/2025",
+                paragraphs: [
+                    "Horus Dron es una escuela especializada en la capacitación de pilotos de drones. Nos enfocamos exclusivamente en brindar una sólida enseñanza teórica y práctica basada en el marco regulatorio y los estándares de seguridad de la Categoría Abierta de la ANAC en Argentina.",
+                    "Nuestra propuesta académica elimina barreras de acceso: no requerimos que poseas conocimientos previos aeronáuticos ni que tengas un dron propio. Te proveemos todos los equipos necesarios para el aprendizaje."
+                ],
+                values: [
+                    { title: "Accesibilidad Total", desc: "No necesitas poseer drones ni tener experiencia previa. Aprendes con nuestras aeronaves escuela." },
+                    { title: "Metodología Pedagógica", desc: "Clases teóricas interactivas combinadas con prácticas intensivas en zonas de vuelo seguras." },
+                    { title: "Instructores Experimentados", desc: "Plan curricular diseñado e impartido por personal idóneo y con amplia experiencia en vuelo real." }
+                ]
+            };
+        }
+
+        const hTitleEl = document.getElementById('about-header-title');
+        const hSubEl = document.getElementById('about-header-subtitle');
+        const imgEl = document.getElementById('about-img');
+        const mainTitleEl = document.getElementById('about-main-title');
+        const badgeEl = document.getElementById('about-badge');
+        const paragraphsEl = document.getElementById('about-paragraphs');
+        const valuesEl = document.getElementById('about-values');
+        const teamContainer = document.getElementById('dynamic-team-container');
+
+        if (hTitleEl && siteData.about.headerTitle) hTitleEl.innerHTML = siteData.about.headerTitle;
+        if (hSubEl && siteData.about.headerSubtitle) hSubEl.textContent = siteData.about.headerSubtitle;
+        if (imgEl && siteData.about.imageUrl) imgEl.src = siteData.about.imageUrl;
+        if (mainTitleEl && siteData.about.mainTitle) mainTitleEl.innerHTML = siteData.about.mainTitle;
+        if (badgeEl && siteData.about.badgeText) badgeEl.innerHTML = `<i data-lucide="shield-check"></i> ${siteData.about.badgeText}`;
+
+        if (paragraphsEl && Array.isArray(siteData.about.paragraphs)) {
+            paragraphsEl.innerHTML = siteData.about.paragraphs.map(p => `<p>${p}</p>`).join('');
+        }
+
+        if (valuesEl && Array.isArray(siteData.about.values)) {
+            valuesEl.innerHTML = siteData.about.values.map(val => `
+                <div class="value-item">
+                    <h4>${val.title}</h4>
+                    <p>${val.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        if (teamContainer) {
+            const activeInstructors = (siteData.instructors || [])
+                .filter(ins => ins.visible !== false && ins.status === 'published')
+                .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+            if (activeInstructors.length === 0) {
+                teamContainer.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--text-secondary); padding:20px 0;">No hay instructores publicados en este momento.</p>';
+                return;
+            }
+
+            teamContainer.innerHTML = activeInstructors.map(ins => {
+                const avatarContent = ins.photo && ins.photo.trim() !== ''
+                    ? `<img src="${ins.photo}" alt="${ins.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`
+                    : `<i data-lucide="user"></i>`;
+
+                return `
+                    <div class="team-card glass reveal">
+                        <div class="team-avatar">${avatarContent}</div>
+                        <h4>${ins.name}</h4>
+                        <span class="role">${ins.role}</span>
+                        <p>${ins.description}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+    }
+
+    function renderEnrollment() {
+        if (!siteData.enrollment) {
+            siteData.enrollment = {
+                title: "Iniciá tu Carrera",
+                subtitle: "Completá el formulario para que la coordinación pedagógica analice tu perfil y te asigne un cupo de formación práctica presencial.",
+                imageUrl: "section_enrollment.webp",
+                btnText: "Enviar Solicitud de Inscripción",
+                perks: [
+                    "Clases teóricas y prácticas provistas",
+                    "Drones de instrucción incluidos",
+                    "Acceso 24/7 al Campus Digital"
+                ]
+            };
+        }
+
+        const titleEl = document.querySelector('#enroll .enroll-info h2');
+        const descEl = document.querySelector('#enroll .enroll-info > p');
+        const imgEl = document.querySelector('#enroll .enroll-info img');
+        const perksEl = document.querySelector('#enroll .enroll-perks');
+        const submitBtn = document.querySelector('#enroll-form button[type="submit"]');
+
+        if (titleEl && siteData.enrollment.title) titleEl.innerHTML = siteData.enrollment.title;
+        if (descEl && siteData.enrollment.subtitle) descEl.textContent = siteData.enrollment.subtitle;
+        if (imgEl && siteData.enrollment.imageUrl) imgEl.src = siteData.enrollment.imageUrl;
+        if (submitBtn && siteData.enrollment.btnText) submitBtn.textContent = siteData.enrollment.btnText;
+
+        if (perksEl && Array.isArray(siteData.enrollment.perks)) {
+            perksEl.innerHTML = siteData.enrollment.perks.map(perk => `
+                <li><i data-lucide="check-circle"></i> ${perk}</li>
+            `).join('');
+        }
+
+        // Poblar selector de cursos publicados exclusivamente
+        const courseSelect = document.getElementById('enroll-course');
+        if (courseSelect && typeof courseData === 'object' && courseData !== null) {
+            const currentSelected = courseSelect.value;
+            const publishedCourses = Object.keys(courseData)
+                .filter(key => {
+                    const c = courseData[key];
+                    return c && (c.status === 'published' || (c.status === undefined && c.visible !== false));
+                })
+                .map(key => ({
+                    key: key,
+                    title: courseData[key].title || key
+                }));
+
+            courseSelect.innerHTML = '<option value="" disabled selected>Selecciona tu Curso</option>' +
+                publishedCourses.map(c => `<option value="${c.key}">${c.title}</option>`).join('');
+
+            if (currentSelected && publishedCourses.some(c => c.key === currentSelected)) {
+                courseSelect.value = currentSelected;
+            }
+        }
+    }
+
+    function renderPricing() {
+        const container = document.getElementById('dynamic-pricing-container') || document.querySelector('.pricing-grid');
+        if (!container) return;
+
+        // Renderizado Encabezado de Precios
+        const pTitleEl = document.getElementById('pricing-header-title');
+        const pSubEl = document.getElementById('pricing-header-subtitle');
+        if (siteData.pricingHeader) {
+            if (pTitleEl && siteData.pricingHeader.title) pTitleEl.textContent = siteData.pricingHeader.title;
+            if (pSubEl && siteData.pricingHeader.subtitle) pSubEl.textContent = siteData.pricingHeader.subtitle;
+        }
+
+        if (!siteData.pricing || !Array.isArray(siteData.pricing) || siteData.pricing.length === 0) {
+            siteData.pricing = JSON.parse(JSON.stringify(defaultPlans));
+        }
+
+        const activePlans = siteData.pricing
+            .filter(p => p.visible !== false && p.status === 'published')
+            .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+        if (activePlans.length === 0) {
+            container.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--text-secondary); padding:40px 0;">No hay planes de inversión disponibles en este momento.</p>';
+            return;
+        }
+
+        container.innerHTML = activePlans.map(plan => {
+            const isFeatured = plan.featured || (plan.badge && plan.badge.trim() !== '');
+            const badgeHTML = plan.badge && plan.badge.trim() !== '' ? `<div class="pricing-badge">${plan.badge}</div>` : '';
+            const btnClass = plan.featured || plan.btnClass === 'btn-primary' ? 'btn btn-primary' : 'btn btn-outline';
+            const btnText = plan.btnText || 'Consultar';
+            const noteHTML = plan.note ? `<div class="pricing-note">${plan.note}</div>` : '';
+            const descHTML = plan.description ? `<p class="pricing-desc">${plan.description}</p>` : '';
+            
+            const featuresHTML = Array.isArray(plan.features) ? plan.features.map(f => `<li><i data-lucide="check"></i> ${f}</li>`).join('') : '';
+
+            return `
+                <div class="pricing-card glass ${isFeatured ? 'featured' : ''} reveal">
+                    ${badgeHTML}
+                    <h3>${plan.name}</h3>
+                    ${descHTML}
+                    <div class="pricing-price">${plan.price}</div>
+                    ${noteHTML}
+                    <ul class="pricing-features">
+                        ${featuresHTML}
+                    </ul>
+                    <a href="#enroll" class="${btnClass}" style="display:block;text-align:center">${btnText}</a>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    function renderCampus() {
+        const campusSec = document.getElementById('platform');
+        if (!campusSec) return;
+        const c = siteData.campus || {
+            enabled: true,
+            title: "Campus Digital del Alumno",
+            subtitle: "Herramientas interactivas y simuladores teóricos para el aprendizaje y práctica de vuelo.",
+            imageUrl: "section_campus.webp",
+            consoleTitle: "TERMINAL ACADÉMICA / SIMULADOR",
+            calcTitle: "Calculadora VANT",
+            calcDesc: "Ingresa el peso de tu dron (en gramos) para verificar su clasificación y los requisitos de la ANAC Argentina.",
+            calcBtnText: "Clasificar Aeronave",
+            geoTitle: "Verificador de Espacio Aéreo",
+            geoDesc: "Evalúa si tu zona de práctica está fuera de las exclusiones de aeropuertos de la ANAC.",
+            geoBtnText: "Consultar Espacio Aéreo",
+            examTitle: "Examen de Competencia",
+            examDesc: "Pon a prueba tus conocimientos sobre normativa ANAC, seguridad y meteorología en Categoría Abierta.",
+            examBtnText: "Iniciar Simulador Examen"
+        };
+        campusSec.style.display = (c.enabled !== false) ? '' : 'none';
+
+        const titleEl = document.getElementById('campus-header-title');
+        const subEl = document.getElementById('campus-header-subtitle');
+        const imgEl = document.getElementById('campus-header-img');
+        const consoleTitleEl = document.getElementById('console-title-text');
+
+        if (titleEl && c.title) titleEl.textContent = c.title;
+        if (subEl && c.subtitle) subEl.textContent = c.subtitle;
+        if (imgEl && c.imageUrl) imgEl.src = c.imageUrl;
+        if (consoleTitleEl && c.consoleTitle) consoleTitleEl.textContent = c.consoleTitle;
+
+        // Calculadora Card
+        const calcTitleEl = document.getElementById('calc-card-title');
+        const calcDescEl = document.getElementById('calc-card-desc');
+        const calcBtnEl = document.getElementById('calc-btn-text');
+        if (calcTitleEl && c.calcTitle) calcTitleEl.textContent = c.calcTitle;
+        if (calcDescEl && c.calcDesc) calcDescEl.textContent = c.calcDesc;
+        if (calcBtnEl && c.calcBtnText) {
+            calcBtnEl.innerHTML = `<i data-lucide="help-circle"></i> ${c.calcBtnText}`;
+        }
+
+        // Verificador Geo Card
+        const geoTitleEl = document.getElementById('geo-card-title');
+        const geoDescEl = document.getElementById('geo-card-desc');
+        const geoBtnEl = document.getElementById('geo-btn-text');
+        if (geoTitleEl && c.geoTitle) geoTitleEl.textContent = c.geoTitle;
+        if (geoDescEl && c.geoDesc) geoDescEl.textContent = c.geoDesc;
+        if (geoBtnEl && c.geoBtnText) {
+            geoBtnEl.innerHTML = `<i data-lucide="globe"></i> ${c.geoBtnText}`;
+        }
+
+        // Examen Card
+        const examTitleEl = document.getElementById('exam-card-title');
+        const examDescEl = document.getElementById('exam-card-desc');
+        const examBtnEl = document.getElementById('btn-start-exam');
+        if (examTitleEl && c.examTitle) examTitleEl.textContent = c.examTitle;
+        if (examDescEl && c.examDesc) examDescEl.textContent = c.examDesc;
+        if (examBtnEl && c.examBtnText) {
+            examBtnEl.innerHTML = `<i data-lucide="play-circle"></i> ${c.examBtnText}`;
         }
     }
     
@@ -912,7 +1737,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    let EXAM_QUESTIONS = JSON.parse(localStorage.getItem('horus_questions')) || defaultQuestions;
+    let EXAM_QUESTIONS = StorageService.getData(STORAGE_KEYS.QUESTIONS, defaultQuestions);
 
     let currentExamIdx = 0;
     let examScore = 0;
