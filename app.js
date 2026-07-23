@@ -550,24 +550,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- RENDERIZADO DEL CMS ---
     function renderHeroElements() {
-        if (!siteData.hero) return;
-        const hero = siteData.hero;
+        if (!siteData || !siteData.hero) siteData = JSON.parse(JSON.stringify(defaultSiteConfig));
+        const hero = siteData.hero || defaultSiteConfig.hero;
 
         const titleEl = document.getElementById('hero-title-text');
         const pillEl = document.getElementById('hero-pill-text');
         const taglineEl = document.getElementById('hero-tagline-text');
         const descEl = document.getElementById('hero-desc-text');
         
-        if (titleEl && hero.title) titleEl.innerHTML = hero.title;
-        if (pillEl && hero.pill) pillEl.innerHTML = hero.pill;
-        if (taglineEl && hero.tagline) taglineEl.innerHTML = hero.tagline;
-        if (descEl && hero.description) descEl.innerHTML = hero.description;
+        if (titleEl) titleEl.innerHTML = (hero.title && hero.title.trim() !== '') ? hero.title : defaultSiteConfig.hero.title;
+        if (pillEl) pillEl.innerHTML = (hero.pill && hero.pill.trim() !== '') ? hero.pill : defaultSiteConfig.hero.pill;
+        if (taglineEl) taglineEl.innerHTML = (hero.tagline && hero.tagline.trim() !== '') ? hero.tagline : defaultSiteConfig.hero.tagline;
+        if (descEl) descEl.innerHTML = (hero.description && hero.description.trim() !== '') ? hero.description : defaultSiteConfig.hero.description;
 
         const trustContainer = document.getElementById('hero-trust-container');
-        if (trustContainer && Array.isArray(hero.trustBadges)) {
-            const activeTrust = hero.trustBadges
-                .filter(b => b.visible !== false)
-                .sort((a, b) => (a.order || 0) - (b.order || 0));
+        if (trustContainer) {
+            let activeTrust = Array.isArray(hero.trustBadges) && hero.trustBadges.length > 0
+                ? hero.trustBadges.filter(b => b.visible !== false).sort((a, b) => (a.order || 0) - (b.order || 0))
+                : defaultSiteConfig.hero.trustBadges;
+
+            if (activeTrust.length === 0) activeTrust = defaultSiteConfig.hero.trustBadges;
 
             trustContainer.innerHTML = activeTrust.map(b => `
                 <div class="trust-badge">
@@ -581,10 +583,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const techContainer = document.getElementById('hero-tech-container');
-        if (techContainer && Array.isArray(hero.techTags)) {
-            const activeTech = hero.techTags
-                .filter(t => t.visible !== false)
-                .sort((a, b) => (a.order || 0) - (b.order || 0));
+        if (techContainer) {
+            let activeTech = Array.isArray(hero.techTags) && hero.techTags.length > 0
+                ? hero.techTags.filter(t => t.visible !== false).sort((a, b) => (a.order || 0) - (b.order || 0))
+                : defaultSiteConfig.hero.techTags;
+
+            if (activeTech.length === 0) activeTech = defaultSiteConfig.hero.techTags;
 
             techContainer.innerHTML = activeTech.map(t => `
                 <div class="tech-item">
@@ -595,10 +599,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const btnsContainer = document.getElementById('hero-btns-container');
-        if (btnsContainer && Array.isArray(hero.ctaButtons)) {
-            const activeBtns = hero.ctaButtons
-                .filter(b => b.visible !== false)
-                .sort((a, b) => (a.order || 0) - (b.order || 0));
+        if (btnsContainer) {
+            let activeBtns = Array.isArray(hero.ctaButtons) && hero.ctaButtons.length > 0
+                ? hero.ctaButtons.filter(b => b.visible !== false).sort((a, b) => (a.order || 0) - (b.order || 0))
+                : defaultSiteConfig.hero.ctaButtons;
+
+            if (activeBtns.length === 0) activeBtns = defaultSiteConfig.hero.ctaButtons;
 
             btnsContainer.innerHTML = activeBtns.map(b => `
                 <a href="${b.href || '#'}" class="btn ${b.btnClass || 'btn-primary'}">${b.text || ''}</a>
@@ -606,10 +612,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const floatContainer = document.getElementById('hero-floating-badges-container');
-        if (floatContainer && Array.isArray(hero.floatingBadges)) {
-            const activeFloat = hero.floatingBadges
-                .filter(b => b.visible !== false)
-                .sort((a, b) => (a.order || 0) - (b.order || 0));
+        if (floatContainer) {
+            let activeFloat = Array.isArray(hero.floatingBadges) && hero.floatingBadges.length > 0
+                ? hero.floatingBadges.filter(b => b.visible !== false).sort((a, b) => (a.order || 0) - (b.order || 0))
+                : defaultSiteConfig.hero.floatingBadges;
+
+            if (activeFloat.length === 0) activeFloat = defaultSiteConfig.hero.floatingBadges;
 
             floatContainer.innerHTML = activeFloat.map(b => `
                 <div class="floating-badge ${b.positionClass || 'badge-top-left'} glass">
@@ -838,8 +846,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (renderedCount === 0) {
                 courseData = JSON.parse(JSON.stringify(defaultCourses));
                 StorageService.saveData(STORAGE_KEYS.COURSES, courseData);
-                renderSite();
-                return;
+                Object.keys(defaultCourses).forEach(key => {
+                    const c = defaultCourses[key];
+                    const icon = iconMap[key] || 'book';
+                    const card = document.createElement('div');
+                    card.className = 'course-card tilt-card glass open-modal';
+                    card.setAttribute('data-course', key);
+                    card.style.cursor = 'pointer';
+                    card.innerHTML = `
+                        <div class="course-card-img"><img src="${c.viz}" alt="${c.title}" loading="lazy"></div>
+                        <div class="card-icon">
+                            <i data-lucide="${icon}"></i>
+                        </div>
+                        <h3>${c.title}</h3>
+                        <p class="course-desc">${c.desc}</p>
+                        <ul class="course-details">
+                            ${(c.specs || []).slice(0, 3).map(spec => '<li><i data-lucide="check-circle" style="color:var(--accent-yellow)"></i> ' + spec + '</li>').join('')}
+                        </ul>
+                    `;
+                    coursesContainer.appendChild(card);
+                });
             }
             
             // Re-vincular eventos
